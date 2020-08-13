@@ -6,9 +6,10 @@ mat-card-header {
     }
   
     .mat-card-container {
-      float: right;
-      margin-top: -85px;
-      margin-right: 40px;
+      text-align: center;
+      // float: right;
+      // margin-top: -85px;
+      // margin-right: 40px;
   
       .subtitle2 {
         display: block;
@@ -21,7 +22,7 @@ mat-card-header {
     //   background: url('../../../assets/images/DIDiagram.png') no-repeat center center;
       background-size: 100% !important;
       margin: 90px -10px 0 5px;
-      height: 300px !important;
+      height: 80% !important;
       width: 100% !important;
     }
   }
@@ -41,4 +42,17 @@ mat-card-header {
       border: 1px solid #007aff;
     }
   }
+
+.h-80{
+  height: 80vh !important;
+}
+
+.intro-card{
+  position: relative;
+  .testdescription{
+    position: absolute;
+    bottom: 0.5rem;
+    padding: 1rem 3rem;
+  }
+}
   

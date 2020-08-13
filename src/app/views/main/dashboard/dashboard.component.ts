@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy  } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
 
@@ -433,9 +434,7 @@ export class DashboardComponent implements OnInit {
     var y = Math.floor(Math.random() * 256);
     var z = Math.floor(Math.random() * 256);
     var bgColor = "rgb(" + x + "," + y + "," + z + ")";
- console.log(bgColor);
-
- return bgColor
+    return bgColor
   }
 
   constructor(private cdRef:ChangeDetectorRef){
