@@ -28,10 +28,9 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'dashboard',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
-
+        path: 'main',
+        loadChildren: () => import('./views/main/main.module').then(m => m.MainModule)
+      }
     ]
   },
 ];
