@@ -11,7 +11,6 @@ export const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   },
-
   {
     path: 'login',
     component: LoginComponent,
@@ -19,7 +18,6 @@ export const routes: Routes = [
       title: 'Login Page'
     }
   },
-
   {
     path: '',
     component: DefaultLayoutComponent,
@@ -28,15 +26,19 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'main',
-        loadChildren: () => import('./views/main/main.module').then(m => m.MainModule)
+        path: 'dashboard',
+        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
+        path: 'intro',
+        loadChildren: () => import('./views/intro/intro.module').then(m => m.IntroModule)
       }
     ]
   },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

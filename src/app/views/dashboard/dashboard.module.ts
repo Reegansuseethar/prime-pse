@@ -4,13 +4,12 @@ import { ChartsModule } from 'ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { IntroComponent} from './intro/intro.component';
+import { DashboardComponent } from './dashboard.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MainRoutingModule } from './main-routing.module'
+import { DashboardRoutingModule } from './dashboard-routing.module'
 @NgModule({
   imports: [
     FormsModule,
@@ -21,9 +20,9 @@ import { MainRoutingModule } from './main-routing.module'
     MatRadioModule,
     MatIconModule,
     MatButtonModule,
-    MainRoutingModule,
+    DashboardRoutingModule,
     ButtonsModule.forRoot()
   ],
-  declarations: [ DashboardComponent,IntroComponent ]
+  declarations: [ DashboardComponent ]
 })
-export class MainModule { }
+export class DashboardModule { }

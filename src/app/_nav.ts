@@ -32,36 +32,13 @@ export interface NavData {
 export const navItems: NavData[] = [
   {
     name: 'Dashboard',
-    url: '/main',
+    url: '/dashboard',
     icon: 'icon-speedometer',
-    children: [
-      {
-        name: 'Main Page',
-        url: '/main/dashboard',
-        icon: 'icon-layers'
-      },
-      {
-        name: 'Intro Page',
-        url: '/main/intro',
-        icon: 'icon-layers'
-      },
-    ]
+  },
+  {
+    name: 'Intro',
+    url: '/intro',
+    icon: 'icon-speedometer',
   }
 
-  // {
-  //   title: true,
-  //   name: 'Components'
-  // },
-  // {
-  //   name: 'Base',
-  //   url: '/base',
-  //   icon: 'icon-puzzle',
-  //   children: [
-  //     {
-  //       name: 'Add User',
-  //       url: '/base/forms',
-  //       icon: 'icon-puzzle'
-  //     },
-  //   ]
-  // }
 ];
