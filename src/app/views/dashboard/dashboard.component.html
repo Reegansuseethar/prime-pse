@@ -6,7 +6,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-6 col-lg-3" *ngFor="let certificate of listOfCertications">
+    <div class="col-sm-6 col-lg-4" *ngFor="let certificate of listOfCertications">
       <div class="card text-white"  [style.background-color]="random_bg_color()">
         <div class="card-body pb-0">
           <div class="text-value">{{certificate.certificationName}}</div>
@@ -19,7 +19,7 @@
         </div>
         <div class="chart-wrapper mt-3 mx-3" style="height:60px;">
           <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
-            <button type="button" class="btn btn-block btn-outline-info" routerLink="/main/intro">ENTER</button>
+            <button type="button" class="btn btn-block btn-outline-info" routerLink="/intro">ENTER</button>
           </div>
         </div>
       </div>
@@ -27,7 +27,6 @@
   </div>
 
   <!-- <div class="row">
-
     <div class="col-sm-6 col-lg-4">
       <div class="card text-white" style="background-color:#00D2EA;border-color:#00D2EA">
         <div class="card-body pb-0">

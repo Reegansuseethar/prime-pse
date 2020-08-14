@@ -11,10 +11,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private router : Router) { }
+  constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
-
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -28,14 +27,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-console.log(this.loginForm.value.username)
 
-if(this.loginForm.value.username=='admin' && this.loginForm.value.password=='admin123'){
-  this.router.navigate(['main/dashboard'])
-}
-else{
-  alert("invalid Credential!")
-}
+    if (this.loginForm.value.username == 'admin' && this.loginForm.value.password == 'admin123') {
+      this.router.navigate(['dashboard'])
+    }
+    else {
+      alert("invalid Credential!")
+    }
 
   }
 
