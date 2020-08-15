@@ -83,10 +83,12 @@ export class DashboardComponent implements OnInit {
     'certificationName': 'IIBF Exams (JAIIB, CAIIB, AML-KYC)',
     'subContent': [{
       'content1': 'JAIIB PRINCIPLES AND PRACTICES OF BANKING',
-      'content2': 'JAIIB ACCOUNTING AND FINANCE FOR BANKERS'
+      'content2': 'JAIIB ACCOUNTING AND FINANCE FOR BANKERS',
+      'content3': 'JAIIB PRINCIPLES AND PRACTICES',
+      'content4': 'JAIIB ACCOUNTING AND FINANCE'
     }]
   }, {
-    'certificationName': 'IRDA / Licentiate / Associate / Fellowship',
+    'certificationName': 'IRDA / Licentiate / Associate',
     'subContent': [{
       'content1': 'IRDA IC 38 Life Insurance Agent Exam',
       'content2': 'IRDA IC 38 General Insurance Agent Exam',
@@ -96,7 +98,7 @@ export class DashboardComponent implements OnInit {
   }, {
     'certificationName': 'Financial Plan',
     'subContent': [{
-      'content1': 'inancial & Investment Planning Basics',
+      'content1': 'Inancial & Investment Planning Basics',
       'content2': 'Insurance Planning',
       'content3': 'Tax Planning & Estate Planning',
       'content4': 'Retirement Planning and Employee Benefits'
