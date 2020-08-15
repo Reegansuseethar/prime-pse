@@ -9,7 +9,7 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-.app-body{
+.app-body {
     overflow: hidden;
 }
 
@@ -30,7 +30,7 @@
     text-align: right;
 }
 
-.card-body{
+.card-body {
     padding-top: 8px;
 }
 
@@ -69,8 +69,8 @@
     margin-top: 2%;
     margin-left: 6px;
     margin-right: 6px;
-    background-color: rebeccapurple;
-    color: #fff;
+    color: rebeccapurple;
+    background-color: #fff;
 }
 
 .heading {
@@ -88,19 +88,19 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.text-value{
+.text-value {
     text-shadow: 2px 2px 4px #000000;
     text-align: center;
 }
 
-.enter-btn{
+.enter-btn {
     // text-shadow: 2px 2px 4px #000000;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.15), 0 4px 0 rgb(113, 89, 136), 0 4px 6px rgba(0,0,0,0.45);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15), 0 4px 0 rgb(113, 89, 136), 0 4px 6px rgba(0, 0, 0, 0.45);
     width: 50%;
     background: rebeccapurple;
 }
 
-.enter-btn:hover{
+.enter-btn:hover {
     // text-shadow: 2px 2px 4px #000000;
     box-shadow: none;
     width: 50%;
@@ -111,17 +111,21 @@
     color: #fff;
 }
 
-.btn-tab{
+.btn-tab {
     display: flex;
     justify-content: center;
 }
 
-.sub-body{
+.sub-body {
     width: 90%;
-    background: #FFF;
+    background: #fff;
     margin-left: 5%;
-    margin-top: 2%;    
+    margin-top: 2%;
     margin-bottom: -10%;
     color: #000 !important;
     border-radius: 4px;
+}
+
+.body-content {
+    margin-bottom: 5%;
 }
