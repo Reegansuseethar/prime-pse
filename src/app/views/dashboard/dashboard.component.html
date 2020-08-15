@@ -6,17 +6,21 @@
   </div>
 
   <div class="row body-content">
-    <div class="col-sm-6 col-lg-4"  style="margin-top:5%" *ngFor="let certificate of listOfCertications">
+    <div class="col-sm-6 col-lg-4" style="margin-top:5%" *ngFor="let certificate of listOfCertications">
       <div class="card text-white" [style.background-color]="random_bg_color()">
         <div class="card-body pb-0">
           <div class="text-value">{{certificate.certificationName}}</div>
         </div>
         <div class="sub-body">
           <div class="sub-content" *ngFor="let item of certificate.subContent">
-            <div>{{item.content1}}</div>
-            <div>{{item.content2}}</div>
-            <div>{{item.content3}}</div>
-            <div>{{item.content4}}</div>
+            <div ng-container *ngIf="item.content1"><i class="fa fa-caret-right" aria-hidden="true"></i>
+              {{item.content1}}</div>
+            <div ng-container *ngIf="item.content2"> <i class="fa fa-caret-right" aria-hidden="true"></i>
+              {{item.content2}}</div>
+            <div ng-container *ngIf="item.content3"><i class="fa fa-caret-right" aria-hidden="true"></i>
+              {{item.content3}}</div>
+            <div ng-container *ngIf="item.content4"><i class="fa fa-caret-right" aria-hidden="true"></i>
+              {{item.content4}}</div>
           </div>
           <div class="chart-wrapper mt-3 mx-3" style="height:60px;">
             <div class="btn-tab">
