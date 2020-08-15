@@ -75,49 +75,47 @@ export class DashboardComponent implements OnInit {
     'certificationName': 'NISM Certifications',
     'subContent': [{
       'content1': 'NISM MUTUAL FUND',
-      'content2': 'NISM MUTUAL FUND',
-      'content3': 'NISM MUTUAL FUND',
-      'content4': 'NISM MUTUAL FUND'
+      'content2': 'NISM EQUITY DERIVATIVES',
+      'content3': 'NISM DEPOSITORY OPERATIONS',
+      'content4': 'NISM INVESTMENT ADVISER LEVEL 1'
     }]
   }, {
-    'certificationName': 'NISM Certifications',
+    'certificationName': 'IIBF Exams (JAIIB, CAIIB, AML-KYC)',
     'subContent': [{
-      'content1': 'NISM MUTUAL FUND',
-      'content2': 'NISM MUTUAL FUND',
-      'content3': 'NISM MUTUAL FUND',
-      'content4': 'NISM MUTUAL FUND'
+      'content1': 'JAIIB PRINCIPLES AND PRACTICES OF BANKING',
+      'content2': 'JAIIB ACCOUNTING AND FINANCE FOR BANKERS'
     }]
   }, {
-    'certificationName': 'NISM Certifications',
+    'certificationName': 'IRDA / Licentiate / Associate / Fellowship',
     'subContent': [{
-      'content1': 'NISM MUTUAL FUND',
-      'content2': 'NISM MUTUAL FUND',
-      'content3': 'NISM MUTUAL FUND',
-      'content4': 'NISM MUTUAL FUND'
+      'content1': 'IRDA IC 38 Life Insurance Agent Exam',
+      'content2': 'IRDA IC 38 General Insurance Agent Exam',
+      'content3': 'IC01 PRINCIPLES OF INSURANCE',
+      'content4': 'IC11 PRACTICE OF GENERAL'
     }]
   }, {
-    'certificationName': 'NISM Certifications',
+    'certificationName': 'Financial Plan',
     'subContent': [{
-      'content1': 'NISM MUTUAL FUND',
-      'content2': 'NISM MUTUAL FUND',
-      'content3': 'NISM MUTUAL FUND',
-      'content4': 'NISM MUTUAL FUND'
+      'content1': 'inancial & Investment Planning Basics',
+      'content2': 'Insurance Planning',
+      'content3': 'Tax Planning & Estate Planning',
+      'content4': 'Retirement Planning and Employee Benefits'
     }]
   }, {
-    'certificationName': 'NISM Certifications',
+    'certificationName': 'NEET',
     'subContent': [{
-      'content1': 'NISM MUTUAL FUND',
-      'content2': 'NISM MUTUAL FUND',
-      'content3': 'NISM MUTUAL FUND',
-      'content4': 'NISM MUTUAL FUND'
+      'content1': 'NEET BIOLOGY',
+      'content2': 'NEET BOTANY',
+      'content3': 'NEET ZOOLOGY',
+      'content4': 'NEET CHEMISTRY'
     }]
   }, {
-    'certificationName': 'NISM Certifications',
+    'certificationName': 'UGC NET & CSIR',
     'subContent': [{
-      'content1': 'NISM MUTUAL FUND',
-      'content2': 'NISM MUTUAL FUND',
-      'content3': 'NISM MUTUAL FUND',
-      'content4': 'NISM MUTUAL FUND'
+      'content1': 'Law',
+      'content2': 'Teaching & Research Aptitude',
+      'content3': 'English',
+      'content4': 'Management'
     }]
   }]
 
