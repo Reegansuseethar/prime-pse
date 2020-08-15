@@ -1,29 +1,30 @@
 <div class="animated fadeIn">
   <div class="row head-topic">
-    <h1 class="heading">Modelexam.in Online Mock Test portal</h1>
+    <h1 class="heading">PRIME PSC Online Mock Test portal</h1>
     <h4>Stock Market * Insurance * Bank Exam * Govt Exam * Medical Entrance * CA/CS Entrance Exam * Engineering * Law
       Entrance * Financial Planning</h4>
   </div>
 
-
-  <div class="row ">
-    <div class="col-sm-6 col-lg-4 " *ngFor="let certificate of listOfCertications">
-      <mat-card class="card text-white flip-card-front flip-card"  [style.background-color]="random_bg_color()">
-        <div class="card-body pb-0 flip-card-inner">
+  <div class="row">
+    <div class="col-sm-6 col-lg-4"  style="margin-top:5%" *ngFor="let certificate of listOfCertications">
+      <div class="card text-white" [style.background-color]="random_bg_color()">
+        <div class="card-body pb-0">
           <div class="text-value">{{certificate.certificationName}}</div>
+        </div>
+        <div class="sub-body">
           <div class="sub-content" *ngFor="let item of certificate.subContent">
             <div>{{item.content1}}</div>
             <div>{{item.content1}}</div>
             <div>{{item.content1}}</div>
             <div>{{item.content1}}</div>
           </div>
-        </div>
-        <div class="chart-wrapper mt-3 mx-3 flip-card-back" style="height:60px;">
-          <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
-            <button type="button" mat-raised-button class="btn btn-block btn-outline-info" routerLink="/intro">ENTER</button>
+          <div class="chart-wrapper mt-3 mx-3" style="height:60px;">
+            <div class="btn-tab">
+              <button type="button" class="btn btn-block btn-outline-info enter-btn" routerLink="/intro">ENTER</button>
+            </div>
           </div>
         </div>
-      </mat-card>
+      </div>
     </div>
   </div>
 

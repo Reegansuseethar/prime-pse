@@ -7,49 +7,121 @@
 // If you want to add something do it here
 @import "custom";
 
-.card-footer{
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.app-body{
+    overflow: hidden;
+}
+
+.btn-primary {
+    background-color: rebeccapurple;
+    border-color: rebeccapurple;
+}
+
+.btn-primary:hover {
+    background-color: rgb(105, 65, 145);
+    box-shadow: 0px 15px 20px rgba(105, 65, 145, 0.4);
+    border-color: rgb(105, 65, 145);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.card-footer {
     text-align: right;
 }
 
-.edit-icon{
+.card-body{
+    padding-top: 8px;
+}
+
+.edit-icon {
     color: #1b8eb7;
     cursor: pointer;
 }
 
-.remove-icon{
+.remove-icon {
     color: #f64846;
     cursor: pointer;
 }
 
-.sub-content{
+.sub-content {
     margin-left: 8%;
     margin-top: 2%;
 }
 
 .btn-outline-info {
     color: #fff;
-    border: 1px solid  #fff !important;
+    border: 1px solid #fff !important;
 }
 
-.btn-outline-info:hover{
+.btn-outline-info:hover {
     color: #23282c;
     background-color: #fff;
     border-color: #fff;
     font-weight: 600;
 }
 
-.head-topic{
+.head-topic {
     text-align: center;
     border: 1px solid;
-    margin-bottom: 3%;
     padding: 2rem;
     border-radius: 4px;
     margin-top: 2%;
     margin-left: 6px;
     margin-right: 6px;
+    background-color: rebeccapurple;
+    color: #fff;
 }
 
-.heading{
+.heading {
     text-align: center !important;
     width: 100%;
+}
+
+.card:hover {
+    // transform: scale(1.01);
+    transition: 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.text-value{
+    text-shadow: 2px 2px 4px #000000;
+    text-align: center;
+}
+
+.enter-btn{
+    // text-shadow: 2px 2px 4px #000000;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.15), 0 4px 0 rgb(113, 89, 136), 0 4px 6px rgba(0,0,0,0.45);
+    width: 50%;
+    background: rebeccapurple;
+}
+
+.enter-btn:hover{
+    // text-shadow: 2px 2px 4px #000000;
+    box-shadow: none;
+    width: 50%;
+    transition: 0.5s;
+    padding-right: 25px;
+    font-weight: 600;
+    background: rebeccapurple;
+    color: #fff;
+}
+
+.btn-tab{
+    display: flex;
+    justify-content: center;
+}
+
+.sub-body{
+    width: 90%;
+    background: #FFF;
+    margin-left: 5%;
+    margin-top: 2%;    
+    margin-bottom: -10%;
+    color: #000 !important;
+    border-radius: 4px;
 }

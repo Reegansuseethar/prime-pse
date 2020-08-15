@@ -32,6 +32,10 @@ export const routes: Routes = [
       {
         path: 'intro',
         loadChildren: () => import('./views/intro/intro.module').then(m => m.IntroModule)
+      },
+      {
+        path: 'add-question',
+        loadChildren: () => import('./views/add-question/add-question.module').then(m => m.AddQuestionModule)
       }
     ]
   },
