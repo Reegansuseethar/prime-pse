@@ -1,6 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { trigger, state, style, animate, transition } from "@angular/animations";
 import { ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { DataService } from '../../services/data.service';
 
 @Component({
   templateUrl: 'dashboard.component.html',
@@ -134,13 +137,13 @@ export class DashboardComponent implements OnInit {
     return color;
   }
 
-  constructor(private cdRef: ChangeDetectorRef) {
+  constructor(private cdRef: ChangeDetectorRef, private router: Router, private service: DataService) {
 
   }
   ngOnInit(): void {
   }
 
-  changeState() {
-    this.currentState = this.currentState === "initial" ? "final" : "initial";
+  enterIntro(pageDetail: any) {
+    this.router.navigate(['intro'])
   }
 }
