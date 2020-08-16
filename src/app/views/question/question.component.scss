@@ -1,11 +1,20 @@
 $font-stack: Space Mono, monospace;
 $font-weight-max: 900;
 
-mat-card{
+mat-card {
   background: #e4e5e6;
 }
 
-.mat-card:not([class*=mat-elevation-z]){
+.question-bar {
+  background: rebeccapurple;
+  text-align: center;
+  height: 50px;
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 2%;
+}
+
+.mat-card:not([class*="mat-elevation-z"]) {
   box-shadow: none;
 }
 
