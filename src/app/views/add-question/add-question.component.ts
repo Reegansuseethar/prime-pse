@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 export class AddQuestionComponent implements OnInit {
 
   questionForm: FormGroup;
+  showList: boolean = true;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -19,6 +20,7 @@ export class AddQuestionComponent implements OnInit {
   initializeForm() {
     this.questionForm = this.formBuilder.group({
       questionid: [0],
+      questiongroup: ['', Validators.required],
       questionName: ['', Validators.required],
       createdBy: [0],
       createdAt: [new Date()],
@@ -34,13 +36,19 @@ export class AddQuestionComponent implements OnInit {
   onSubmit() {
     if (this.questionForm.invalid) {
       return;
-    }else{
-      console.log(this.questionForm.value)
+    } else {
+      console.log(this.questionForm.value);
+      this.showList = true;
     }
   }
 
   cancel() {
     this.initializeForm();
+    this.showList = true;
+  }
+
+  addQuestion() {
+    this.showList = false;
   }
 
 }

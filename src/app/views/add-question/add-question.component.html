@@ -1,11 +1,27 @@
-<div class="question-bar">
+<div class="question-bar" *ngIf="!showList">
     <strong>Add Question</strong>
 </div>
-<div class="row add-ques">
+<div class="row add-ques" *ngIf="!showList">
     <div class="col-sm-10">
         <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+
             <div class="row">
                 <div class="form-group col-sm-12 ques-name">
+                    <i class="fa fa-chevron-down select-icon" aria-hidden="true"></i>
+                    <select id="type" name="type" class="form-control question-group" formControlName="questiongroup"
+                        name=group>
+                        <option value="" selected disabled>--- Select Question Group ---</option>
+                        <!-- <option [value]="data.groupname" *ngFor="let data of groups">{{data.groupname}}</option> -->
+                    </select>
+                    <div *ngIf="submitted && f.questiongroup.errors" class="invalid-feedback">
+                        <div *ngIf="f.questiongroup.errors.required">Question group is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-12 ques-name">
+                    <i class="fa fa-question-circle-o input-icon" aria-hidden="true"></i>
                     <input type="text" class="form-control question-name" name="ques" formControlName="questionName"
                         placeholder="Click to start typing the question..."
                         [ngClass]="{ 'is-invalid': submitted && f.questionName.errors }">
@@ -17,7 +33,6 @@
 
             <div class="row">
                 <div class="form-group col-sm-6">
-                    <!-- <label for="question">Option 1</label> -->
                     <i class="fa fa-pencil-square option-icon" style="color: purple;" aria-hidden="true"></i>
                     <input type="text" class="form-control option-name" name="opt1" formControlName="option1"
                         placeholder="Add Option 1" [ngClass]="{ 'is-invalid': submitted && f.option1.errors }">
@@ -26,7 +41,6 @@
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
-                    <!-- <label for="question">Option 2</label> -->
                     <i class="fa fa-pencil-square option-icon" style="color:firebrick;" aria-hidden="true"></i>
                     <input type="text" class="form-control option-name" name="opt2" formControlName="option2"
                         placeholder="Add Option 2" [ngClass]="{ 'is-invalid': submitted && f.option2.errors }">
@@ -37,7 +51,6 @@
             </div>
             <div class="row">
                 <div class="form-group col-sm-6">
-                    <!-- <label for="question">Option 3</label> -->
                     <i class="fa fa-pencil-square option-icon" style="color: rgb(8, 65, 32);" aria-hidden="true"></i>
                     <input type="text" class="form-control option-name" name="opt3" formControlName="option3"
                         placeholder="Add Option 3" [ngClass]="{ 'is-invalid': submitted && f.option3.errors }">
@@ -46,7 +59,6 @@
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
-                    <!-- <label for="question">Option 4</label> -->
                     <i class="fa fa-pencil-square option-icon" style="color: rgb(34, 28, 95);" aria-hidden="true"></i>
                     <input type="text" class="form-control option-name" name="opt4" formControlName="option4"
                         placeholder="Add Option 4" [ngClass]="{ 'is-invalid': submitted && f.option4.errors }">
@@ -62,5 +74,35 @@
                 <button type="submit" class="btn btn-md btn-primary">Submit</button>
             </div>
         </form>
+    </div>
+</div>
+
+<div *ngIf="showList">
+    <div class="button-bar ques-table">
+        <button type="button" class="btn btn-md btn-primary" (click)="addQuestion()">ADD QUESTION</button>
+    </div>
+    <div class="">
+        <table class="table table-responsive-sm table-hover table-outline mb-0">
+            <thead class="thead-light">
+                <tr>
+                    <th class="text-center">Question</th>
+                    <th class="text-center white-space">Question group</th>
+                    <!-- <th class="text-center">Options</th> -->
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr *ngFor="let data of queslist | paginate: { itemsPerPage: 10, currentPage: p }; let i=index">
+              <td class="text-left">{{data.questions}}</td>
+              <td class="text-left">{{data.questionstype}}</td>
+              <td class="" [innerHtml]="setDivContent(data)"> </td>
+              <td class="text-left white-space"><i class="fa fa-pencil-square-o fa-lg edit-icon"
+                  (click)="editQuestion(typeid,data.questionid)"></i>&nbsp;&nbsp;&nbsp;<i
+                  class="fa fa-trash fa-lg remove-icon" (click)="myModal.show();openModel(data.questionid)"></i></td>
+            </tr> -->
+            </tbody>
+        </table>
+        <!-- <span class="empty-data" *ngIf='noData'>No Data Available</span>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
     </div>
 </div>

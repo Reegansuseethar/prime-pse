@@ -10,6 +10,16 @@
     box-shadow: 0px 2px 5px;
 }
 
+.question-group {
+    height: 50px;
+    text-align-last: center;
+    font-size: 20px;
+    font-weight: 600;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0px 2px 5px;
+}
+
 .add-ques {
     margin-right: 5%;
     margin-left: 5%;
@@ -31,22 +41,48 @@
     font-size: 16px;
     font-weight: 600;
     border: 0.5px solid #ccc;
-    padding-left: 3rem;    
+    padding-left: 3rem;
     box-shadow: 0px 1px 2px;
     border-radius: 8px;
 }
 
-.ques-name{
-    margin-bottom: 5%
+.ques-name {
+    margin-bottom: 5%;
 }
 
-.button-bar{
+.button-bar {
     float: right;
     margin-top: 3%;
 }
 
-.option-icon{
+.option-icon {
     font-size: 46px;
     position: absolute;
     top: -3px;
+}
+
+.select-icon {
+    font-size: 31px;
+    position: absolute;
+    top: 9px;
+    right: 17px;
+    color: rebeccapurple;
+}
+
+.table .thead-light th {
+    color: #fff;
+    background-color: rebeccapurple;
+    border-color: transparent;
+}
+
+.ques-table {
+    margin-bottom: 10px;
+}
+
+.input-icon{
+    font-size: 31px;
+    position: absolute;
+    top: 15px;
+    right: 24px;
+    color: rebeccapurple;
 }

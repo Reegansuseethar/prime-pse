@@ -11,12 +11,48 @@
 
 $font-stack: Space Mono, monospace;
 
-html{
+html {
     font-family: $font-stack !important;
 }
 
 .app-body {
     overflow: hidden;
+}
+
+//top menu
+
+.topnav {
+    overflow: hidden;
+    background-color: rebeccapurple;
+    color: #fff;
+    position: fixed;
+    font-weight: 600;
+    width: 100%;
+    z-index: 9;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.topnav a:hover {
+    background-color: rgb(146, 84, 207);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.topnav a.active {
+    background-color: #fff;
+    color: rebeccapurple;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .login-bg {
@@ -94,7 +130,7 @@ html{
     border: 1px solid;
     padding: 2rem;
     border-radius: 4px;
-    margin-top: 2%;
+    margin-top: 5%;
     margin-left: 6px;
     margin-right: 6px;
     color: rebeccapurple;
