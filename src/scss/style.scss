@@ -67,7 +67,7 @@ html {
 
     .card {
         background: rgba(0, 0, 0, 0.5);
-        border: transparent;
+        // border: transparent;
     }
     .text-muted {
         color: #fff !important;
@@ -202,4 +202,16 @@ html {
     background-color: rebeccapurple;
     color: #fff;
     font-size: 25px;
+}
+
+.social-btn{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.linkedin-btn{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 0;
 }
