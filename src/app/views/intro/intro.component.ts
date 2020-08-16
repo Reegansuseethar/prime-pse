@@ -1,4 +1,5 @@
-import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -72,9 +73,14 @@ export class IntroComponent implements OnInit {
     return color;
   }
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService, private router: Router) { }
 
   ngOnInit() {
+
+  }
+
+  mockTest() {
+    this.router.navigate(['question'])
 
   }
 

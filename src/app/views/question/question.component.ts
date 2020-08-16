@@ -18,7 +18,7 @@ export class QuestionComponent implements OnInit {
 
   questionID = 0;
   currentQuestion = 0;
-  questionIndex: number=0;
+  questionIndex: number = 0;
   correctAnswer: boolean;
   hasAnswer: boolean;
   disabled: boolean;
@@ -88,8 +88,8 @@ export class QuestionComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router) {
     // this.route.paramMap.subscribe(params => {
-      this.setQuestionID(1);  // get the question ID and store it
-      this.question = this.getQuestion;
+    this.setQuestionID(1);  // get the question ID and store it
+    this.question = this.getQuestion;
     // });
   }
 
@@ -110,7 +110,7 @@ export class QuestionComponent implements OnInit {
     if (typeof document.getElementById('question') !== 'undefined' && this.getQuestionID() <= this.totalQuestions) {
       document.getElementById('question').innerHTML = this.allQuestions[this.questionIndex]['questionText'];
       document.getElementById('question').style.border = this.blueBorder;
-    } 
+    }
   }
 
   /* displayPreviousQuestion() {
@@ -194,7 +194,7 @@ export class QuestionComponent implements OnInit {
   }
 
   setQuestionID(id: number) {
-    console.log('nextQnId',id)
+    console.log('nextQnId', id)
     return this.questionID = id;
   }
 
