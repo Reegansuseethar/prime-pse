@@ -1,10 +1,10 @@
 <ng-content></ng-content>
 
-<form [formGroup]="formGroup" class="row" (ngSubmit)="onSubmit()">
+<form [formGroup]="formGroup" class="row question-form" (ngSubmit)="onSubmit()">
   <ol class="form-group">
     <mat-radio-group class="row" aria-labelledby="quiz-form-radio-group" formControlName="answer" name="answer"
                      (change)="radioChange($event.value)" required>
-      <div class="radio-options"  *ngFor="let option of question.options">
+      <div class="radio-options col-lg-6"  *ngFor="let option of question.options">
         <mat-radio-button name="option-radio-button" class="option" [value]="option.optionValue"
                           [checked]="question.selectedOption == option"
                           [ngClass]="{'is-correct': isCorrect(option.optionValue),

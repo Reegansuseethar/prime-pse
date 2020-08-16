@@ -1,6 +1,13 @@
 $font-stack: Space Mono, monospace;
 $font-weight-max: 900;
 
+mat-card{
+  background: #e4e5e6;
+}
+
+.mat-card:not([class*=mat-elevation-z]){
+  box-shadow: none;
+}
 
 mat-card-header {
   display: block;
@@ -72,11 +79,11 @@ section.scoreboard {
 section#question {
   font-family: $font-stack;
   font-weight: 700;
-  font-size: 30px !important;
+  font-size: 25px !important;
   margin: 0 0 10px 0.4rem;
   float: left;
-  border: 2px solid #007aff;
-  padding: 5px 10px 15px 20px;
+  border: 2px solid rebeccapurple;
+  padding: 5px 10px 10px 20px;
   background-color: #f5f5f5;
   color: #0f0900;
   width: 100% !important;
@@ -85,23 +92,23 @@ section#question {
   vertical-align: middle;
 }
 
-section#option{
-    p{
-        font-family: $font-stack;
-  font-weight: 700;
-  font-size: 25px !important;
-  margin: 0 0 10px 0.4rem;
-  float: left;
-  border: 2px solid #007aff;
-  padding: 5px 10px 15px 20px;
-  background-color: #f5f5f5;
-  color: #0f0900;
-  width: 100% !important;
-  text-align: center;
-  height: auto;
-  vertical-align: middle;
-  cursor: pointer;
-    }
+section#option {
+  p {
+    // font-family: $font-stack;
+    font-weight: 700;
+    font-size: 25px !important;
+    margin: 0 0 10px 0.4rem;
+    float: left;
+    border: 2px solid rebeccapurple;
+    padding: 5px 10px 15px 20px;
+    background-color: #f5f5f5;
+    color: #0f0900;
+    width: 100% !important;
+    text-align: center;
+    height: auto;
+    vertical-align: middle;
+    cursor: pointer;
+  }
 }
 
 section.paging {
@@ -126,8 +133,9 @@ section.paging {
       margin: 0 auto;
     }
 
-    .nextQuestionNav:hover, .showScoreNav:hover {
-      border: 1px solid #007aff;
+    .nextQuestionNav:hover,
+    .showScoreNav:hover {
+      border: 1px solid rebeccapurple;
     }
 
     .showScoreNav:hover {

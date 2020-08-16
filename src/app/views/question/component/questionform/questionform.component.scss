@@ -12,9 +12,13 @@ ol li {
 
 .radio-options {
   margin-bottom: 5px;
-  margin-left: 0.5rem;
+  // margin-left: 0.5rem;
   padding: 4px;
   float: left;
+}
+
+.question-form{
+  justify-content: center;
 }
 
 .option {
@@ -22,15 +26,15 @@ ol li {
   font-family: $font-stack;
   font-size: 20px;
   color: #0f0900;
-  background-color: #f5f5f5;
-  width: 39rem !important;
+  background-color: #fff;
+  width: 100% !important;
   height: auto;
   padding: 5px 5px 0 30px;
-  margin-left: -5px;
+  // margin-left: 10%;
   vertical-align: middle;
 }
 .option:hover {
-  outline: 2px solid #007aff;
+  outline: 2px solid rebeccapurple;
 }
 
 .is-correct {
@@ -57,9 +61,8 @@ section.messages {
     font-size: 16px;
     font-style: italic;
     text-align: center !important;
-    margin: 10px 0 0 0;
-    padding: 10px !important;
-    width: 32rem !important;
+    // padding: 10px !important;
+    width: 100% !important;
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
@@ -70,7 +73,7 @@ section.messages {
   .correct-message {
     font-weight: $font-weight-max;
     font-style: italic;
-    border: 2px solid #007aff;
+    border: 2px solid rebeccapurple;
     border-radius: 5px;
     color: #00c853 !important;
   }
@@ -81,6 +84,7 @@ section.messages {
     border-radius: 5px;
     color: #ff0000 !important;
     padding: 5px;
+    margin-left: 10% !important;
   }
   mat-icon.sentiment {
     font-size: 30px !important;

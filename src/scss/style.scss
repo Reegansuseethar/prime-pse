@@ -9,6 +9,12 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+$font-stack: Space Mono, monospace;
+
+html{
+    font-family: $font-stack !important;
+}
+
 .app-body {
     overflow: hidden;
 }

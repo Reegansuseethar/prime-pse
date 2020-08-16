@@ -1,26 +1,61 @@
-<mat-card class="m-4 intro-card h-80">
-    <mat-card-header>
-      <section>
-        <div mat-card-avatar class="header-image"></div>
-        <div class="mat-card-container">
-          <mat-card-title>Dependency Injection Quiz</mat-card-title>
-          <mat-card-subtitle>
-            <span class="subtitle1">How well do you know Dependency Injection?</span>
-            <span class="subtitle2">Take the quiz and find out!</span>
-          </mat-card-subtitle>
-        </div>
-      </section>
-    </mat-card-header>
+<div class="intro-page">
+  <div class="row head-topic">
+    <h1 class="heading">PRIME PSC Online Mock Test portal</h1>
+    <h4>Stock Market * Insurance * Bank Exam * Govt Exam * Medical Entrance * CA/CS Entrance Exam * Engineering * Law
+      Entrance * Financial Planning</h4>
+  </div>
   
-    <mat-card-content class="testdescription">
-      <p>Take this awesome quiz that will help improve your understanding of Dependency Injection. See if you can beat the
-        clock! The timed questionnaire with automatic scoring provides you with a final score along with a summary of your
-        answers. Match wits with your friends! Practice to increase your knowledge. Good luck and have fun with this quiz.
-        Share and enjoy!</p>
-        <mat-card-actions>
-          <button mat-raised-button type="button" disableRipple="false" routerLink="/question" >Start the Quiz!</button>
-        </mat-card-actions>
-    </mat-card-content>
-    
-  </mat-card>
+  <div class="chart-wrapper mt-3 mx-3" style="height:60px;">
+    <div class="btn-tab premium">
+      <div class="premium-btn">
+        <i class="fa fa-sign-in premium-login" aria-hidden="true"></i>
+        <button type="button" class="btn btn-outline-info enter-btn">PREMIUM USER LOGIN</button>
+      </div>
+      <div class="premium-btn">
+        <i class="fa fa-shopping-cart premium-buy" aria-hidden="true"></i>
+        <button type="button" class="btn btn-outline-info enter-btn">BUY PREMIUM</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row body-content">
+    <div class="col-sm-6 col-lg-4" style="margin-top:2%;margin-bottom:2%;" *ngFor="let certificate of listOfCertications">
+      <div class="card text-white" [style.background-color]="random_bg_color()">
+        <div class="card-body pb-0">
+          <div class="text-value">{{certificate.certificationName}}</div>
+        </div>
+        <div class="sub-body">
+          <div class="chart-wrapper mt-3 mx-3" style="height:auto;">
+            <div class="btn-tab">
+              <div class="intro-btn">
+                <button type="button" class="btn btn-outline-info enter-btn">STUDY NOTES</button>
+              </div>
+              <div class="intro-btn">
+                <button type="button" class="btn btn-outline-info enter-btn">VIDEO CONCEPTS</button>
+              </div>
+            </div>
+  
+            <div class="btn-tab">
+              <div class="intro-btn">
+                <button type="button" class="btn btn-outline-info enter-btn">FREE DEMO</button>
+              </div>
+              <div class="intro-btn">
+                <button type="button" class="btn btn-outline-info enter-btn">BUY PREMIUM</button>
+              </div>
+            </div>
+  
+            <div class="btn-tab">
+              <div class="intro-btn">
+                <button type="button" class="btn btn-outline-info enter-btn">FREE MOCK TESTS</button>
+              </div>
+              <!-- <div class="intro-btn">
+                <button type="button" class="btn btn-outline-info enter-btn">BUY PREMIUM</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
   
