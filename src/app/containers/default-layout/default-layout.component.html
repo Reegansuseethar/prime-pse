@@ -19,11 +19,19 @@
         <i class="fa fa-google-plus"></i>
       </button>
     </li>
-    <li class="nav-item d-md-down-none">
-        <button  type="button" class="btn btn-brand btn-lg mr-1" (click)="logout()">
+    <li class="nav-item d-md-down-none" *ngIf="isAdmin;else notAdmin ">
+        <button title="logout"  type="button" class="btn btn-brand btn-lg mr-1" (click)="logout()">
             <i class="material-icons">&#xe8ac;</i>
           </button>
      </li>
+     <ng-template #notAdmin>
+        <li class="nav-item d-md-down-none" >
+            <button title="login" routerLink="/login" type="button" class="btn btn-brand btn-lg mr-1" >
+                <i class="fa fa-sign-in" aria-hidden="true"></i>
+              </button>
+         </li>
+     </ng-template>
+
   </ul>
 
 </app-header>

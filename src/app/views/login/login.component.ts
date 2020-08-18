@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router,private authService:AuthService) { }
+  constructor(private dataservice:DataService ,private formBuilder: FormBuilder, private router: Router,private authService:AuthService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -34,10 +35,10 @@ export class LoginComponent implements OnInit {
       if(userData){
         this.authService.persistLoggedUserData(userData);
         this.router.navigate(["dashboard"]);
-      }
+      }else this.dataservice.showToaster('Invalid Credentials..')
     }
     else {
-      alert("invalid Credential!")
+      this.dataservice.showToaster('Invalid Credentials....')
     }
 
   }
