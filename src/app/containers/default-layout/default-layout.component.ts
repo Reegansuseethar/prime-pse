@@ -1,6 +1,7 @@
 import { Component, OnDestroy, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../_nav';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,9 +10,10 @@ import { navItems } from '../../_nav';
 export class DefaultLayoutComponent implements OnDestroy {
   public navItems = navItems;
   public sidebarMinimized = true;
+  isAdmin:boolean;
   private changes: MutationObserver;
   public element: HTMLElement;
-  constructor(@Inject(DOCUMENT) _document?: any) {
+  constructor(private auth:AuthService, @Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {
       this.sidebarMinimized = _document.body.classList.contains('sidebar-minimized');
@@ -23,7 +25,18 @@ export class DefaultLayoutComponent implements OnDestroy {
     });
   }
 
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.isAdmin = this.auth.isLoggedInUserIsAdmin();
+  }
+
   ngOnDestroy(): void {
     this.changes.disconnect();
+  }
+
+  logout(){
+    this.auth.doLogout();
   }
 }

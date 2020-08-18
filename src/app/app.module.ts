@@ -37,6 +37,7 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { MatCardModule,MatIconModule,MatButtonModule } from '@angular/material'
 
 @NgModule({
   imports: [
@@ -51,6 +52,9 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
     FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule
   ],
   declarations: [

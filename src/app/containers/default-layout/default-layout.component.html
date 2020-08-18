@@ -3,7 +3,7 @@
   [navbarBrandMinimized]="{src: '', width: 30, height: 30, alt: 'PRIME PSE'}" [sidebarToggler]="''"
   [asideMenuToggler]="''">
 
-  <ul class="nav navbar-nav ml-auto">
+  <ul class="nav navbar-nav ml-auto" >
     <li class="nav-item d-md-down-none">
       <button type="button" class="btn btn-brand btn-lg btn-facebook mr-1" style="margin-bottom: 4px">
         <i class="fa fa-facebook"></i>
@@ -19,13 +19,18 @@
         <i class="fa fa-google-plus"></i>
       </button>
     </li>
+    <li class="nav-item d-md-down-none">
+        <button  type="button" class="btn btn-brand btn-lg mr-1" (click)="logout()">
+            <i class="material-icons">&#xe8ac;</i>
+          </button>
+     </li>
   </ul>
 
 </app-header>
 <div class="app-body">
   <main class="main">
 
-    <div class="topnav">
+    <div class="topnav" *ngIf="isAdmin">
       <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <a routerLink="/add-question" routerLinkActive="active">Question</a>
       <a routerLink="">Reports</a>
