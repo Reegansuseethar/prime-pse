@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-add-question',
@@ -11,7 +12,7 @@ export class AddQuestionComponent implements OnInit {
   questionForm: FormGroup;
   showList: boolean = true;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private service: DataService) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -19,8 +20,9 @@ export class AddQuestionComponent implements OnInit {
 
   initializeForm() {
     this.questionForm = this.formBuilder.group({
-      questionid: [0],
-      questiongroup: ['', Validators.required],
+      questionId: [0],
+      questionGroup: ['', Validators.required],
+      questionSubgroup: ['', Validators.required],
       questionName: ['', Validators.required],
       createdBy: [0],
       createdAt: [new Date()],
@@ -39,6 +41,9 @@ export class AddQuestionComponent implements OnInit {
     } else {
       console.log(this.questionForm.value);
       this.showList = true;
+      this.service.addQuestion(this.questionForm.value).subscribe((res: any) => {
+        console.log(res);
+      })
     }
   }
 

@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { Observable,Subject } from 'rxjs';
-import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,15 +12,7 @@ export class DataService {
   private url = environment.baseUrl;
   userData: any;
 
-  constructor(private http: HttpClient,private snackBar: MatSnackBar) {
-  }
-
-  showToaster(message:string): any{
-    this.snackBar.open(message,'',{
-      duration: 3000,
-      horizontalPosition: "end",
-      verticalPosition: "top",
-    });
+  constructor(private http: HttpClient) {
   }
 
   getUsers(data: any) {
@@ -33,8 +25,8 @@ export class DataService {
     return this.http.get(api_Url)
   }
 
-  addUser(data: any) {
-    let api_Url: string = `${this.url}/official/save`
+  addQuestion(data: any) {
+    let api_Url: string = `${this.url}/question/add`
     return this.http.post(api_Url, data)
   }
 
