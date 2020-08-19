@@ -43,4 +43,8 @@ export class LoginComponent implements OnInit {
 
   }
 
+  socialLogin(){
+    this.router.navigate(["dashboard"]);
+  }
+
 }
