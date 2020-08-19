@@ -1,0 +1,66 @@
+<div class="question-bar">
+    <strong>Add Group</strong>
+</div>
+<div class="row add-ques">
+    <div class="col-sm-10">
+        <form [formGroup]="subgroupForm" (ngSubmit)="onSubmit()">
+
+            <div class="row">
+                <div class="form-group col-sm-12 ques-name">
+                    <i class="fa fa-chevron-down select-icon" aria-hidden="true"></i>
+                    <select id="type" class="form-control question-group" formControlName="questionGroup" name=group>
+                        <option value="" selected disabled>--- Select Question Group ---</option>
+                        <option value="1"> NEET </option>
+                        <!-- <option [value]="data.groupname" *ngFor="let data of groups">{{data.groupname}}</option> -->
+                    </select>
+                    <div *ngIf="submitted && f.questionGroup.errors" class="invalid-feedback">
+                        <div *ngIf="f.questionGroup.errors.required">Question group is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-12 ques-name">
+                    <i class="fa fa-question-circle-o input-icon" aria-hidden="true"></i>
+                    <input type="text" class="form-control question-name" name="ques" formControlName="subgroupName"
+                        placeholder="Click to start typing the Subgroup..."
+                        [ngClass]="{ 'is-invalid': submitted && f.subgroupName.errors }">
+                    <div *ngIf="submitted && f.subgroupName.errors" class="invalid-feedback">
+                        <div *ngIf="f.subgroupName.errors.required">Group is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-bar">
+                <button type="button" style="margin-right: 11px" class="btn btn-md btn-primary"
+                    (click)="cancel()">Cancel</button>
+                <button type="submit" class="btn btn-md btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="subgroup-list col-sm-10">
+    <table class="table table-responsive-sm table-hover table-outline mb-0">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center">Sub Group Name</th>
+                <th class="text-center white-space">Question group</th>
+                <!-- <th class="text-center">Options</th> -->
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let data of queslist | paginate: { itemsPerPage: 10, currentPage: p }; let i=index">
+          <td class="text-left">{{data.questions}}</td>
+          <td class="text-left">{{data.questionstype}}</td>
+          <td class="" [innerHtml]="setDivContent(data)"> </td>
+          <td class="text-left white-space"><i class="fa fa-pencil-square-o fa-lg edit-icon"
+              (click)="editQuestion(typeid,data.questionid)"></i>&nbsp;&nbsp;&nbsp;<i
+              class="fa fa-trash fa-lg remove-icon" (click)="myModal.show();openModel(data.questionid)"></i></td>
+        </tr> -->
+        </tbody>
+    </table>
+    <!-- <span class="empty-data" *ngIf='noData'>No Data Available</span>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+</div>

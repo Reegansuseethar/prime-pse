@@ -41,6 +41,14 @@ export const routes: Routes = [
         path: 'question',
         loadChildren: () => import('./views/question/question.module').then(m => m.QuestionModule)
       },
+      {
+        path: 'add-group',
+        loadChildren: () => import('./views/add-group/add-group.module').then(m => m.AddGroupModule)
+      },
+      {
+        path: 'add-subgroup',
+        loadChildren: () => import('./views/add-subgroup/add-subgroup.module').then(m => m.AddSubgroupModule)
+      }
     ]
   },
 ];
