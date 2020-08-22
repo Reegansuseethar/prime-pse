@@ -6,6 +6,22 @@
         <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
 
             <div class="row">
+
+                <div class="form-group col-sm-12 ques-name">
+
+                    <span class="checkbox-bar">
+                        <label style="margin-left: 2rem;" class="ques-rate">Free Question</label>
+                        <label class="container">
+                            <input type="checkbox"> <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="ques-rate">Premium Question</label>
+                        <label class="container">
+                            <input type="checkbox"> <span class="checkmark"></span>
+                        </label>
+                    </span>
+                </div>
+
                 <div class="form-group col-sm-12 ques-name">
                     <i class="fa fa-chevron-down select-icon" aria-hidden="true"></i>
                     <select id="type" name="type" class="form-control question-group" formControlName="questionGroup"
@@ -18,7 +34,7 @@
                         <div *ngIf="f.questionGroup.errors.required">Question group is required</div>
                     </div>
                 </div>
-            <!-- </div>
+                <!-- </div>
 
             <div class="row"> -->
                 <div class="form-group col-sm-12 ques-name">
@@ -33,7 +49,7 @@
                         <div *ngIf="f.questionSubgroup.errors.required">Question group is required</div>
                     </div>
                 </div>
-            <!-- </div>
+                <!-- </div>
 
             <div class="row"> -->
                 <div class="form-group col-sm-12 ques-name">
@@ -45,7 +61,7 @@
                         <div *ngIf="f.questionName.errors.required">Question is required</div>
                     </div>
                 </div>
-            <!-- </div>
+                <!-- </div>
 
             <div class="row"> -->
                 <div class="form-group col-sm-6">
@@ -64,7 +80,7 @@
                         <div *ngIf="f.option2.errors.required">Option is required</div>
                     </div>
                 </div>
-            <!-- </div>
+                <!-- </div>
             <div class="row"> -->
                 <div class="form-group col-sm-6">
                     <i class="fa fa-pencil-square option-icon" style="color: rgb(8, 65, 32);" aria-hidden="true"></i>
