@@ -11,11 +11,17 @@ export class AddQuestionComponent implements OnInit {
 
   questionForm: FormGroup;
   showList: boolean = true;
+  questionList: any;
 
   constructor(private formBuilder: FormBuilder, private service: DataService) { }
 
   ngOnInit() {
     this.initializeForm();
+
+    this.service.getQuestions().subscribe((res: any) => {
+      console.log(res);
+      this.questionList = res;
+    })
   }
 
   initializeForm() {
@@ -24,10 +30,6 @@ export class AddQuestionComponent implements OnInit {
       questionGroup: ['', Validators.required],
       questionSubgroup: ['', Validators.required],
       questionName: ['', Validators.required],
-      createdBy: [0],
-      createdAt: [new Date()],
-      updatedAt: [new Date()],
-      updatedBy: [0],
       option1: ['', Validators.required],
       option2: ['', Validators.required],
       option3: ['', Validators.required],
