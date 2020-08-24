@@ -30,7 +30,7 @@ export class AddQuestionComponent implements OnInit {
 
   initializeForm() {
     this.questionForm = this.formBuilder.group({
-      _id: [0],
+      // _id: [0],
       questionGroup: ['', Validators.required],
       questionSubgroup: ['', Validators.required],
       questionName: ['', Validators.required],
@@ -45,7 +45,7 @@ export class AddQuestionComponent implements OnInit {
     if (this.questionForm.invalid) {
       return;
     } else {
-      if (this.questionForm.value._id == 0) {
+      if (!this.questionForm.value._id) {
         this.service.addQuestion(this.questionForm.value).subscribe((res: any) => {
           this.service.showToaster(res.message);
           this.ngOnInit();
