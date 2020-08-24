@@ -227,6 +227,16 @@ html {
     font-weight: bold;
 }
 
+.table .thead-light th {
+    color: #fff;
+    background-color: rebeccapurple;
+    border-color: transparent;
+}
+
+.table tbody{
+    background: #fff;
+}
+
 //responsive screens
 
 @media screen and (min-width: 480px) and (max-width: 767px) {
