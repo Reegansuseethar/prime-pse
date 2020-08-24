@@ -24,14 +24,13 @@ export class AddQuestionComponent implements OnInit {
     this.initializeForm();
 
     this.service.getQuestions().subscribe((res: any) => {
-      console.log(res);
       this.questionList = res;
     })
   }
 
   initializeForm() {
     this.questionForm = this.formBuilder.group({
-      questionId: [0],
+      _id: [0],
       questionGroup: ['', Validators.required],
       questionSubgroup: ['', Validators.required],
       questionName: ['', Validators.required],
@@ -46,12 +45,19 @@ export class AddQuestionComponent implements OnInit {
     if (this.questionForm.invalid) {
       return;
     } else {
-      console.log(this.questionForm.value);
-      this.showList = true;
-      this.service.addQuestion(this.questionForm.value).subscribe((res: any) => {
-        console.log(res);
-        this.service.showToaster(res.message);
-      })
+      if (this.questionForm.value._id == 0) {
+        this.service.addQuestion(this.questionForm.value).subscribe((res: any) => {
+          this.service.showToaster(res.message);
+          this.ngOnInit();
+          this.showList = true;
+        });
+      } else {
+        this.service.updateQuesById(this.questionForm.value).subscribe((res: any) => {
+          this.service.showToaster(res.message);
+          this.ngOnInit();
+          this.showList = true;
+        });
+      }
     }
   }
 
@@ -64,6 +70,22 @@ export class AddQuestionComponent implements OnInit {
     this.showList = false;
   }
 
+  editQuestion(id: any) {
+    this.service.getQuesbyID(id).subscribe((res: any) => {
+      this.showList = false;
+      this.questionForm = this.formBuilder.group({
+        _id: [res._id],
+        questionGroup: [res.questionGroup, Validators.required],
+        questionSubgroup: [res.questionSubgroup, Validators.required],
+        questionName: [res.questionName, Validators.required],
+        option1: [res.option1, Validators.required],
+        option2: [res.option2, Validators.required],
+        option3: [res.option3, Validators.required],
+        option4: [res.option4, Validators.required]
+      });
+    })
+  }
+
   openModel(id: any) {
     this.deleteModal.show();
     this.removeId = id;
@@ -71,7 +93,6 @@ export class AddQuestionComponent implements OnInit {
 
   removeQues() {
     this.service.removeQuestion(this.removeId).subscribe((res: any) => {
-      console.log(res);
       this.service.showToaster(res.message);
       this.deleteModal.hide();
       this.ngOnInit();

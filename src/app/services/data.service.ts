@@ -26,18 +26,29 @@ export class DataService {
   //for questions
 
   addQuestion(data: any) {
-    let api_Url: string = `${this.url}/add-question`
-    return this.http.post(api_Url, data)
+    let api_Url: string = `${this.url}/addQuestion`
+    return this.http.post(api_Url, data);
   }
 
   getQuestions() {
     let api_Url: string = `${this.url}/getAll`
-    return this.http.get(api_Url)
+    return this.http.get(api_Url);
   }
 
   removeQuestion(id: any) {
-    let api_Url: string = `${this.url}/delete-question`
-    return this.http.delete(api_Url + '/' + id)
+    let api_Url: string = `${this.url}/deleteQuestion`
+    return this.http.delete(api_Url + '/' + id);
+  }
+
+  getQuesbyID(id: any) {
+    let api_Url: string = `${this.url}/getQuestionById`
+    return this.http.get(api_Url + '/' + id);
+  }
+
+  updateQuesById(data: any) {
+    let id=data._id;
+    let api_Url: string = `${this.url}/updateQuestion`
+    return this.http.put(api_Url + '/' + id, data);
   }
 
 }
