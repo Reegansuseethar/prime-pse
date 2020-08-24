@@ -23,6 +23,8 @@ export class DataService {
     });
   }
 
+  //for questions
+
   addQuestion(data: any) {
     let api_Url: string = `${this.url}/add-question`
     return this.http.post(api_Url, data)
@@ -31,6 +33,11 @@ export class DataService {
   getQuestions() {
     let api_Url: string = `${this.url}/getAll`
     return this.http.get(api_Url)
+  }
+
+  removeQuestion(id: any) {
+    let api_Url: string = `${this.url}/delete-question`
+    return this.http.delete(api_Url + '/' + id)
   }
 
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -12,6 +14,9 @@ export class AddQuestionComponent implements OnInit {
   questionForm: FormGroup;
   showList: boolean = true;
   questionList: any;
+  removeId: any;
+
+  @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
 
   constructor(private formBuilder: FormBuilder, private service: DataService) { }
 
@@ -45,6 +50,7 @@ export class AddQuestionComponent implements OnInit {
       this.showList = true;
       this.service.addQuestion(this.questionForm.value).subscribe((res: any) => {
         console.log(res);
+        this.service.showToaster(res.message);
       })
     }
   }
@@ -56,6 +62,20 @@ export class AddQuestionComponent implements OnInit {
 
   addQuestion() {
     this.showList = false;
+  }
+
+  openModel(id: any) {
+    this.deleteModal.show();
+    this.removeId = id;
+  }
+
+  removeQues() {
+    this.service.removeQuestion(this.removeId).subscribe((res: any) => {
+      console.log(res);
+      this.service.showToaster(res.message);
+      this.deleteModal.hide();
+      this.ngOnInit();
+    })
   }
 
 }

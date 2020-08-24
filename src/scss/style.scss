@@ -19,6 +19,11 @@ html {
     overflow: hidden;
 }
 
+
+.header-fixed .app-header{
+    z-index: 9 !important;
+}
+
 //top menu
 
 .topnav {

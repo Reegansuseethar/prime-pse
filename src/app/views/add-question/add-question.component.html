@@ -27,7 +27,7 @@
                     <select id="type" name="type" class="form-control question-group" formControlName="questionGroup"
                         name=group>
                         <option value="" selected disabled>--- Select Question Group ---</option>
-                        <option value="1"> NEET </option>
+                        <option value="NEET"> NEET </option>
                         <!-- <option [value]="data.groupname" *ngFor="let data of groups">{{data.groupname}}</option> -->
                     </select>
                     <div *ngIf="submitted && f.questionGroup.errors" class="invalid-feedback">
@@ -42,7 +42,7 @@
                     <select id="type" name="type" class="form-control question-group" formControlName="questionSubgroup"
                         name=group>
                         <option value="" selected disabled>--- Select Subquestion Group ---</option>
-                        <option value="1"> NEET- CHEMISTRY </option>
+                        <option value="NEET- CHEMISTRY"> NEET- CHEMISTRY </option>
                         <!-- <option [value]="data.groupname" *ngFor="let data of groups">{{data.groupname}}</option> -->
                     </select>
                     <div *ngIf="submitted && f.questionSubgroup.errors" class="invalid-feedback">
@@ -132,11 +132,26 @@
                     <td class="text-left white-space"><i class="fa fa-pencil-square-o fa-lg edit-icon"
                             (click)="editQuestion(typeid,data.questionid)"></i>&nbsp;&nbsp;&nbsp;<i
                             class="fa fa-trash fa-lg remove-icon"
-                            (click)="myModal.show();openModel(data.questionid)"></i></td>
+                            (click)="openModel(data._id)"></i></td>
                 </tr>
             </tbody>
         </table>
         <!-- <span class="empty-data" *ngIf='noData'>No Data Available</span>
         <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
     </div>
+</div>
+
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body dialog-modal">
+        Are you sure you want to remove?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-md btn-primary" (click)="deleteModal.hide()">Close</button>
+        <button type="button" class="btn btn-md btn-primary" (click)="removeQues()">Confirm </button>
+      </div>
+    </div>
+  </div>
 </div>
