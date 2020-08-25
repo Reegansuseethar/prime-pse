@@ -51,4 +51,32 @@ export class DataService {
     return this.http.put(api_Url + '/' + id, data);
   }
 
+  //for Group
+  addGroup(data: any) {
+    let api_Url: string = `${this.url}/addGroup`
+    return this.http.post(api_Url, data);
+  }
+
+  updateGroupById(data:any){
+    let id=data._id;
+    let api_Url: string = `${this.url}/updateGroup`
+    return this.http.put(api_Url + '/' + id, data);
+  }
+
+  getGroups() {
+    let api_Url: string = `${this.url}/getAllGroup`
+    return this.http.get(api_Url);
+  }
+
+  getGroupbyID(id: any) {
+    let api_Url: string = `${this.url}/getGroupById`
+    return this.http.get(api_Url + '/' + id);
+  }
+
+  removeGroup(id: any) {
+    let api_Url: string = `${this.url}/deleteGroup`
+    return this.http.delete(api_Url + '/' + id);
+  }
+
+
 }
