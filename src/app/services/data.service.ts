@@ -46,7 +46,7 @@ export class DataService {
   }
 
   updateQuesById(data: any) {
-    let id=data._id;
+    let id = data._id;
     let api_Url: string = `${this.url}/updateQuestion`
     return this.http.put(api_Url + '/' + id, data);
   }
@@ -57,8 +57,8 @@ export class DataService {
     return this.http.post(api_Url, data);
   }
 
-  updateGroupById(data:any){
-    let id=data._id;
+  updateGroupById(data: any) {
+    let id = data._id;
     let api_Url: string = `${this.url}/updateGroup`
     return this.http.put(api_Url + '/' + id, data);
   }
@@ -77,6 +77,35 @@ export class DataService {
     let api_Url: string = `${this.url}/deleteGroup`
     return this.http.delete(api_Url + '/' + id);
   }
+
+  //for Subgroup
+  
+  addSubgroup(data: any) {
+    let api_Url: string = `${this.url}/addSubgroup`
+    return this.http.post(api_Url, data);
+  }
+
+  updateSubgroupById(data: any) {
+    let id = data._id;
+    let api_Url: string = `${this.url}/updateSubgroup`
+    return this.http.put(api_Url + '/' + id, data);
+  }
+
+  getSubgroups() {
+    let api_Url: string = `${this.url}/getAllSubgroup`
+    return this.http.get(api_Url);
+  }
+
+  getSubgroupbyID(id: any) {
+    let api_Url: string = `${this.url}/getSubgroupById`
+    return this.http.get(api_Url + '/' + id);
+  }
+
+  removeSubgroup(id: any) {
+    let api_Url: string = `${this.url}/deleteSubgroup`
+    return this.http.delete(api_Url + '/' + id);
+  }
+
 
 
 }
