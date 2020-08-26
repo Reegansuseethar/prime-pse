@@ -11,7 +11,8 @@ import { AddSubgroupComponent } from './add-subgroup.component';
   imports: [
     CommonModule,
     AddSubgroupRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule.forRoot()
   ]
 })
 export class AddSubgroupModule { }
