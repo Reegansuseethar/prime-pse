@@ -1,30 +1,30 @@
 <div class="animated fadeIn">
-  <div class="row head-topic">
+  <div class="ro head-topic">
     <h1 class="heading">PRIME PSC Online Mock Test portal</h1>
     <h4>Stock Market * Insurance * Bank Exam * Govt Exam * Medical Entrance * CA/CS Entrance Exam * Engineering * Law
       Entrance * Financial Planning</h4>
   </div>
-
-  <div class="row body-content">
-    <div class="col-sm-6 col-lg-4" style="margin-top:3%" *ngFor="let certificate of listOfCertications">
-      <div class="card text-white" [style.background-color]="random_bg_color()">
+  <div class="row body-content" *ngIf=grouplist>
+    <div class="col-sm-6 col-lg-4" style="margin-top:3%" *ngFor="let certificate of grouplist">
+      <div class="card text-white" [ngStyle]="random_bg_color()">
         <div class="card-body pb-0">
-          <div class="text-value">{{certificate.certificationName}}</div>
+          <div class="text-value">{{certificate.questionGroup}}</div>
         </div>
         <div class="sub-body">
-          <div class="sub-content" *ngFor="let item of certificate.subContent">
-            <div ng-container *ngIf="item.content1"><i class="fa fa-caret-right" aria-hidden="true"></i>
-              {{item.content1}}</div>
-            <div ng-container *ngIf="item.content2"> <i class="fa fa-caret-right" aria-hidden="true"></i>
+          <div class="sub-content" *ngFor="let item of certificate.subgroups">
+            <div ng-container *ngIf="item.questionSubgroup"><i class="fa fa-caret-right" aria-hidden="true"></i>
+              {{item.questionSubgroup}}</div>
+            <!-- <div ng-container *ngIf="item.content2"> <i class="fa fa-caret-right" aria-hidden="true"></i>
               {{item.content2}}</div>
             <div ng-container *ngIf="item.content3"><i class="fa fa-caret-right" aria-hidden="true"></i>
               {{item.content3}}</div>
             <div ng-container *ngIf="item.content4"><i class="fa fa-caret-right" aria-hidden="true"></i>
-              {{item.content4}}</div>
+              {{item.content4}}</div> -->
           </div>
           <div class="chart-wrapper mt-3 mx-3" style="height:60px;">
             <div class="btn-tab">
-              <button type="button" class="btn btn-block btn-outline-info enter-btn" (click)="enterIntro(certificate.certificationName)">ENTER</button>
+              <button type="button" class="btn btn-block btn-outline-info enter-btn"
+                (click)="enterIntro(certificate.certificationName)">ENTER</button>
             </div>
           </div>
         </div>

@@ -79,7 +79,7 @@ export class DataService {
   }
 
   //for Subgroup
-  
+
   addSubgroup(data: any) {
     let api_Url: string = `${this.url}/addSubgroup`
     return this.http.post(api_Url, data);
@@ -104,6 +104,11 @@ export class DataService {
   removeSubgroup(id: any) {
     let api_Url: string = `${this.url}/deleteSubgroup`
     return this.http.delete(api_Url + '/' + id);
+  }
+
+  getDashboardData() {
+    let api_Url: string = `${this.url}/getGroupandSubgroup`
+    return this.http.get(api_Url);
   }
 
 
