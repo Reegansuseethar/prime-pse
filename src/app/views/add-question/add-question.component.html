@@ -6,18 +6,22 @@
         <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
 
             <div class="row">
-
-                <div class="form-group col-sm-12 ques-name">
-
+                <div class="form-group col-sm-6 ques-name">
                     <span class="checkbox-bar">
                         <label style="margin-left: 2rem;" class="ques-rate">Free Question</label>
                         <label class="container">
-                            <input type="checkbox"> <span class="checkmark"></span>
+                            <input type="checkbox" name="free" formControlName="freeQuestion"> <span
+                                class="checkmark"></span>
                         </label>
+                    </span>
+                </div>
 
+                <div class="form-group col-sm-6 ques-name">
+                    <span class="checkbox-bar">
                         <label class="ques-rate">Premium Question</label>
                         <label class="container">
-                            <input type="checkbox"> <span class="checkmark"></span>
+                            <input type="checkbox" name="premium" formControlName="premiumQuestion"> <span
+                                class="checkmark"></span>
                         </label>
                     </span>
                 </div>
@@ -25,10 +29,10 @@
                 <div class="form-group col-sm-12 ques-name">
                     <i class="fa fa-chevron-down select-icon" aria-hidden="true"></i>
                     <select id="type" name="type" class="form-control question-group" formControlName="questionGroup"
-                        name=group>
+                        name=group (change)="changeGroup($event.target.value)">
                         <option value="" selected disabled>--- Select Question Group ---</option>
-                        <option value="NEET"> NEET </option>
-                        <!-- <option [value]="data.groupname" *ngFor="let data of groups">{{data.groupname}}</option> -->
+                        <!-- <option value="NEET"> NEET </option> -->
+                        <option [value]="data._id" *ngFor="let data of grouplist">{{data.questionGroup}}</option>
                     </select>
                     <div *ngIf="submitted && f.questionGroup.errors" class="invalid-feedback">
                         <div *ngIf="f.questionGroup.errors.required">Question group is required</div>
@@ -42,8 +46,8 @@
                     <select id="type" name="type" class="form-control question-group" formControlName="questionSubgroup"
                         name=group>
                         <option value="" selected disabled>--- Select Subquestion Group ---</option>
-                        <option value="NEET- CHEMISTRY"> NEET- CHEMISTRY </option>
-                        <!-- <option [value]="data.groupname" *ngFor="let data of groups">{{data.groupname}}</option> -->
+                        <!-- <option value="NEET- CHEMISTRY"> NEET- CHEMISTRY </option> -->
+                        <option [value]="data._id" *ngFor="let data of subGrouplist">{{data.questionSubgroup}}</option>
                     </select>
                     <div *ngIf="submitted && f.questionSubgroup.errors" class="invalid-feedback">
                         <div *ngIf="f.questionSubgroup.errors.required">Question group is required</div>
@@ -98,6 +102,17 @@
                         <div *ngIf="f.option4.errors.required">Option is required</div>
                     </div>
                 </div>
+
+                <div class="form-group col-sm-6 correct-ans"> Correct Answer
+                </div>
+                <div class="form-group col-sm-6">
+                    <i class="fa fa-check-square option-icon" style="color: green;" aria-hidden="true"></i>
+                    <input type="text" class="form-control option-name" name="ans" formControlName="answer"
+                        placeholder="Correct Option" [ngClass]="{ 'is-invalid': submitted && f.answer.errors }">
+                    <div *ngIf="submitted && f.answer.errors" class="invalid-feedback">
+                        <div *ngIf="f.answer.errors.required">Answer is required</div>
+                    </div>
+                </div>
             </div>
 
             <div class="button-bar">
@@ -131,8 +146,7 @@
                     <td class="text-left">{{data.questionSubgroup}}</td>
                     <td class="text-left white-space"><i class="fa fa-pencil-square-o fa-lg edit-icon"
                             (click)="editQuestion(data._id)"></i>&nbsp;&nbsp;&nbsp;<i
-                            class="fa fa-trash fa-lg remove-icon"
-                            (click)="openModel(data._id)"></i></td>
+                            class="fa fa-trash fa-lg remove-icon" (click)="openModel(data._id)"></i></td>
                 </tr>
             </tbody>
         </table>
@@ -142,16 +156,16 @@
 </div>
 
 <div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body dialog-modal">
-        Are you sure you want to remove?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-md btn-primary" (click)="deleteModal.hide()">Close</button>
-        <button type="button" class="btn btn-md btn-primary" (click)="removeQues()">Confirm </button>
-      </div>
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body dialog-modal">
+                Are you sure you want to remove?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-md btn-primary" (click)="deleteModal.hide()">Close</button>
+                <button type="button" class="btn btn-md btn-primary" (click)="removeQues()">Confirm </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

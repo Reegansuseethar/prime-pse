@@ -111,6 +111,11 @@ export class DataService {
     return this.http.get(api_Url);
   }
 
+  //get subgroup by group id getSubGroupByGroupId
 
+  getSubGroupByGroupId(id: any) {
+    let api_Url: string = `${this.url}/getSubGroupByGroupId`
+    return this.http.get(api_Url + '/' + id);
+  }
 
 }

@@ -99,6 +99,14 @@
     font-weight: 600;
     color: #5c6873;
 }
+
+.correct-ans {
+    text-align: right;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 6px;
+    color: #5c6873;
+}
 //checkbox
 
 .container {
@@ -110,6 +118,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    top: 5px;
 }
 
 .container input {

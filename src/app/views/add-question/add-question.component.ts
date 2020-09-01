@@ -15,7 +15,9 @@ export class AddQuestionComponent implements OnInit {
   showList: boolean = true;
   questionList: any;
   removeId: any;
-
+  grouplist: any;
+  subGrouplist:any;
+  
   @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
 
   constructor(private formBuilder: FormBuilder, private service: DataService) { }
@@ -34,10 +36,13 @@ export class AddQuestionComponent implements OnInit {
       questionGroup: ['', Validators.required],
       questionSubgroup: ['', Validators.required],
       questionName: ['', Validators.required],
+      freeQuestion: [false],
+      premiumQuestion: [false],
       option1: ['', Validators.required],
       option2: ['', Validators.required],
       option3: ['', Validators.required],
-      option4: ['', Validators.required]
+      option4: ['', Validators.required],
+      answer: ['', Validators.required]
     });
   }
 
@@ -68,6 +73,20 @@ export class AddQuestionComponent implements OnInit {
 
   addQuestion() {
     this.showList = false;
+
+    this.service.getGroups().subscribe((res: any) => {
+      this.grouplist = res;
+    })
+  }
+
+  changeGroup(val: any) {
+    console.log(val);
+
+    this.service.getSubGroupByGroupId(val).subscribe((res: any) => {
+      console.log(res)
+      this.subGrouplist = res;
+    })
+
   }
 
   editQuestion(id: any) {
@@ -78,10 +97,13 @@ export class AddQuestionComponent implements OnInit {
         questionGroup: [res.questionGroup, Validators.required],
         questionSubgroup: [res.questionSubgroup, Validators.required],
         questionName: [res.questionName, Validators.required],
+        freeQuestion: [res.freeQuestion],
+        premiumQuestion: [res.premiumQuestion],
         option1: [res.option1, Validators.required],
         option2: [res.option2, Validators.required],
         option3: [res.option3, Validators.required],
-        option4: [res.option4, Validators.required]
+        option4: [res.option4, Validators.required],
+        answer: [res.answer, Validators.required]
       });
     })
   }
