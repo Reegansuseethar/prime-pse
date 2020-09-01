@@ -142,8 +142,8 @@
             <tbody>
                 <tr *ngFor="let data of questionList; let i=index">
                     <td class="text-left">{{data.questionName}}</td>
-                    <td class="text-left">{{data.questionGroup}}</td>
-                    <td class="text-left">{{data.questionSubgroup}}</td>
+                    <td class="text-left">{{data.groupName}}</td>
+                    <td class="text-left">{{data.subgroupName}}</td>
                     <td class="text-left white-space"><i class="fa fa-pencil-square-o fa-lg edit-icon"
                             (click)="editQuestion(data._id)"></i>&nbsp;&nbsp;&nbsp;<i
                             class="fa fa-trash fa-lg remove-icon" (click)="openModel(data._id)"></i></td>
