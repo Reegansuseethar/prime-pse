@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitte
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { QuizQuestion } from '../../../../../model/QuizQuestion';
+import { element } from '../../../../../../node_modules/protractor';
 @Component({
   selector: 'app-questionform',
   templateUrl: './questionform.component.html',
@@ -11,6 +12,7 @@ export class QuestionformComponent implements OnInit {
   @Output() answer = new EventEmitter<string>();
   @Output() formGroup: FormGroup;
   @Input() question: QuizQuestion;
+  @Input() disableAnswer :boolean;
   option = '';
   grayBorder = '2px solid #979797';
 
@@ -24,6 +26,9 @@ export class QuestionformComponent implements OnInit {
     if (changes.question && changes.question.currentValue && !changes.question.firstChange) {
       this.formGroup.patchValue({answer: ''});
     }
+    if(this.disableAnswer){
+      this.displayExplanation()
+    }
   }
 
   buildForm() {
@@ -32,10 +37,17 @@ export class QuestionformComponent implements OnInit {
     });
   }
 
+  resetOptionisChecked(){
+    this.question.options.forEach((element:any) =>{
+      return element.isChecked = false;
+    })
+  }
   radioChange(answer: string) {
     this.question.selectedOption = answer;
     this.answer.emit(answer);
-    this.displayExplanation();
+    this.resetOptionisChecked()
+    this.question.options[Number(answer)-1]['isChecked']= true;
+    // this.displayExplanation();
   }
 
   displayExplanation(): void {
@@ -53,7 +65,7 @@ export class QuestionformComponent implements OnInit {
 
   // mark incorrect answer if selected
   isIncorrect(option: string): boolean {
-    return option !== this.question.answer && option === this.question.selectedOption;
+    return (option !== this.question.answer && option === this.question.selectedOption);
   }
 
   onSubmit() {
