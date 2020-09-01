@@ -29,6 +29,7 @@ export class QuestionComponent implements OnInit {
   interval: any;
   elapsedTime: number;
   elapsedTimes = [];
+  disableAnswer:true;
   blueBorder = '2px solid #007aff';
 
   allQuestions: QuizQuestion[] = [
@@ -132,6 +133,18 @@ export class QuestionComponent implements OnInit {
     this.setQuestionID(this.getQuestionID() + 1);
     this.question = this.getQuestion;
     this.displayNextQuestion();
+  }
+
+  navigateToResults(){
+    this.disableAnswer = true;
+    this.setQuestionID(1);  // get the question ID and store it
+    this.question = this.getQuestion;
+    this.ngOnInit();
+  }
+
+
+  navigateToDashboard(){
+    this.router.navigate(['/dashboard'])
   }
 
 

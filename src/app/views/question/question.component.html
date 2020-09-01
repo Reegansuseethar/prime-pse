@@ -26,7 +26,7 @@
     <section id="question">
       {{question.questionText }}
     </section>
-    <app-questionform [question]="question"></app-questionform>
+    <app-questionform [question]="question" [disableAnswer]="disableAnswer"></app-questionform>
 
     <!-- <section id="option" class="row">
         <div class="col-6" *ngFor="let option of allQuestions[0]['options'] ">
@@ -51,11 +51,16 @@
             Next &raquo;
           </button>
         </div>
-        <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions">
+        <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions && !disableAnswer">
           <button type="submit" class="btn btn-md btn-primary" (click)="navigateToResults()">
             Show Your Score</button>
 
         </div>
+        <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions && disableAnswer">
+            <button type="submit" class="btn btn-md btn-primary" (click)="navigateToDashboard()">
+              Go to Dashboard</button>
+  
+          </div>
       </mat-card-actions>
     </section>
 
