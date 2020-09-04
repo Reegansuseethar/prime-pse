@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Data } from '@angular/router';
 
 import { QuizQuestion } from '../../../model/QuizQuestion';
+import { DataService } from '../../services/data.service';
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -29,8 +31,9 @@ export class QuestionComponent implements OnInit {
   interval: any;
   elapsedTime: number;
   elapsedTimes = [];
-  disableAnswer:true;
+  disableAnswer: true;
   blueBorder = '2px solid #007aff';
+  questionList: any;
 
   allQuestions: QuizQuestion[] = [
     {
@@ -87,19 +90,45 @@ export class QuestionComponent implements OnInit {
     }
   ];
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private service: DataService) {
     // this.route.paramMap.subscribe(params => {
     this.setQuestionID(1);  // get the question ID and store it
     this.question = this.getQuestion;
     // });
   }
+  quesArr = []
 
   ngOnInit() {
+
+    this.service.getQuestions().subscribe((res: any) => {
+      // this.allQuestions = res;
+      for (let i in res) {
+        this.quesArr.push({
+          questionId: Number(i),
+          questionText: res[i].questionName,
+          options: [
+            { optionValue: '1', optionText: res[i].option1 },
+            { optionValue: '2', optionText: res[i].option2 },
+            { optionValue: '3', optionText: res[i].option3 },
+            { optionValue: '4', optionText: res[i].option4 }
+          ],
+          answer: res[i].answer,
+          explanation: '',
+          selectedOption: ''
+        })
+      }
+      console.log(this.quesArr);
+
+      // this.allQuestions = this.quesArr;
+
+    });
+
+
     this.question = this.getQuestion;
     this.totalQuestions = this.allQuestions.length;
     this.timeLeft = this.timePerQuestion;
     this.progressValue = 100 * (this.currentQuestion + 1) / this.totalQuestions;
-    // this.countdown();
+
   }
 
   displayNextQuestion() {
@@ -130,12 +159,12 @@ export class QuestionComponent implements OnInit {
 
   navigateToNextQuestion(): void {
     // this.router.navigate(['/question', this.getQuestionID() + 1]);
-    this.setQuestionID(this.getQuestionID() + 1);
+    this.setQuestionID(this.getQuestionID());
     this.question = this.getQuestion;
     this.displayNextQuestion();
   }
 
-  navigateToResults(){
+  navigateToResults() {
     this.disableAnswer = true;
     this.setQuestionID(1);  // get the question ID and store it
     this.question = this.getQuestion;
@@ -143,7 +172,7 @@ export class QuestionComponent implements OnInit {
   }
 
 
-  navigateToDashboard(){
+  navigateToDashboard() {
     this.router.navigate(['/dashboard'])
   }
 
