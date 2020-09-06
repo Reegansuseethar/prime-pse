@@ -126,32 +126,33 @@ section.paging {
 
   mat-card-actions {
     margin: -10px 0 10px 0;
-    width: 25%;
+    // width: 25%;
     margin: 0 auto;
 
     .previousQuestionNav {
-      float: left;
+      // float: left;
       margin-left: 1.5rem;
+      text-align: center;
     }
 
     .nextQuestionNav {
-      float: right;
+      // float: right;
       margin-right: -0.4rem;
+      text-align: right;
     }
 
     .showScoreNav {
-      text-align: center;
-      margin: 0 auto;
+      float: right;
     }
 
-    .nextQuestionNav:hover,
-    .showScoreNav:hover {
-      border: 1px solid rebeccapurple;
-    }
+    // .nextQuestionNav:hover,
+    // .showScoreNav:hover {
+    //   border: 1px solid rebeccapurple;
+    // }
 
-    .showScoreNav:hover {
-      width: 141.5px !important;
-    }
+    // .showScoreNav:hover {
+    //   width: 141.5px !important;
+    // }
   }
 }
 
@@ -165,12 +166,18 @@ section.progress-bar {
   }
 }
 
-.result-data{
+.result-data {
   font-size: 17px;
   font-weight: 600;
 }
 
-.modal-header{
+.modal-header {
   color: #fff;
   background: rebeccapurple;
+}
+
+.button-tab {
+  width: 100%;
+  margin: 0 auto;
+  justify-content: flex-end;
 }

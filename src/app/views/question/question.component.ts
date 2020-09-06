@@ -19,7 +19,7 @@ export class QuestionComponent implements OnInit {
   totalQuestions: number;
   completionTime: number;
   correctAnswersCount = 0;
-  previous:boolean;
+  previous: boolean;
   questionID = 0;
   currentQuestion = 0;
   questionIndex: number = 0;
@@ -40,6 +40,7 @@ export class QuestionComponent implements OnInit {
   allQuestions: any;
 
   @ViewChild('resultModal', { static: false }) public resultModal: ModalDirective;
+  @ViewChild('closeModal', { static: false }) public closeModal: ModalDirective;
 
 
   constructor(private route: ActivatedRoute, private router: Router, private service: DataService, private spinner: NgxSpinnerService) { }
@@ -94,21 +95,37 @@ export class QuestionComponent implements OnInit {
     this.setQuestionID(val + 1);
     this.question = this.getQuestion;
     this.displayNextQuestion();
-    this.previous=true;
+    this.previous = true;
+  }
+
+  navigateToPreviousQuestion(val): void {
+    this.setQuestionID(val - 1);
+    // this.question = this.getQuestion;
+    // this.displayNextQuestion();
+    // this.previous = true;
   }
 
   navigateToResults() {
     this.resultModal.show();
-    this.previous=false;
+    this.previous = false;
   }
 
   viewAnswers() {
     this.resultModal.hide();
-
     this.disableAnswer = true;
     this.setQuestionID(0);
     this.question = this.getQuestion;
     this.ngOnInit();
+  }
+
+  closeExam() {
+    this.closeModal.show();
+  }
+
+  endExam(){
+    this.closeModal.hide();
+    this.resultModal.show();
+    this.previous = false;
   }
 
 

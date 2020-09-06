@@ -41,28 +41,39 @@
   <mat-card-footer>
     <section class="paging">
       <mat-card-actions>
-        <div class="previousQuestionNav" *ngIf="question && question.questionId !== 0 && previous ">
-            <button type="button" class="btn btn-md btn-primary" (click)="navigateToPreviousQuestion()">
-              &laquo; Previous
-            </button>
+        <div class="row button-tab">
+          <div class="col-sm-8" style="text-align: right;">
+            <span class=" previousQuestionNav" *ngIf="question && question.questionId !== 0 && previous ">
+              <button type="button" class="btn btn-md btn-primary" (click)="navigateToPreviousQuestion()">
+                &laquo; Previous
+              </button>
+            </span>
+
+            <span class=" nextQuestionNav" *ngIf="question && question.questionId !== totalQuestions-1">
+              <button type="button" class="btn btn-md btn-primary" [disabled]="disabled"
+                (click)="navigateToNextQuestion(question?.questionId)">
+                Next &raquo;
+              </button>
+            </span>
           </div>
 
-        <div class="nextQuestionNav" *ngIf="question && question.questionId !== totalQuestions-1">
-          <button type="button" class="btn btn-md btn-primary" [disabled]="disabled"
-            (click)="navigateToNextQuestion(question?.questionId)">
-            Next &raquo;
-          </button>
-        </div>
-        
-        <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions-1 && !disableAnswer">
-          <button type="submit" class="btn btn-md btn-primary" (click)="navigateToResults()">
-            Show Your Score</button>
-        </div>
+          <div class="col-sm-4">
+            <div class="col-sm-8 showScoreNav"
+              *ngIf="question && question.questionId === totalQuestions-1 && !disableAnswer">
+              <button type="submit" class="btn btn-md btn-primary" (click)="navigateToResults()">
+                Show Your Score</button>
+            </div>
 
-        <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions && disableAnswer">
-          <button type="submit" class="btn btn-md btn-primary" (click)="navigateToDashboard()">
-            Go to Dashboard</button>
+            <div class="col-sm-4 close-exam" *ngIf="question && question.questionId">
+              <button type="submit" class="btn btn-md btn-primary" (click)="closeExam()">
+                End Exam</button>
+            </div>
 
+            <!-- <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions && disableAnswer">
+            <button type="submit" class="btn btn-md btn-primary" (click)="navigateToDashboard()">
+              Go to Dashboard</button>
+          </div> -->
+          </div>
         </div>
       </mat-card-actions>
     </section>
@@ -108,6 +119,30 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-md btn-primary" (click)="resultModal.hide()">Close</button>
         <button type="button" class="btn btn-md btn-primary" (click)="viewAnswers()">View Answers </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div bsModal #closeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="closeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <h5 class="modal-title">Exam Result</h5>
+        <button type="button" class="close" (click)="closeModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <div class="modal-body dialog-modal">
+        <div class="row">
+          <div>Are you sure want to end your examination?</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-md btn-primary" (click)="closeModal.hide()">Close</button>
+        <button type="button" class="btn btn-md btn-primary" (click)="endExam()">End Exam </button>
       </div>
     </div>
   </div>
