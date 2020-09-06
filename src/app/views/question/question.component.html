@@ -74,3 +74,39 @@
     </section>
   </mat-card-footer>
 </mat-card>
+
+<div bsModal #resultModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exam Result</h5>
+        <button type="button" class="close" (click)="resultModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body dialog-modal">
+        <div class="row">
+          <div class="col-sm-9 result-data"><label>Total Question</label></div>
+          <div class="col-sm-3 result-data"><label>25</label></div>
+          <div class="col-sm-9 result-data"><label>Total Marks</label></div>
+          <div class="col-sm-3 result-data"><label>25</label></div>
+          <div class="col-sm-9 result-data"><label>No.of Questions attempted</label></div>
+          <div class="col-sm-3 result-data"><label>1</label></div>
+          <div class="col-sm-9 result-data"><label>No.of Questions not attempted</label></div>
+          <div class="col-sm-3 result-data"><label>24</label></div>
+          <div class="col-sm-9 result-data"><label>Required Marks</label></div>
+          <div class="col-sm-3 result-data"><label>12</label></div>
+          <div class="col-sm-9 result-data"><label>Marks Scored</label></div>
+          <div class="col-sm-3 result-data"><label>-0.25</label></div>
+          <div class="col-sm-9 result-data"><label>Remarks</label></div>
+          <div class="col-sm-3 result-data"><label>FAIL</label></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-md btn-primary" (click)="resultModal.hide()">Close</button>
+        <button type="button" class="btn btn-md btn-primary" (click)="viewAnswers()">View Answers </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, Data } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { QuizQuestion } from '../../../model/QuizQuestion';
 import { DataService } from '../../services/data.service';
@@ -37,6 +38,9 @@ export class QuestionComponent implements OnInit {
   questionList: any;
   quesArr = []
   allQuestions: any;
+
+  @ViewChild('resultModal', { static: false }) public resultModal: ModalDirective;
+
 
   constructor(private route: ActivatedRoute, private router: Router, private service: DataService, private spinner: NgxSpinnerService) { }
 
@@ -93,8 +97,14 @@ export class QuestionComponent implements OnInit {
   }
 
   navigateToResults() {
+    this.resultModal.show();
+  }
+
+  viewAnswers() {
+    this.resultModal.hide();
+
     this.disableAnswer = true;
-    this.setQuestionID(0);  // get the question ID and store it
+    this.setQuestionID(0);
     this.question = this.getQuestion;
     this.ngOnInit();
   }
@@ -164,7 +174,6 @@ export class QuestionComponent implements OnInit {
   }
 
   setQuestionID(id: number) {
-    console.log('nextQnId', id)
     return this.questionID = id;
   }
 

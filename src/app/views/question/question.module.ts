@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { QuestionRoutingModule } from './question-routing.module';
 import { QuestionformComponent } from './component/questionform/questionform.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { QuestionformComponent } from './component/questionform/questionform.com
     MatIconModule,
     MatButtonModule,
     QuestionRoutingModule,
-    ButtonsModule.forRoot()
+    ButtonsModule.forRoot(),
+    ModalModule.forRoot()
   ],
   declarations: [QuestionComponent, QuestionformComponent]
 })
