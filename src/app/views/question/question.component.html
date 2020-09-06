@@ -41,22 +41,24 @@
   <mat-card-footer>
     <section class="paging">
       <mat-card-actions>
-        <!-- <div class="previousQuestionNav" *ngIf="question && question.questionId !== 1">
-            <button type="button" (click)="navigateToPreviousQuestion()">
+        <div class="previousQuestionNav" *ngIf="question && question.questionId !== 0 && previous ">
+            <button type="button" class="btn btn-md btn-primary" (click)="navigateToPreviousQuestion()">
               &laquo; Previous
             </button>
-          </div> -->
+          </div>
+
         <div class="nextQuestionNav" *ngIf="question && question.questionId !== totalQuestions-1">
           <button type="button" class="btn btn-md btn-primary" [disabled]="disabled"
             (click)="navigateToNextQuestion(question?.questionId)">
             Next &raquo;
           </button>
         </div>
+        
         <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions-1 && !disableAnswer">
           <button type="submit" class="btn btn-md btn-primary" (click)="navigateToResults()">
             Show Your Score</button>
-
         </div>
+
         <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions && disableAnswer">
           <button type="submit" class="btn btn-md btn-primary" (click)="navigateToDashboard()">
             Go to Dashboard</button>

@@ -121,10 +121,13 @@ section#option {
 }
 
 section.paging {
-  width: 40rem;
+  width: 100%;
+  margin: 0 auto;
 
   mat-card-actions {
     margin: -10px 0 10px 0;
+    width: 25%;
+    margin: 0 auto;
 
     .previousQuestionNav {
       float: left;
@@ -137,7 +140,6 @@ section.paging {
     }
 
     .showScoreNav {
-      width: 150px;
       text-align: center;
       margin: 0 auto;
     }

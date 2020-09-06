@@ -19,7 +19,7 @@ export class QuestionComponent implements OnInit {
   totalQuestions: number;
   completionTime: number;
   correctAnswersCount = 0;
-
+  previous:boolean;
   questionID = 0;
   currentQuestion = 0;
   questionIndex: number = 0;
@@ -94,10 +94,12 @@ export class QuestionComponent implements OnInit {
     this.setQuestionID(val + 1);
     this.question = this.getQuestion;
     this.displayNextQuestion();
+    this.previous=true;
   }
 
   navigateToResults() {
     this.resultModal.show();
+    this.previous=false;
   }
 
   viewAnswers() {
