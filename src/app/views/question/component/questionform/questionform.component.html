@@ -3,21 +3,22 @@
 <form [formGroup]="formGroup" class="row question-form" (ngSubmit)="onSubmit()">
   <ol class="form-group">
     <mat-radio-group class="row" aria-labelledby="quiz-form-radio-group" formControlName="answer" name="answer"
-                     (change)="radioChange($event.value)" required>
-      <div class="radio-options col-lg-6"  *ngFor="let option of question.options">
+      (change)="radioChange($event.value)" required>
+      <div class="radio-options col-lg-6" *ngFor="let option of question.options">
         <mat-radio-button name="option-radio-button" class="option" [value]="option.optionValue"
-                          [checked]="question.selectedOption == option"
-                          [disabled]="disableAnswer"
-                          [ngClass]="{'is-correct': option.isChecked}">
-          <li>{{ option.optionText }}</li>
+          [checked]="question.selectedOption == option" [disabled]="disableAnswer"
+          [ngClass]="{'is-correct': option.isChecked}">
+          <li>{{ option?.optionText }}</li>
         </mat-radio-button>
 
         <section class="messages" *ngIf="disableAnswer">
           <div *ngIf="isCorrect(option.optionValue) && option.isChecked">
-            <pre class="message correct-message">  You&apos;re right! The correct answer is Option {{ question.answer }}.</pre>
+            <pre
+              class="message correct-message">  You&apos;re right! The correct answer is Option {{ question?.answer }}.</pre>
           </div>
           <div *ngIf="isIncorrect(option.optionValue)">
-            <pre class="message wrong-message">  That&apos;s wrong. The correct answer is Option {{ question.answer }}.</pre>
+            <pre
+              class="message wrong-message">  That&apos;s wrong. The correct answer is Option {{ question?.answer }}.</pre>
           </div>
         </section>
       </div>

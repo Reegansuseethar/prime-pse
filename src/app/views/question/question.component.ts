@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, Data } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 import { QuizQuestion } from '../../../model/QuizQuestion';
 import { DataService } from '../../services/data.service';
@@ -34,74 +35,16 @@ export class QuestionComponent implements OnInit {
   disableAnswer: true;
   blueBorder = '2px solid #007aff';
   questionList: any;
-
-  allQuestions: QuizQuestion[] = [
-    {
-      questionId: 1,
-      questionText: 'What is the objective of dependency injection?',
-      options: [
-        { optionValue: '1', optionText: 'Pass the service to the client.' },
-        { optionValue: '2', optionText: 'Allow the client to find service.' },
-        { optionValue: '3', optionText: 'Allow the client to build service.' },
-        { optionValue: '4', optionText: 'Give the client part service.' }
-      ],
-      answer: '1',
-      explanation: 'a service gets passed to the client during DI',
-      selectedOption: ''
-    },
-    {
-      questionId: 2,
-      questionText: 'Which of the following benefit from dependency injection?',
-      options: [
-        { optionValue: '1', optionText: 'Programming' },
-        { optionValue: '2', optionText: 'Testability' },
-        { optionValue: '3', optionText: 'Software design' },
-        { optionValue: '4', optionText: 'All of the above.' },
-      ],
-      answer: '4',
-      explanation: 'DI simplifies both programming and testing as well as being a popular design pattern',
-      selectedOption: ''
-    },
-    {
-      questionId: 3,
-      questionText: 'Which of the following is the first step in setting up dependency injection?',
-      options: [
-        { optionValue: '1', optionText: 'Require in the component.' },
-        { optionValue: '2', optionText: 'Provide in the module.' },
-        { optionValue: '3', optionText: 'Mark dependency as @Injectable().' },
-        { optionValue: '4', optionText: 'Declare an object.' }
-      ],
-      answer: '3',
-      explanation: 'the first step is marking the class as @Injectable()',
-      selectedOption: ''
-    },
-    {
-      questionId: 4,
-      questionText: 'In which of the following does dependency injection occur?',
-      options: [
-        { optionValue: '1', optionText: '@Injectable()' },
-        { optionValue: '2', optionText: 'constructor' },
-        { optionValue: '3', optionText: 'function' },
-        { optionValue: '4', optionText: 'NgModule' },
-      ],
-      answer: '2',
-      explanation: 'object instantiations are taken care of by the constructor in Angular',
-      selectedOption: ''
-    }
-  ];
-
-  constructor(private route: ActivatedRoute, private router: Router, private service: DataService) {
-    // this.route.paramMap.subscribe(params => {
-    this.setQuestionID(1);  // get the question ID and store it
-    this.question = this.getQuestion;
-    // });
-  }
   quesArr = []
+  allQuestions: any;
+
+  constructor(private route: ActivatedRoute, private router: Router, private service: DataService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-
+    this.spinner.show();
     this.service.getQuestions().subscribe((res: any) => {
-      // this.allQuestions = res;
+      console.log(res);
+
       for (let i in res) {
         this.quesArr.push({
           questionId: Number(i),
@@ -117,23 +60,23 @@ export class QuestionComponent implements OnInit {
           selectedOption: ''
         })
       }
-      console.log(this.quesArr);
 
-      // this.allQuestions = this.quesArr;
+      this.allQuestions = this.quesArr;
+      this.setQuestionID(0);  // get the question ID and store it
+      this.question = this.getQuestion;
+
+      this.question = this.getQuestion;
+      this.totalQuestions = this.allQuestions.length;
+      this.timeLeft = this.timePerQuestion;
+      this.progressValue = 100 * (this.currentQuestion + 1) / this.totalQuestions;
+      this.spinner.hide();
 
     });
-
-
-    this.question = this.getQuestion;
-    this.totalQuestions = this.allQuestions.length;
-    this.timeLeft = this.timePerQuestion;
-    this.progressValue = 100 * (this.currentQuestion + 1) / this.totalQuestions;
-
   }
 
   displayNextQuestion() {
     this.resetTimer();
-    this.increaseProgressValue();
+    // this.increaseProgressValue();
 
     this.questionIndex = this.questionID++;
 
@@ -143,30 +86,15 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  /* displayPreviousQuestion() {
-    this.resetTimer();
-    this.decreaseProgressValue();
-
-    this.questionIndex = this.questionID--;
-
-    if (typeof document.getElementById('question') !== 'undefined' && this.getQuestionID() <= this.totalQuestions) {
-      document.getElementById('question').innerHTML = this.allQuestions[this.questionIndex]['questionText'];
-      document.getElementById('question').style.border = this.blueBorder;
-    } else {
-      this.navigateToResults();
-    }
-  } */
-
-  navigateToNextQuestion(): void {
-    // this.router.navigate(['/question', this.getQuestionID() + 1]);
-    this.setQuestionID(this.getQuestionID());
+  navigateToNextQuestion(val): void {
+    this.setQuestionID(val + 1);
     this.question = this.getQuestion;
     this.displayNextQuestion();
   }
 
   navigateToResults() {
     this.disableAnswer = true;
-    this.setQuestionID(1);  // get the question ID and store it
+    this.setQuestionID(0);  // get the question ID and store it
     this.question = this.getQuestion;
     this.ngOnInit();
   }
@@ -219,7 +147,7 @@ export class QuestionComponent implements OnInit {
   }
 
   increaseProgressValue() {
-    this.progressValue = parseFloat((100 * (this.getQuestionID() + 1) / this.totalQuestions).toFixed(1));
+    this.progressValue = parseFloat((100 * (this.getQuestionID()) / this.totalQuestions).toFixed(1));
   }
 
   /* decreaseProgressValue() {
@@ -252,10 +180,12 @@ export class QuestionComponent implements OnInit {
     return this.question.selectedOption === this.question.answer;
   }
 
-  get getQuestion(): QuizQuestion {
-    return this.allQuestions.filter(
-      question => question.questionId === this.questionID
-    )[0];
+  get getQuestion() {
+    if (this.allQuestions) {
+      return this.allQuestions.filter(
+        question => question.questionId === this.questionID
+      )[0];
+    }
   }
 
   // countdown clock
@@ -270,7 +200,7 @@ export class QuestionComponent implements OnInit {
             this.calculateTotalElapsedTime(this.elapsedTimes);
           }
           if (this.timeLeft === 0 && !this.isFinalQuestion()) {
-            this.navigateToNextQuestion();
+            // this.navigateToNextQuestion();
           }
           if (this.timeLeft === 0 && this.isFinalQuestion()) {
             // this.navigateToResults();

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { HttpClientModule } from '@angular/common/http';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -56,7 +57,7 @@ import { MatCardModule,MatIconModule,MatButtonModule,MatSnackBarModule } from '@
     MatIconModule,
     MatButtonModule,
     MatSnackBarModule,
-    FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule
+    FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule,NgxSpinnerModule
   ],
   declarations: [
     AppComponent,

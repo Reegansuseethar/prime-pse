@@ -38,9 +38,7 @@
                         <div *ngIf="f.questionGroup.errors.required">Question group is required</div>
                     </div>
                 </div>
-                <!-- </div>
 
-            <div class="row"> -->
                 <div class="form-group col-sm-12 ques-name">
                     <i class="fa fa-chevron-down select-icon" aria-hidden="true"></i>
                     <select id="type" name="type" class="form-control question-group" formControlName="questionSubgroup"
@@ -53,9 +51,7 @@
                         <div *ngIf="f.questionSubgroup.errors.required">Question group is required</div>
                     </div>
                 </div>
-                <!-- </div>
 
-            <div class="row"> -->
                 <div class="form-group col-sm-12 ques-name">
                     <i class="fa fa-question-circle-o input-icon" aria-hidden="true"></i>
                     <input type="text" class="form-control question-name" name="ques" formControlName="questionName"
@@ -65,41 +61,78 @@
                         <div *ngIf="f.questionName.errors.required">Question is required</div>
                     </div>
                 </div>
-                <!-- </div>
 
-            <div class="row"> -->
-                <div class="form-group col-sm-6">
-                    <i class="fa fa-pencil-square option-icon" style="color: purple;" aria-hidden="true"></i>
-                    <input type="text" class="form-control option-name" name="opt1" formControlName="option1"
-                        placeholder="Add Option 1" [ngClass]="{ 'is-invalid': submitted && f.option1.errors }">
-                    <div *ngIf="submitted && f.option1.errors" class="invalid-feedback">
-                        <div *ngIf="f.option1.errors.required">Option is required</div>
-                    </div>
+                <div class="form-group col-sm-6 ">
+                    <span class="checkbox-bar">
+                        <label class="ques-rate">Image Option</label>
+                        <label class="container">
+                            <input type="checkbox" name="premium" (change)="enableOption($event.target.checked)"> <span
+                                class="checkmark"></span>
+                        </label>
+                    </span>
                 </div>
                 <div class="form-group col-sm-6">
-                    <i class="fa fa-pencil-square option-icon" style="color:firebrick;" aria-hidden="true"></i>
-                    <input type="text" class="form-control option-name" name="opt2" formControlName="option2"
-                        placeholder="Add Option 2" [ngClass]="{ 'is-invalid': submitted && f.option2.errors }">
-                    <div *ngIf="submitted && f.option2.errors" class="invalid-feedback">
-                        <div *ngIf="f.option2.errors.required">Option is required</div>
+                </div>
+
+                <div class="row" *ngIf=!optionImage>
+                    <div class="form-group col-sm-6">
+                        <i class="fa fa-pencil-square option-icon" style="color: purple;" aria-hidden="true"></i>
+                        <input type="text" class="form-control option-name" name="opt1" formControlName="option1"
+                            placeholder="Add Option 1" [ngClass]="{ 'is-invalid': submitted && f.option1.errors }">
+                        <div *ngIf="submitted && f.option1.errors" class="invalid-feedback">
+                            <div *ngIf="f.option1.errors.required">Option is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <i class="fa fa-pencil-square option-icon" style="color:firebrick;" aria-hidden="true"></i>
+                        <input type="text" class="form-control option-name" name="opt2" formControlName="option2"
+                            placeholder="Add Option 2" [ngClass]="{ 'is-invalid': submitted && f.option2.errors }">
+                        <div *ngIf="submitted && f.option2.errors" class="invalid-feedback">
+                            <div *ngIf="f.option2.errors.required">Option is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <i class="fa fa-pencil-square option-icon" style="color: rgb(8, 65, 32);"
+                            aria-hidden="true"></i>
+                        <input type="text" class="form-control option-name" name="opt3" formControlName="option3"
+                            placeholder="Add Option 3" [ngClass]="{ 'is-invalid': submitted && f.option3.errors }">
+                        <div *ngIf="submitted && f.option3.errors" class="invalid-feedback">
+                            <div *ngIf="f.option3.errors.required">Option is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <i class="fa fa-pencil-square option-icon" style="color: rgb(34, 28, 95);"
+                            aria-hidden="true"></i>
+                        <input type="text" class="form-control option-name" name="opt4" formControlName="option4"
+                            placeholder="Add Option 4" [ngClass]="{ 'is-invalid': submitted && f.option4.errors }">
+                        <div *ngIf="submitted && f.option4.errors" class="invalid-feedback">
+                            <div *ngIf="f.option4.errors.required">Option is required</div>
+                        </div>
                     </div>
                 </div>
-                <!-- </div>
-            <div class="row"> -->
-                <div class="form-group col-sm-6">
-                    <i class="fa fa-pencil-square option-icon" style="color: rgb(8, 65, 32);" aria-hidden="true"></i>
-                    <input type="text" class="form-control option-name" name="opt3" formControlName="option3"
-                        placeholder="Add Option 3" [ngClass]="{ 'is-invalid': submitted && f.option3.errors }">
-                    <div *ngIf="submitted && f.option3.errors" class="invalid-feedback">
-                        <div *ngIf="f.option3.errors.required">Option is required</div>
+
+                <div class="row" *ngIf=optionImage>
+                    <div class="form-group col-sm-6">
+                        <i class="fa fa-upload upload-icon" style="color: purple;" aria-hidden="true"></i>
+                        <input type="file" class="form-control option-name">
                     </div>
-                </div>
-                <div class="form-group col-sm-6">
-                    <i class="fa fa-pencil-square option-icon" style="color: rgb(34, 28, 95);" aria-hidden="true"></i>
-                    <input type="text" class="form-control option-name" name="opt4" formControlName="option4"
-                        placeholder="Add Option 4" [ngClass]="{ 'is-invalid': submitted && f.option4.errors }">
-                    <div *ngIf="submitted && f.option4.errors" class="invalid-feedback">
-                        <div *ngIf="f.option4.errors.required">Option is required</div>
+
+                    <div class="form-group col-sm-6">
+                        <i class="fa fa-upload upload-icon" style="color:firebrick;" aria-hidden="true"></i>
+                        <input type="file" class="form-control option-name" name="opt2">
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <i class="fa fa-upload upload-icon" style="color: rgb(8, 65, 32);"
+                            aria-hidden="true"></i>
+                        <input type="file" class="form-control option-name" name="opt3">
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <i class="fa fa-upload upload-icon" style="color: rgb(34, 28, 95);"
+                            aria-hidden="true"></i>
+                        <input type="file" class="form-control option-name">
                     </div>
                 </div>
 

@@ -12,7 +12,7 @@
           </span>
         </div>
         <div class="badge" *ngIf="question && question.questionId <= totalQuestions">
-          <span>Question {{ question.questionId }} of {{ totalQuestions }}</span>
+          <span>Question {{ question?.questionId+1 }} of {{ totalQuestions }}</span>
         </div>
         <div class="time-left">
           <span class="leader">Time</span>
@@ -24,9 +24,9 @@
     </section>
 
     <section id="question">
-      {{question.questionText }}
+      {{question?.questionText }}
     </section>
-    <app-questionform [question]="question" [disableAnswer]="disableAnswer"></app-questionform>
+    <app-questionform *ngIf="question" [question]="question" [disableAnswer]="disableAnswer"></app-questionform>
 
     <!-- <section id="option" class="row">
         <div class="col-6" *ngFor="let option of allQuestions[0]['options'] ">
@@ -46,21 +46,22 @@
               &laquo; Previous
             </button>
           </div> -->
-        <div class="nextQuestionNav" *ngIf="question && question.questionId !== totalQuestions">
-          <button type="button" class="btn btn-md btn-primary" [disabled]="disabled" (click)="navigateToNextQuestion()">
+        <div class="nextQuestionNav" *ngIf="question && question.questionId !== totalQuestions-1">
+          <button type="button" class="btn btn-md btn-primary" [disabled]="disabled"
+            (click)="navigateToNextQuestion(question?.questionId)">
             Next &raquo;
           </button>
         </div>
-        <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions && !disableAnswer">
+        <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions-1 && !disableAnswer">
           <button type="submit" class="btn btn-md btn-primary" (click)="navigateToResults()">
             Show Your Score</button>
 
         </div>
         <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions && disableAnswer">
-            <button type="submit" class="btn btn-md btn-primary" (click)="navigateToDashboard()">
-              Go to Dashboard</button>
-  
-          </div>
+          <button type="submit" class="btn btn-md btn-primary" (click)="navigateToDashboard()">
+            Go to Dashboard</button>
+
+        </div>
       </mat-card-actions>
     </section>
 

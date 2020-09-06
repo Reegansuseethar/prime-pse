@@ -16,8 +16,9 @@ export class AddQuestionComponent implements OnInit {
   questionList: any;
   removeId: any;
   grouplist: any;
-  subGrouplist:any;
-  
+  subGrouplist: any;
+  optionImage:boolean;
+
   @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
 
   constructor(private formBuilder: FormBuilder, private service: DataService) { }
@@ -86,7 +87,14 @@ export class AddQuestionComponent implements OnInit {
       console.log(res)
       this.subGrouplist = res;
     })
+  }
 
+  enableOption(e) {
+    if (e) {
+      this.optionImage = true;
+    } else {
+      this.optionImage = false;
+    }
   }
 
   editQuestion(id: any) {
