@@ -14,10 +14,10 @@
         <div class="badge" *ngIf="question && question.questionId <= totalQuestions">
           <span>Question {{ question?.questionId+1 }} of {{ totalQuestions }}</span>
         </div>
-        <div class="time-left">
+        <div class="time-left" *ngIf="subscribeTimer">
           <span class="leader">Time</span>
           <span class="scoreboard">
-            0:<span *ngIf="timeLeft < 10">0</span>{{ timeLeft }}
+            0:<span *ngIf="subscribeTimer < 10">0</span>{{subscribeTimer}}
           </span>
         </div>
       </div>
@@ -44,7 +44,7 @@
         <div class="row button-tab">
           <div class="col-sm-8" style="text-align: right;">
             <span class=" previousQuestionNav" *ngIf="question && question.questionId !== 0 && previous ">
-              <button type="button" class="btn btn-md btn-primary" (click)="navigateToPreviousQuestion()">
+              <button type="button" class="btn btn-md btn-primary" (click)="navigateToPreviousQuestion(question?.questionId)">
                 &laquo; Previous
               </button>
             </span>
@@ -101,19 +101,19 @@
       <div class="modal-body dialog-modal">
         <div class="row">
           <div class="col-sm-9 result-data"><label>Total Question</label></div>
-          <div class="col-sm-3 result-data"><label>25</label></div>
+          <div class="col-sm-3 result-data"><label>{{totalQuestions}}</label></div>
           <div class="col-sm-9 result-data"><label>Total Marks</label></div>
-          <div class="col-sm-3 result-data"><label>25</label></div>
+          <div class="col-sm-3 result-data"><label>{{totalMarks}}</label></div>
           <div class="col-sm-9 result-data"><label>No.of Questions attempted</label></div>
-          <div class="col-sm-3 result-data"><label>1</label></div>
+          <div class="col-sm-3 result-data"><label>{{questionAttempted}}</label></div>
           <div class="col-sm-9 result-data"><label>No.of Questions not attempted</label></div>
-          <div class="col-sm-3 result-data"><label>24</label></div>
+          <div class="col-sm-3 result-data"><label>{{totalQuestions - questionAttempted }}</label></div>
           <div class="col-sm-9 result-data"><label>Required Marks</label></div>
-          <div class="col-sm-3 result-data"><label>12</label></div>
+          <div class="col-sm-3 result-data"><label>{{math.round(totalQuestions / 2)}}</label></div>
           <div class="col-sm-9 result-data"><label>Marks Scored</label></div>
-          <div class="col-sm-3 result-data"><label>-0.25</label></div>
+          <div class="col-sm-3 result-data"><label>{{markedScore}}</label></div>
           <div class="col-sm-9 result-data"><label>Remarks</label></div>
-          <div class="col-sm-3 result-data"><label>FAIL</label></div>
+          <div class="col-sm-3 result-data"><label>{{(markedScore >= (totalQuestions / 2)) ? 'PASS' : 'FAIL' }}</label></div>
         </div>
       </div>
       <div class="modal-footer">

@@ -6,6 +6,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { QuizQuestion } from '../../../model/QuizQuestion';
 import { DataService } from '../../services/data.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-question',
@@ -14,6 +15,7 @@ import { DataService } from '../../services/data.service';
 })
 export class QuestionComponent implements OnInit {
   @Input() answer: string;
+  questionAttempted:number;
   @Input() formGroup: FormGroup;
   @Input() question: QuizQuestion;
   totalQuestions: number;
@@ -28,7 +30,7 @@ export class QuestionComponent implements OnInit {
   disabled: boolean;
   quizIsOver: boolean;
   progressValue: number;
-  timeLeft: number;
+  timeLeft: any;
   timePerQuestion = 20;
   interval: any;
   elapsedTime: number;
@@ -38,6 +40,10 @@ export class QuestionComponent implements OnInit {
   questionList: any;
   quesArr = []
   allQuestions: any;
+  totalMarks:number;
+  markedScore:number;
+  subscribeTimer:any;
+  math = Math;
 
   @ViewChild('resultModal', { static: false }) public resultModal: ModalDirective;
   @ViewChild('closeModal', { static: false }) public closeModal: ModalDirective;
@@ -49,6 +55,10 @@ export class QuestionComponent implements OnInit {
     this.spinner.show();
     this.service.getQuestions().subscribe((res: any) => {
       console.log(res);
+      if(!this.disableAnswer){
+        this.observableTimer();
+      }
+      
 
       for (let i in res) {
         this.quesArr.push({
@@ -72,18 +82,40 @@ export class QuestionComponent implements OnInit {
 
       this.question = this.getQuestion;
       this.totalQuestions = this.allQuestions.length;
-      this.timeLeft = this.timePerQuestion;
+      // change the multiply value
+      this.totalMarks = this.allQuestions.length;
+      this.timeLeft = this.totalQuestions*10;
       this.progressValue = 100 * (this.currentQuestion + 1) / this.totalQuestions;
       this.spinner.hide();
 
     });
   }
-
+  observableTimer() {
+    this.timeLeft = timer(1000, 2000);
+    debugger
+    const abc = this.timeLeft.subscribe(val => {
+      console.log(val, '-');
+      this.subscribeTimer = this.timeLeft - val;
+      if(this.subscribeTimer <= 0){
+        this.navigateToResults();
+        this.timeLeft.unsubscribe();
+      }
+    });
+  }
   displayNextQuestion() {
     this.resetTimer();
     // this.increaseProgressValue();
 
     this.questionIndex = this.questionID++;
+
+    if (typeof document.getElementById('question') !== 'undefined' && this.getQuestionID() <= this.totalQuestions) {
+      document.getElementById('question').innerHTML = this.allQuestions[this.questionIndex]['questionText'];
+      document.getElementById('question').style.border = this.blueBorder;
+    }
+  }
+
+  displayPreviousQuestion() {
+    this.questionIndex = this.questionID--;
 
     if (typeof document.getElementById('question') !== 'undefined' && this.getQuestionID() <= this.totalQuestions) {
       document.getElementById('question').innerHTML = this.allQuestions[this.questionIndex]['questionText'];
@@ -100,12 +132,26 @@ export class QuestionComponent implements OnInit {
 
   navigateToPreviousQuestion(val): void {
     this.setQuestionID(val - 1);
-    // this.question = this.getQuestion;
-    // this.displayNextQuestion();
+    this.question = this.getQuestion;
+    this.displayPreviousQuestion();
     // this.previous = true;
   }
 
   navigateToResults() {
+    this.questionAttempted = this.allQuestions.filter(x=>{
+      if(x.selectedOption != ''){
+        return x
+      }
+    }).length;
+
+    this.markedScore  = this.allQuestions.filter(x=>{
+      debugger
+      if(x.selectedOption  == x.answer){
+        return x
+      }
+    }).length;
+    debugger
+    this.subscribeTimer = 0
     this.resultModal.show();
     this.previous = false;
   }
@@ -123,6 +169,18 @@ export class QuestionComponent implements OnInit {
   }
 
   endExam(){
+    this.questionAttempted = this.allQuestions.filter(x=>{
+      if(x.selectedOption != ''){
+        return x
+      }
+    }).length;
+
+    this.markedScore  = this.allQuestions.filter(x=>{
+      debugger
+      if(x.selectedOption  == x.answer){
+        return x
+      }
+    }).length;
     this.closeModal.hide();
     this.resultModal.show();
     this.previous = false;
