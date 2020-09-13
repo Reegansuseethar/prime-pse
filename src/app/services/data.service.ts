@@ -51,6 +51,11 @@ export class DataService {
     return this.http.put(api_Url + '/' + id, data);
   }
 
+  getQuestionBygroupId(id: any) {
+    let api_Url: string = `${this.url}/getQuestionBygroupId`
+    return this.http.get(api_Url + '/' + id);
+  }
+
   //for Group
   addGroup(data: any) {
     let api_Url: string = `${this.url}/addGroup`

@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  enterIntro(pageDetail: any) {
-    this.router.navigate(['intro'])
+  enterIntro(id: any) {
+    this.router.navigate(['intro'], { queryParams: { 'id': id } })
   }
 }

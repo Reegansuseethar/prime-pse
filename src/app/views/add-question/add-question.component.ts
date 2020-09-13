@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-
+import { NgxSpinnerService } from "ngx-spinner";
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -17,17 +17,26 @@ export class AddQuestionComponent implements OnInit {
   removeId: any;
   grouplist: any;
   subGrouplist: any;
-  optionImage:boolean;
+  optionImage1: boolean;
+  optionImage2: boolean;
+  optionImage3: boolean;
+  optionImage4: boolean;
+
 
   @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
 
-  constructor(private formBuilder: FormBuilder, private service: DataService) { }
+  constructor(private formBuilder: FormBuilder, private service: DataService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.initializeForm();
-
+    this.spinner.show();
     this.service.getQuestions().subscribe((res: any) => {
       this.questionList = res;
+      this.spinner.hide();
+    });
+
+    this.service.getGroups().subscribe((res: any) => {
+      this.grouplist = res;
     })
   }
 
@@ -74,26 +83,41 @@ export class AddQuestionComponent implements OnInit {
 
   addQuestion() {
     this.showList = false;
-
-    this.service.getGroups().subscribe((res: any) => {
-      this.grouplist = res;
-    })
   }
 
   changeGroup(val: any) {
-    console.log(val);
-
     this.service.getSubGroupByGroupId(val).subscribe((res: any) => {
       console.log(res)
       this.subGrouplist = res;
     })
   }
 
-  enableOption(e) {
+  enableOption1(e) {
     if (e) {
-      this.optionImage = true;
+      this.optionImage1 = true;
     } else {
-      this.optionImage = false;
+      this.optionImage1 = false;
+    }
+  }
+  enableOption2(e) {
+    if (e) {
+      this.optionImage2 = true;
+    } else {
+      this.optionImage2 = false;
+    }
+  }
+  enableOption3(e) {
+    if (e) {
+      this.optionImage3 = true;
+    } else {
+      this.optionImage3 = false;
+    }
+  }
+  enableOption4(e) {
+    if (e) {
+      this.optionImage4 = true;
+    } else {
+      this.optionImage4 = false;
     }
   }
 
@@ -127,6 +151,18 @@ export class AddQuestionComponent implements OnInit {
       this.deleteModal.hide();
       this.ngOnInit();
     })
+  }
+
+  getGroupQues(id: any) {
+    this.questionList = [];
+    if (id == 'all') {
+      this.ngOnInit();
+    } else {
+      this.service.getQuestionBygroupId(id).subscribe((res: any) => {
+        console.log(res);
+        this.questionList = res;
+      })
+    }
   }
 
 }

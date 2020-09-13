@@ -4,7 +4,7 @@
     <h4>Stock Market * Insurance * Bank Exam * Govt Exam * Medical Entrance * CA/CS Entrance Exam * Engineering * Law
       Entrance * Financial Planning</h4>
   </div>
-  
+
   <div class="chart-wrapper mt-3 mx-3" style="height:60px;">
     <div class="btn-tab premium">
       <div class="premium-btn">
@@ -17,12 +17,12 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row body-content">
-    <div class="col-sm-6 col-lg-4" style="margin-top:2%;margin-bottom:2%;" *ngFor="let certificate of listOfCertications">
-      <div class="card text-white" [style.background-color]="random_bg_color()">
+    <div class="col-sm-6 col-lg-4" style="margin-top:2%;margin-bottom:2%;" *ngFor="let data of subGrouplist">
+      <div class="card text-white" [ngStyle]="random_bg_color()">
         <div class="card-body pb-0">
-          <div class="text-value">{{certificate.certificationName}}</div>
+          <div class="text-value">{{data.questionSubgroup}}</div>
         </div>
         <div class="sub-body">
           <div class="chart-wrapper mt-3 mx-3" style="height:auto;">
@@ -34,7 +34,7 @@
                 <button type="button" class="btn btn-outline-info enter-btn">VIDEO CONCEPTS</button>
               </div>
             </div>
-  
+
             <div class="btn-tab">
               <div class="intro-btn">
                 <button type="button" class="btn btn-outline-info enter-btn">FREE DEMO</button>
@@ -43,10 +43,10 @@
                 <button type="button" class="btn btn-outline-info enter-btn">BUY PREMIUM</button>
               </div>
             </div>
-  
+
             <div class="btn-tab">
               <div class="intro-btn">
-                <button type="button" class="btn btn-outline-info enter-btn"(click)=mockTest()>FREE MOCK TESTS</button>
+                <button type="button" class="btn btn-outline-info enter-btn" (click)=mockTest()>FREE MOCK TESTS</button>
               </div>
               <!-- <div class="intro-btn">
                 <button type="button" class="btn btn-outline-info enter-btn">BUY PREMIUM</button>
@@ -57,5 +57,4 @@
       </div>
     </div>
   </div>
-  </div>
-  
+</div>
