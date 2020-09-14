@@ -17,9 +17,7 @@
                         <div *ngIf="f.questionGroupid.errors.required">Question group is required</div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="form-group col-sm-12 ques-name">
                     <i class="fa fa-question-circle-o input-icon" aria-hidden="true"></i>
                     <input type="text" class="form-control question-name" name="ques" formControlName="questionSubgroup"
@@ -28,6 +26,18 @@
                     <div *ngIf="submitted && f.questionSubgroup.errors" class="invalid-feedback">
                         <div *ngIf="f.questionSubgroup.errors.required">SubGroup is required</div>
                     </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <input type="text" class="form-control form-field" placeholder="Video URL">
+                </div>
+                <div class="form-group col-sm-6">
+                    <input type="text" class="form-control form-field" placeholder="Amount for the Exam">
+                </div>
+                <div class="form-group col-sm-6 study-notes">
+                    <label>Study Notes(PDF)</label>
+                </div>
+                <div class="form-group col-sm-6">
+                    <input type="file" class="form-control form-field" accept=".pdf">
                 </div>
             </div>
 
