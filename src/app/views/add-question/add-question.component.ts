@@ -22,7 +22,6 @@ export class AddQuestionComponent implements OnInit {
   optionImage3: boolean;
   optionImage4: boolean;
 
-
   @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
 
   constructor(private formBuilder: FormBuilder, private service: DataService, private spinner: NgxSpinnerService) { }
@@ -57,6 +56,7 @@ export class AddQuestionComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.questionForm.value)
     if (this.questionForm.invalid) {
       return;
     } else {
@@ -83,6 +83,11 @@ export class AddQuestionComponent implements OnInit {
 
   addQuestion() {
     this.showList = false;
+    this.optionImage1 = false;
+    this.optionImage2 = false;
+    this.optionImage3 = false;
+    this.optionImage4 = false;
+
   }
 
   changeGroup(val: any) {
@@ -131,10 +136,10 @@ export class AddQuestionComponent implements OnInit {
         questionName: [res.questionName, Validators.required],
         freeQuestion: [res.freeQuestion],
         premiumQuestion: [res.premiumQuestion],
-        option1: [res.option1, Validators.required],
-        option2: [res.option2, Validators.required],
-        option3: [res.option3, Validators.required],
-        option4: [res.option4, Validators.required],
+        option1: [this.checkValue(res.option1, 1), Validators.required],
+        option2: [this.checkValue(res.option2, 2), Validators.required],
+        option3: [this.checkValue(res.option3, 3), Validators.required],
+        option4: [this.checkValue(res.option4, 4), Validators.required],
         answer: [res.answer, Validators.required]
       });
     })
@@ -159,10 +164,34 @@ export class AddQuestionComponent implements OnInit {
       this.ngOnInit();
     } else {
       this.service.getQuestionBygroupId(id).subscribe((res: any) => {
-        console.log(res);
         this.questionList = res;
       })
     }
+  }
+
+  uploadImage(event: any, field: any) {
+    if (event.target.files && event.target.files.length) {
+      let file = event.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.questionForm.patchValue({
+          [field]: reader.result
+        });
+        return reader.result
+      }
+    }
+  }
+
+  checkValue(value: any, index: any) {
+    if (value && value.includes("data:image/")) {
+      this['optionImage' + index] = true;
+      return value;
+    } else {
+      this['optionImage' + index] = false;
+      return value;
+    }
+
   }
 
 }

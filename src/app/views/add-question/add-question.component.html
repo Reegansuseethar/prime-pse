@@ -72,15 +72,21 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-sm-5" *ngIf="optionImage1">
+                    <div class="col-sm-1" *ngIf="optionImage1">
+                        <img [src]="questionForm.value.option1" style="height: 40px;width: 43px;">
+                    </div>
+
+                    <div class="form-group col-sm-4" *ngIf="optionImage1">
                         <i class="fa fa-upload upload-icon" style="color: purple;" aria-hidden="true"></i>
-                        <input type="file" class="form-control option-name" accept="image/*">
+                        <input type="file" class="form-control option-name" accept="image/*"
+                            (change)="uploadImage($event,'option1')">
                     </div>
 
                     <div class="form-group col-sm-1">
                         <span class="checkbox-bar">
                             <label class="container">
-                                <input type="checkbox" name="premium" (change)="enableOption1($event.target.checked)">
+                                <input type="checkbox" [checked]="optionImage1" name="premium"
+                                    (change)="enableOption1($event.target.checked)">
                                 <span class="checkmark"></span>
                             </label>
                         </span>
@@ -95,20 +101,25 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-sm-5" *ngIf="optionImage2">
+                    <div class="col-sm-1" *ngIf="optionImage2">
+                        <img [src]="questionForm.value.option2" style="height: 40px;width: 43px;">
+                    </div>
+
+                    <div class="form-group col-sm-4" *ngIf="optionImage2">
                         <i class="fa fa-upload upload-icon" style="color:firebrick;" aria-hidden="true"></i>
-                        <input type="file" class="form-control option-name" name="opt2" accept="image/*">
+                        <input type="file" class="form-control option-name" name="opt2" accept="image/*"
+                            (change)="uploadImage($event,'option2')">
                     </div>
 
                     <div class="form-group col-sm-1">
                         <span class="checkbox-bar">
                             <label class="container">
-                                <input type="checkbox" name="premium" (change)="enableOption2($event.target.checked)">
+                                <input type="checkbox" [checked]="optionImage2" name="premium2"
+                                    (change)="enableOption2($event.target.checked)">
                                 <span class="checkmark"></span>
                             </label>
                         </span>
                     </div>
-
 
                     <div class="form-group col-sm-5" *ngIf="!optionImage3">
                         <i class="fa fa-pencil-square option-icon" style="color: rgb(8, 65, 32);"
@@ -120,20 +131,25 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-sm-5" *ngIf="optionImage3">
+                    <div class="col-sm-1" *ngIf="optionImage3">
+                        <img [src]="questionForm.value.option3" style="height: 40px;width: 43px;">
+                    </div>
+
+                    <div class="form-group col-sm-4" *ngIf="optionImage3">
                         <i class="fa fa-upload upload-icon" style="color: rgb(8, 65, 32);" aria-hidden="true"></i>
-                        <input type="file" class="form-control option-name" name="opt3" accept="image/*">
+                        <input type="file" class="form-control option-name" name="opt3" accept="image/*"
+                            (change)="uploadImage($event,'option3')">
                     </div>
 
                     <div class="form-group col-sm-1">
                         <span class="checkbox-bar">
                             <label class="container">
-                                <input type="checkbox" name="premium" (change)="enableOption3($event.target.checked)">
+                                <input type="checkbox" [checked]="optionImage3" name="premium3"
+                                    (change)="enableOption3($event.target.checked)">
                                 <span class="checkmark"></span>
                             </label>
                         </span>
                     </div>
-
 
                     <div class="form-group col-sm-5" *ngIf="!optionImage4">
                         <i class="fa fa-pencil-square option-icon" style="color: rgb(34, 28, 95);"
@@ -145,15 +161,21 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-sm-5" *ngIf="optionImage4">
+                    <div class="col-sm-1" *ngIf="optionImage4">
+                        <img [src]="questionForm.value.option4" style="height: 40px;width: 43px;">
+                    </div>
+
+                    <div class="form-group col-sm-4" *ngIf="optionImage4">
                         <i class="fa fa-upload upload-icon" style="color: rgb(34, 28, 95);" aria-hidden="true"></i>
-                        <input type="file" class="form-control option-name" accept="image/*">
+                        <input type="file" class="form-control option-name" accept="image/*"
+                            (change)="uploadImage($event,'option4')">
                     </div>
 
                     <div class="form-group col-sm-1">
                         <span class="checkbox-bar">
                             <label class="container">
-                                <input type="checkbox" name="premium" (change)="enableOption4($event.target.checked)">
+                                <input type="checkbox" [checked]="optionImage4" name="premium4"
+                                    (change)="enableOption4($event.target.checked)">
                                 <span class="checkmark"></span>
                             </label>
                         </span>
@@ -187,7 +209,7 @@
         <div class="col-sm-6">
             <select id="type" name="type" class="form-control" style="width: 50%;"
                 (change)="getGroupQues($event.target.value)">
-                <option value="all" selected >--- Get All Questions ---</option>
+                <option value="all" selected>--- Get All Questions ---</option>
                 <option [value]="data._id" *ngFor="let data of grouplist">{{data.questionGroup}}</option>
             </select>
         </div>
