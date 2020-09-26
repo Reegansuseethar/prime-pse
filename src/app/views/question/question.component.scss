@@ -5,6 +5,14 @@ mat-card {
   background: #e4e5e6;
 }
 
+.qnlist{
+  background: #fff;
+  height: 350px;
+  .no-list{
+    min-height: 180px;
+    overflow: auto;
+  }
+}
 .question-bar {
   background: rebeccapurple;
   text-align: center;
@@ -12,6 +20,63 @@ mat-card {
   font-size: 30px;
   color: #fff;
   margin-bottom: 2%;
+  p {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px;
+  }
+}
+
+.legend { list-style: none;position: absolute;bottom: 2rem }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+/* your colors */
+.legend .answered { background-color: green; }
+.legend .not-answered { background-color: red; }
+.legend .not-visited { background-color: #ccc; }
+.legend-info{
+  display: flex;
+  flex-wrap: nowrap;
+
+  .info-color{
+    height: 5px;
+    width: 5px;
+    background: #fff
+  }
+  .box-color{
+    height: 2px;
+    width: 5px;
+    background: red;
+    padding: 5px;
+    margin: 10px;
+  }
+}
+
+.qn-list{
+  display: flex;
+    list-style: none;
+    justify-content: space-between;
+    padding: 0;
+    flex-wrap: wrap;
+   li {
+    flex: 0 0 15%;
+    margin: 5px;
+    border-radius: 25px;
+    text-align: center;
+    cursor: pointer;
+    &.checked{
+      background-color: green;
+      color: white;
+    }
+    &.not-visited{
+      background-color: #ccc;
+      color:black;
+    }
+    &.skipped{
+      background-color: red;
+      color: white;
+    }
+  }
 }
 
 .mat-card:not([class*="mat-elevation-z"]) {

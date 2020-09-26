@@ -51,6 +51,9 @@ export class QuestionComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private service: DataService, private spinner: NgxSpinnerService) { }
 
+  counter(i: number) {
+    return new Array(i);
+}
   ngOnInit() {
     this.spinner.show();
     this.service.getQuestions().subscribe((res: any) => {
@@ -122,9 +125,21 @@ export class QuestionComponent implements OnInit {
       document.getElementById('question').style.border = this.blueBorder;
     }
   }
+  setskipStatus(qId){
+    if (this.allQuestions[qId]['selectedOption'] ==''){
+      this.allQuestions[qId]['isSkipped'] = true
+    }
+  }
 
-  navigateToNextQuestion(val): void {
-    this.setQuestionID(val + 1);
+  navigateToNextQuestion(val,fromqnAttempted?:boolean): void {
+    if(!fromqnAttempted){
+      this.setskipStatus(val);
+      this.setQuestionID(val + 1);
+    }else{
+      this.setQuestionID(val);
+    }
+  
+
     this.question = this.getQuestion;
     this.displayNextQuestion();
     this.previous = true;
