@@ -40,6 +40,9 @@ export class AddSubgroupComponent implements OnInit {
     this.subgroupForm = this.formBuilder.group({
       questionGroupid: ['', Validators.required],
       questionSubgroup: ['', Validators.required],
+      amount: [''],
+      videoUrl: [''],
+      pdfMaterial: ['']
     });
   }
 
@@ -55,6 +58,9 @@ export class AddSubgroupComponent implements OnInit {
         _id: [res._id],
         questionGroupid: [res.questionGroupid, Validators.required],
         questionSubgroup: [res.questionSubgroup, Validators.required],
+        amount: [res.amount],
+        videoUrl: [res.videoUrl],
+        pdfMaterial: [res.pdfMaterial]
       });
     })
   }
