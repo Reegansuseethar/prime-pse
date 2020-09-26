@@ -96,7 +96,7 @@
       </div>
       <mat-card class="qnlist">
           <mat-card-content class="no-list" >
-             <ul class="qn-list"> <li (click)=navigateToNextQuestion(i,true) *ngFor='let in of counter(3) ;let i = index' [class]="(allQuestions[i]['selectedOption']  =='' && allQuestions[i]['isSkipped']) ? 'skipped' : allQuestions[i]['selectedOption']  =='' ? 'not-visited' :  'checked' ">{{i+1}}</li></ul>
+             <ul class="qn-list"> <li (click)=navigateToNextQuestion(i,true) *ngFor='let in of counter(totalQuestions) ;let i = index' [class]="(allQuestions[i]['selectedOption']  =='' && allQuestions[i]['isSkipped']) ? 'skipped' : allQuestions[i]['selectedOption']  =='' ? 'not-visited' :  'checked' ">{{i+1}}</li></ul>
              <!-- <ul class="qn-list"> <li *ngFor='let in of counter(40) ;let i = index' >{{i+1}}</li></ul> -->
             </mat-card-content>
           <hr>
