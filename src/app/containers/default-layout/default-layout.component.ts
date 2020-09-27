@@ -1,7 +1,7 @@
 import { Component, OnDestroy, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../_nav';
-import { AuthService } from '../../services/auth.service';
+import { AuthDataService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +13,7 @@ export class DefaultLayoutComponent implements OnDestroy {
   isAdmin:boolean;
   private changes: MutationObserver;
   public element: HTMLElement;
-  constructor(private auth:AuthService, @Inject(DOCUMENT) _document?: any) {
+  constructor(private auth:AuthDataService, @Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {
       this.sidebarMinimized = _document.body.classList.contains('sidebar-minimized');

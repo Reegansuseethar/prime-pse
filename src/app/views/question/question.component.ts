@@ -57,7 +57,6 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.service.getQuestions().subscribe((res: any) => {
-      console.log(res);
       if(!this.disableAnswer){
         this.observableTimer();
       }
@@ -95,9 +94,8 @@ export class QuestionComponent implements OnInit {
   }
   observableTimer() {
     this.timeLeft = timer(1000, 2000);
-    debugger
     const abc = this.timeLeft.subscribe(val => {
-      console.log(val, '-');
+      // console.log(val, '-');
       this.subscribeTimer = this.timeLeft - val;
       if(this.subscribeTimer <= 0){
         this.navigateToResults();
@@ -160,12 +158,10 @@ export class QuestionComponent implements OnInit {
     }).length;
 
     this.markedScore  = this.allQuestions.filter(x=>{
-      debugger
       if(x.selectedOption  == x.answer){
         return x
       }
     }).length;
-    debugger
     this.subscribeTimer = 0
     this.resultModal.show();
     this.previous = false;
@@ -191,7 +187,6 @@ export class QuestionComponent implements OnInit {
     }).length;
 
     this.markedScore  = this.allQuestions.filter(x=>{
-      debugger
       if(x.selectedOption  == x.answer){
         return x
       }

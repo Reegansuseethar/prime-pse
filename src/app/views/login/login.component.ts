@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { AuthDataService } from '../../services/auth.service';
 import { DataService } from '../../services/data.service';
+import { AuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
 
-  constructor(private dataservice:DataService ,private formBuilder: FormBuilder, private router: Router,private authService:AuthService) { }
+  constructor(private dataservice: DataService, private formBuilder: FormBuilder, private router: Router, private authService: AuthDataService, private socialAuth: AuthService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -31,11 +32,11 @@ export class LoginComponent implements OnInit {
     }
 
     if (this.loginForm.valid) {
-      let userData:any = this.authService.validateUserData(this.loginForm.value);
-      if(userData){
+      let userData: any = this.authService.validateUserData(this.loginForm.value);
+      if (userData) {
         this.authService.persistLoggedUserData(userData);
         this.router.navigate(["dashboard"]);
-      }else this.dataservice.showToaster('Invalid Credentials..')
+      } else this.dataservice.showToaster('Invalid Credentials..')
     }
     else {
       this.dataservice.showToaster('Invalid Credentials....')
@@ -43,8 +44,18 @@ export class LoginComponent implements OnInit {
 
   }
 
-  socialLogin(){
+  socialLogin() {
     this.router.navigate(["dashboard"]);
+  }
+
+  signInWithFB(): void {
+    this.socialAuth.signIn(FacebookLoginProvider.PROVIDER_ID);
+
+    this.socialAuth.authState.subscribe((user) => {
+      // this.user = user;
+      // this.loggedIn = (user != null);
+      console.log(user);
+     });
   }
 
 }

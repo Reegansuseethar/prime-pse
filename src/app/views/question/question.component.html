@@ -1,36 +1,37 @@
 <div class="row">
   <div class="col-10">
-<div class="question-bar">
-  <strong>Question</strong>
-</div>
-<mat-card>
-  <mat-card-content>
-    <section class="scoreboard">
-      <div class="row">
-        <div class="score">
-          <span class="leader">Score</span>
-          <span class="scoreboard">
-            {{ correctAnswersCount }}/{{ totalQuestions }}
-          </span>
-        </div>
-        <div class="badge" *ngIf="question && question.questionId <= totalQuestions">
-          <span>Question {{ question?.questionId+1 }} of {{ totalQuestions }}</span>
-        </div>
-        <div class="time-left" *ngIf="subscribeTimer">
-          <span class="leader">Time</span>
-          <span class="scoreboard">
-            0:<span *ngIf="subscribeTimer < 10">0</span>{{subscribeTimer}}
-          </span>
-        </div>
-      </div>
-    </section>
+    <div class="question-bar">
+      <strong>Question</strong>
+    </div>
+    <mat-card>
+      <mat-card-content>
+        <section class="scoreboard">
+          <div class="row">
+            <div class="score">
+              <span class="leader">Score</span>
+              <span class="scoreboard">
+                {{ correctAnswersCount }}/{{ totalQuestions }}
+              </span>
+            </div>
+            <div class="badge" *ngIf="question && question.questionId <= totalQuestions">
+              <span>Question {{ question?.questionId+1 }} of {{ totalQuestions }}</span>
+            </div>
+            <div class="time-left" *ngIf="subscribeTimer">
+              <span class="leader">Time</span>
+              <span class="scoreboard">
+                0:<span *ngIf="subscribeTimer < 10">0</span>{{subscribeTimer}}
+              </span>
+            </div>
+          </div>
+        </section>
 
-    <section id="question">
-      {{question?.questionText }}
-    </section>
-    <app-questionform *ngIf="question" [question]="question" [disableAnswer]="disableAnswer"></app-questionform>
-
-    <!-- <section id="option" class="row">
+        <section id="question">
+          {{question?.questionText }}
+        </section>
+        <div class="option-form">
+          <app-questionform *ngIf="question" [question]="question" [disableAnswer]="disableAnswer"></app-questionform>
+        </div>
+        <!-- <section id="option" class="row">
         <div class="col-6" *ngFor="let option of allQuestions[0]['options'] ">
             <p (click)="checkIfAnsweredCorrectly()">{{option.optionValue}}) {{option.optionText}}</p>
         </div>
@@ -38,78 +39,83 @@
       </section> -->
 
 
-  </mat-card-content>
+      </mat-card-content>
 
-  <mat-card-footer>
-    <section class="paging">
-      <mat-card-actions>
-        <div class="row button-tab">
-          <div class="col-sm-8" style="text-align: right;">
-            <span class=" previousQuestionNav" *ngIf="question && question.questionId !== 0 && previous ">
-              <button type="button" class="btn btn-md btn-primary" (click)="navigateToPreviousQuestion(question?.questionId)">
-                &laquo; Previous
-              </button>
-            </span>
+      <mat-card-footer>
+        <section class="paging">
+          <mat-card-actions>
+            <div class="row button-tab">
+              <div class="col-sm-4" style="text-align: right;">
+                <span class=" previousQuestionNav" *ngIf="question && question.questionId !== 0 && previous ">
+                  <button type="button" class="btn btn-md btn-primary"
+                    (click)="navigateToPreviousQuestion(question?.questionId)">
+                    &laquo; Previous
+                  </button>
+                </span>
 
-            <span class=" nextQuestionNav" *ngIf="question && question.questionId !== totalQuestions-1">
-              <button type="button" class="btn btn-md btn-primary" [disabled]="disabled"
-                (click)="navigateToNextQuestion(question?.questionId)">
-                Next &raquo;
-              </button>
-            </span>
-          </div>
+                <span class=" nextQuestionNav" *ngIf="question && question.questionId !== totalQuestions-1">
+                  <button type="button" class="btn btn-md btn-primary" [disabled]="disabled"
+                    (click)="navigateToNextQuestion(question?.questionId)">
+                    Next &raquo;
+                  </button>
+                </span>
+              </div>
 
-          <div class="col-sm-4">
-            <div class="col-sm-8 showScoreNav"
-              *ngIf="question && question.questionId === totalQuestions-1 && !disableAnswer">
-              <button type="submit" class="btn btn-md btn-primary" (click)="navigateToResults()">
-                Show Your Score</button>
-            </div>
+              <div class="col-sm-4">
+                <div class="showScoreNav"
+                  *ngIf="question && question.questionId === totalQuestions-1 && !disableAnswer">
+                  <button type="submit" class="btn btn-md btn-primary" (click)="navigateToResults()">
+                    Show Your Score</button>
+                </div>
 
-            <div class="col-sm-4 close-exam" *ngIf="question && question.questionId">
-              <button type="submit" class="btn btn-md btn-primary" (click)="closeExam()">
-                End Exam</button>
-            </div>
+                <div class="close-exam" *ngIf="question && question.questionId">
+                  <button type="submit" class="btn btn-md btn-primary" (click)="closeExam()">
+                    End Exam</button>
+                </div>
 
-            <!-- <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions && disableAnswer">
+                <!-- <div class="showScoreNav" *ngIf="question && question.questionId === totalQuestions && disableAnswer">
             <button type="submit" class="btn btn-md btn-primary" (click)="navigateToDashboard()">
               Go to Dashboard</button>
           </div> -->
-          </div>
-        </div>
-      </mat-card-actions>
-    </section>
+              </div>
+            </div>
+          </mat-card-actions>
+        </section>
 
-    <section class="progress-bar">
-      <!-- <ngb-progressbar *ngIf="(progressValue >= 0 && progressValue <= 100) &&
+        <section class="progress-bar">
+          <!-- <ngb-progressbar *ngIf="(progressValue >= 0 && progressValue <= 100) &&
                                 question && question.questionId <= totalQuestions"
                          type="success" [striped]="true" [animated]="true" [value]="progressValue">
           <strong>{{ progressValue }}%</strong>
         </ngb-progressbar> -->
-    </section>
-  </mat-card-footer>
-</mat-card>
-</div>
-<div class="col-2" *ngIf="allQuestions">
+        </section>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <div class="col-2" *ngIf="allQuestions">
     <div class="question-bar">
-        <p>Question Attempted</p>
-      </div>
-      <mat-card class="qnlist">
-          <mat-card-content class="no-list" >
-             <ul class="qn-list"> <li (click)=navigateToNextQuestion(i,true) *ngFor='let in of counter(totalQuestions) ;let i = index' [class]="(allQuestions[i]['selectedOption']  =='' && allQuestions[i]['isSkipped']) ? 'skipped' : allQuestions[i]['selectedOption']  =='' ? 'not-visited' :  'checked' ">{{i+1}}</li></ul>
-             <!-- <ul class="qn-list"> <li *ngFor='let in of counter(40) ;let i = index' >{{i+1}}</li></ul> -->
-            </mat-card-content>
-          <hr>
-        <mat-card-footer>
-            <ul class="legend">
-                <li><span class="answered"></span> Answered</li>
-                <li><span class="not-answered"></span>Not Answered</li>
-                <li><span class="not-visited"></span> Not Visited</li>
-            </ul>
-            
-        </mat-card-footer>
-      </mat-card>
-</div>
+      <p>Question Attempted</p>
+    </div>
+    <mat-card class="qnlist">
+      <mat-card-content class="no-list">
+        <ul class="qn-list">
+          <li (click)=navigateToNextQuestion(i,true) *ngFor='let in of counter(totalQuestions) ;let i = index'
+            [class]="(allQuestions[i]['selectedOption']  =='' && allQuestions[i]['isSkipped']) ? 'skipped' : allQuestions[i]['selectedOption']  =='' ? 'not-visited' :  'checked' ">
+            {{i+1}}</li>
+        </ul>
+        <!-- <ul class="qn-list"> <li *ngFor='let in of counter(40) ;let i = index' >{{i+1}}</li></ul> -->
+      </mat-card-content>
+      <hr>
+      <mat-card-footer>
+        <ul class="legend">
+          <li><span class="answered"></span> Answered</li>
+          <li><span class="not-answered"></span>Not Answered</li>
+          <li><span class="not-visited"></span> Not Visited</li>
+        </ul>
+
+      </mat-card-footer>
+    </mat-card>
+  </div>
 
 </div>
 
@@ -138,7 +144,8 @@
           <div class="col-sm-9 result-data"><label>Marks Scored</label></div>
           <div class="col-sm-3 result-data"><label>{{markedScore}}</label></div>
           <div class="col-sm-9 result-data"><label>Remarks</label></div>
-          <div class="col-sm-3 result-data"><label>{{(markedScore >= (totalQuestions / 2)) ? 'PASS' : 'FAIL' }}</label></div>
+          <div class="col-sm-3 result-data"><label>{{(markedScore >= (totalQuestions / 2)) ? 'PASS' : 'FAIL' }}</label>
+          </div>
         </div>
       </div>
       <div class="modal-footer">

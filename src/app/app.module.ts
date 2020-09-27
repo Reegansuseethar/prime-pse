@@ -12,6 +12,8 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
+import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, AuthServiceConfig } from 'angularx-social-login';
+
 
 import { AppComponent } from './app.component';
 
@@ -22,6 +24,18 @@ import { LoginComponent } from './views/login/login.component';
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
+
+const config = new AuthServiceConfig([
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('393697782029659')
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
+
 
 import {
   AppAsideModule,
@@ -38,7 +52,7 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { MatCardModule,MatIconModule,MatButtonModule,MatSnackBarModule } from '@angular/material'
+import { MatCardModule, MatIconModule, MatButtonModule, MatSnackBarModule } from '@angular/material'
 
 @NgModule({
   imports: [
@@ -57,14 +71,18 @@ import { MatCardModule,MatIconModule,MatButtonModule,MatSnackBarModule } from '@
     MatIconModule,
     MatButtonModule,
     MatSnackBarModule,
-    FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule,NgxSpinnerModule
+    FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, NgxSpinnerModule,
+    SocialLoginModule
   ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
     LoginComponent,
   ],
-  providers: [],
+  providers: [{
+    provide: AuthServiceConfig,
+    useFactory: provideConfig
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,10 +5,10 @@ mat-card {
   background: #e4e5e6;
 }
 
-.qnlist{
+.qnlist {
   background: #fff;
   height: 350px;
-  .no-list{
+  .no-list {
     min-height: 180px;
     overflow: auto;
   }
@@ -27,23 +27,42 @@ mat-card {
   }
 }
 
-.legend { list-style: none;position: absolute;bottom: 2rem }
-.legend li { float: left; margin-right: 10px; }
-.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+.legend {
+  list-style: none;
+  position: absolute;
+  bottom: 2rem;
+}
+.legend li {
+  float: left;
+  margin-right: 10px;
+}
+.legend span {
+  border: 1px solid #ccc;
+  float: left;
+  width: 12px;
+  height: 12px;
+  margin: 2px;
+}
 /* your colors */
-.legend .answered { background-color: green; }
-.legend .not-answered { background-color: red; }
-.legend .not-visited { background-color: #ccc; }
-.legend-info{
+.legend .answered {
+  background-color: green;
+}
+.legend .not-answered {
+  background-color: red;
+}
+.legend .not-visited {
+  background-color: #ccc;
+}
+.legend-info {
   display: flex;
   flex-wrap: nowrap;
 
-  .info-color{
+  .info-color {
     height: 5px;
     width: 5px;
-    background: #fff
+    background: #fff;
   }
-  .box-color{
+  .box-color {
     height: 2px;
     width: 5px;
     background: red;
@@ -52,27 +71,27 @@ mat-card {
   }
 }
 
-.qn-list{
+.qn-list {
   display: flex;
-    list-style: none;
-    justify-content: space-between;
-    padding: 0;
-    flex-wrap: wrap;
-   li {
+  list-style: none;
+  justify-content: space-between;
+  padding: 0;
+  flex-wrap: wrap;
+  li {
     flex: 0 0 15%;
     margin: 5px;
     border-radius: 25px;
     text-align: center;
     cursor: pointer;
-    &.checked{
+    &.checked {
       background-color: green;
       color: white;
     }
-    &.not-visited{
+    &.not-visited {
       background-color: #ccc;
-      color:black;
+      color: black;
     }
-    &.skipped{
+    &.skipped {
       background-color: red;
       color: white;
     }
@@ -153,11 +172,11 @@ section.scoreboard {
 section#question {
   font-family: $font-stack;
   font-weight: 700;
-  font-size: 25px !important;
+  font-size: 20px !important;
   margin: 0 0 10px 0.4rem;
   float: left;
   border: 2px solid rebeccapurple;
-  padding: 5px 10px 10px 20px;
+  padding: 4px;
   background-color: #f5f5f5;
   color: #0f0900;
   width: 100% !important;
@@ -170,11 +189,11 @@ section#option {
   p {
     // font-family: $font-stack;
     font-weight: 700;
-    font-size: 25px !important;
+    font-size: 20px !important;
     margin: 0 0 10px 0.4rem;
     float: left;
     border: 2px solid rebeccapurple;
-    padding: 5px 10px 15px 20px;
+    padding: 4px;
     background-color: #f5f5f5;
     color: #0f0900;
     width: 100% !important;
@@ -244,5 +263,10 @@ section.progress-bar {
 .button-tab {
   width: 100%;
   margin: 0 auto;
-  justify-content: flex-end;
+  justify-content: center;
+}
+
+.option-form {
+  width: 100%;
+  // overflow-x: auto;
 }

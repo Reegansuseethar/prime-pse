@@ -5,32 +5,32 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  constructor(private route:Router) { }
-  validateUserData(formValue){
-   let user = Object.keys(authData).find((userKey)=>{
-      return authData[userKey].name ==  formValue.username && authData[userKey].password ==  formValue.password;
+export class AuthDataService {
+  constructor(private route: Router) { }
+  validateUserData(formValue) {
+    let user = Object.keys(authData).find((userKey) => {
+      return authData[userKey].name == formValue.username && authData[userKey].password == formValue.password;
     });
     return authData[user];
   }
 
-  persistLoggedUserData(formValue): any{
+  persistLoggedUserData(formValue): any {
     localStorage.setItem("userData", JSON.stringify(formValue));
   }
 
-  getLoggedInUserData():any{
-    let userData =  JSON.parse(localStorage.getItem("userData"));
+  getLoggedInUserData(): any {
+    let userData = JSON.parse(localStorage.getItem("userData"));
     return userData;
   }
 
-  isLoggedInUserIsAdmin(): any{
+  isLoggedInUserIsAdmin(): any {
     let userData = this.getLoggedInUserData();
-    if(userData && userData.permission == "all"){
+    if (userData && userData.permission == "all") {
       return true;
-    }else return false;
+    } else return false;
   }
 
-  doLogout(): any{
+  doLogout(): any {
     localStorage.clear();
     this.route.navigate(['login']);
   }
