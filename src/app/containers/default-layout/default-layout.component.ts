@@ -2,6 +2,7 @@ import { Component, OnDestroy, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../_nav';
 import { AuthDataService } from '../../services/auth.service';
+import { AuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,10 +11,10 @@ import { AuthDataService } from '../../services/auth.service';
 export class DefaultLayoutComponent implements OnDestroy {
   public navItems = navItems;
   public sidebarMinimized = true;
-  isAdmin:boolean;
+  isAdmin: boolean;
   private changes: MutationObserver;
   public element: HTMLElement;
-  constructor(private auth:AuthDataService, @Inject(DOCUMENT) _document?: any) {
+  constructor(private authService: AuthService, private auth: AuthDataService, @Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {
       this.sidebarMinimized = _document.body.classList.contains('sidebar-minimized');
@@ -36,7 +37,8 @@ export class DefaultLayoutComponent implements OnDestroy {
     this.changes.disconnect();
   }
 
-  logout(){
+  logout() {
     this.auth.doLogout();
+    this.authService.signOut();
   }
 }

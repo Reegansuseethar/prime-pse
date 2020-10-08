@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthDataService } from '../../services/auth.service';
 import { DataService } from '../../services/data.service';
-import { AuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
+import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted = false;
+  userData: SocialUser;
 
   constructor(private dataservice: DataService, private formBuilder: FormBuilder, private router: Router, private authService: AuthDataService, private socialAuth: AuthService) { }
 
@@ -55,7 +56,32 @@ export class LoginComponent implements OnInit {
       // this.user = user;
       // this.loggedIn = (user != null);
       console.log(user);
-     });
+    });
+  }
+
+  signInWithGoogle() {
+    this.socialAuth.signIn(GoogleLoginProvider.PROVIDER_ID);
+    setTimeout(() => {
+      this.socialAuth.authState.subscribe((user) => {
+        // this.user = user;
+        // this.loggedIn = (user != null);
+        // console.log(user);
+        this.userData = user;
+        if (this.userData) {
+
+          let data = {
+            name: user.name,
+            userID: user.id,
+            email: user.email,
+            provider: user.provider
+          }
+          this.dataservice.userSave(data).subscribe((res:any)=>{
+            this.router.navigate(["dashboard"]);
+          })
+
+        }
+      });
+    }, 1000);
   }
 
 }

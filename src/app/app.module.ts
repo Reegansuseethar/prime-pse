@@ -28,8 +28,12 @@ const APP_CONTAINERS = [
 const config = new AuthServiceConfig([
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('393697782029659')
-  }
+    provider: new FacebookLoginProvider('1240001746362498')
+  },
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('1056828131985-019jvlkolqp9p8j4478anr8c4rjijgoh.apps.googleusercontent.com')
+}
 ]);
 
 export function provideConfig() {

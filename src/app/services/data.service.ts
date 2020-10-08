@@ -123,4 +123,11 @@ export class DataService {
     return this.http.get(api_Url + '/' + id);
   }
 
+  //user
+
+  userSave(data: any) {
+    let api_Url: string = `${this.url}/userSave`
+    return this.http.post(api_Url, data);
+  }
+
 }
