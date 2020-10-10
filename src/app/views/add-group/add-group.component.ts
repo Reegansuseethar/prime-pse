@@ -30,8 +30,8 @@ export class AddGroupComponent implements OnInit {
 
   get f() { return this.groupForm.controls; }
 
-
   initializeForm() {
+    this.submitted = false;
     this.groupForm = this.formBuilder.group({
       questionGroup: ['', Validators.required],
     });
@@ -68,6 +68,7 @@ export class AddGroupComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     if (this.groupForm.invalid) {
       this.submitted =true;
       return;

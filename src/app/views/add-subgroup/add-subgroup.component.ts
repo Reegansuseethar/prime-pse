@@ -37,6 +37,7 @@ export class AddSubgroupComponent implements OnInit {
   get f() { return this.subgroupForm.controls; }
 
   initializeForm() {
+    this.submitted = false;
     this.subgroupForm = this.formBuilder.group({
       questionGroupid: ['', Validators.required],
       questionSubgroup: ['', Validators.required],
@@ -47,8 +48,7 @@ export class AddSubgroupComponent implements OnInit {
   }
 
   getGroupData(val: any) {
-    console.log(val);
-
+    // console.log(val);
   }
 
   editSubgroup(id: any) {
@@ -85,6 +85,7 @@ export class AddSubgroupComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     if (this.subgroupForm.invalid) {
       this.submitted = true;
       return;

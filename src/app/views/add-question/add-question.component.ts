@@ -21,6 +21,7 @@ export class AddQuestionComponent implements OnInit {
   optionImage2: boolean;
   optionImage3: boolean;
   optionImage4: boolean;
+  submitted:boolean;
 
   @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
 
@@ -39,9 +40,11 @@ export class AddQuestionComponent implements OnInit {
     })
   }
 
+  get f() { return this.questionForm.controls; }
+
   initializeForm() {
+    this.submitted = false;
     this.questionForm = this.formBuilder.group({
-      // _id: [0],
       questionGroup: ['', Validators.required],
       questionSubgroup: ['', Validators.required],
       questionName: ['', Validators.required],
@@ -56,7 +59,8 @@ export class AddQuestionComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.questionForm.value)
+    // console.log(this.questionForm.value)
+    this.submitted = true;
     if (this.questionForm.invalid) {
       return;
     } else {

@@ -29,9 +29,9 @@
                 <div class="form-group col-sm-12 ques-name">
                     <i class="fa fa-chevron-down select-icon" aria-hidden="true"></i>
                     <select id="type" name="type" class="form-control question-group" formControlName="questionGroup"
-                        name=group (change)="changeGroup($event.target.value)">
+                        [ngClass]="{ 'is-invalid': submitted && f.questionGroup.errors }"
+                        (change)="changeGroup($event.target.value)">
                         <option value="" selected disabled>--- Select Question Group ---</option>
-                        <!-- <option value="NEET"> NEET </option> -->
                         <option [value]="data._id" *ngFor="let data of grouplist">{{data.questionGroup}}</option>
                     </select>
                     <div *ngIf="submitted && f.questionGroup.errors" class="invalid-feedback">
@@ -42,13 +42,12 @@
                 <div class="form-group col-sm-12 ques-name">
                     <i class="fa fa-chevron-down select-icon" aria-hidden="true"></i>
                     <select id="type" name="type" class="form-control question-group" formControlName="questionSubgroup"
-                        name=group>
+                        name=group [ngClass]="{ 'is-invalid': submitted && f.questionSubgroup.errors }">
                         <option value="" selected disabled>--- Select Subquestion Group ---</option>
-                        <!-- <option value="NEET- CHEMISTRY"> NEET- CHEMISTRY </option> -->
                         <option [value]="data._id" *ngFor="let data of subGrouplist">{{data.questionSubgroup}}</option>
                     </select>
                     <div *ngIf="submitted && f.questionSubgroup.errors" class="invalid-feedback">
-                        <div *ngIf="f.questionSubgroup.errors.required">Question group is required</div>
+                        <div *ngIf="f.questionSubgroup.errors.required">Subgroup is required</div>
                     </div>
                 </div>
 

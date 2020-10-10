@@ -19,8 +19,7 @@ html {
     overflow: hidden;
 }
 
-
-.header-fixed .app-header{
+.header-fixed .app-header {
     z-index: 9 !important;
 }
 
@@ -233,10 +232,13 @@ html {
     border-color: transparent;
 }
 
-.table tbody{
+.table tbody {
     background: #fff;
 }
 
+.ng-star-inserted {
+    font-weight: 600;
+}
 //responsive screens
 
 @media screen and (min-width: 480px) and (max-width: 767px) {
@@ -288,7 +290,7 @@ html {
         font-size: 9px !important;
     }
 
-    .intro-btn .enter-btn{
+    .intro-btn .enter-btn {
         font-size: 12px !important;
     }
 }
@@ -341,7 +343,7 @@ html {
         font-size: 9px !important;
     }
 
-    .intro-btn .enter-btn{
+    .intro-btn .enter-btn {
         font-size: 12px !important;
     }
 }
