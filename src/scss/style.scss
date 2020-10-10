@@ -239,6 +239,11 @@ html {
 .ng-star-inserted {
     font-weight: 600;
 }
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+    background-image: none !important;
+}
 //responsive screens
 
 @media screen and (min-width: 480px) and (max-width: 767px) {
