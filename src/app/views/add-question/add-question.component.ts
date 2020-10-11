@@ -21,7 +21,7 @@ export class AddQuestionComponent implements OnInit {
   optionImage2: boolean;
   optionImage3: boolean;
   optionImage4: boolean;
-  submitted:boolean;
+  submitted: boolean;
 
   @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
 
@@ -54,7 +54,7 @@ export class AddQuestionComponent implements OnInit {
       option2: ['', Validators.required],
       option3: ['', Validators.required],
       option4: ['', Validators.required],
-      answer: ['', Validators.required]
+      answer: ['', [Validators.required, Validators.pattern("^[1-4]*$"), Validators.minLength(1), Validators.maxLength(1)]]
     });
   }
 

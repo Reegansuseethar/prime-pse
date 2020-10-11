@@ -189,6 +189,7 @@
                         placeholder="Correct Option" [ngClass]="{ 'is-invalid': submitted && f.answer.errors }">
                     <div *ngIf="submitted && f.answer.errors" class="invalid-feedback">
                         <div *ngIf="f.answer.errors.required">Answer is required</div>
+                        <div *ngIf="f.answer.errors.pattern">Option numbers only Available</div>
                     </div>
                 </div>
             </div>
