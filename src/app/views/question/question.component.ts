@@ -59,12 +59,13 @@ export class QuestionComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       this.service.getQuestionBygroupId(params.id).subscribe((res: any) => {
-        // this.service.getQuestions().subscribe((res: any) => {
-          if (!this.disableAnswer) {
-            this.observableTimer();
-          }
 
-          for (let i in res) {
+        if (!this.disableAnswer) {
+          this.observableTimer();
+        }
+
+        for (let i in res) {
+          // if (!res[i].premiumQuestion) {
             this.quesArr.push({
               questionId: Number(i),
               questionText: res[i].questionName,
@@ -78,21 +79,24 @@ export class QuestionComponent implements OnInit {
               explanation: '',
               selectedOption: ''
             })
-          }
+          // }
+        }
+        console.log(this.allQuestions)
 
-          this.allQuestions = this.quesArr;
-          this.setQuestionID(0);  // get the question ID and store it
-          this.question = this.getQuestion;
+        this.allQuestions = this.quesArr;
+        this.setQuestionID(0);  // get the question ID and store it
+        this.question = this.getQuestion;
 
-          this.question = this.getQuestion;
-          this.totalQuestions = this.allQuestions.length;
-          // change the multiply value
-          this.totalMarks = this.allQuestions.length;
-          this.timeLeft = this.totalQuestions * 10;
-          this.progressValue = 100 * (this.currentQuestion + 1) / this.totalQuestions;
-          this.spinner.hide();
+        this.question = this.getQuestion;
+        this.totalQuestions = this.allQuestions.length;
+        // change the multiply value
+        this.totalMarks = this.allQuestions.length;
+        this.timeLeft = this.totalQuestions * 10;
+        this.progressValue = 100 * (this.currentQuestion + 1) / this.totalQuestions;
+        this.spinner.hide();
 
         // });
+
 
       })
     })
@@ -200,7 +204,7 @@ export class QuestionComponent implements OnInit {
     // this.previous = false;
     this.router.navigate(['/dashboard'])
   }
-  
+
   navigateToDashboard() {
     this.router.navigate(['/dashboard'])
   }
