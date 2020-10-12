@@ -96,9 +96,9 @@ export class AddQuestionComponent implements OnInit {
 
   changeGroup(val: any) {
     this.service.getSubGroupByGroupId(val).subscribe((res: any) => {
-      console.log(res)
+      // console.log(res)
       this.subGrouplist = res;
-    })
+    });
   }
 
   enableOption1(e) {
@@ -169,7 +169,7 @@ export class AddQuestionComponent implements OnInit {
     } else {
       this.service.getQuestionBygroupId(id).subscribe((res: any) => {
         this.questionList = res;
-      })
+      });
     }
   }
 

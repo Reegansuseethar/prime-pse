@@ -7,12 +7,12 @@
       <mat-card-content>
         <section class="scoreboard">
           <div class="row">
-            <div class="score">
+            <!-- <div class="score">
               <span class="leader">Score</span>
               <span class="scoreboard">
                 {{ correctAnswersCount }}/{{ totalQuestions }}
               </span>
-            </div>
+            </div> -->
             <div class="badge" *ngIf="question && question.questionId <= totalQuestions">
               <span>Question {{ question?.questionId+1 }} of {{ totalQuestions }}</span>
             </div>
@@ -149,7 +149,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-md btn-primary" (click)="resultModal.hide()">Close</button>
+        <button type="button" class="btn btn-md btn-primary" (click)="endExam()">Close</button>
         <button type="button" class="btn btn-md btn-primary" (click)="viewAnswers()">View Answers </button>
       </div>
     </div>

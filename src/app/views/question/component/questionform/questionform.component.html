@@ -8,8 +8,10 @@
         <mat-radio-button name="option-radio-button" class="option" [value]="option.optionValue"
           [checked]="question.selectedOption == option" [disabled]="disableAnswer"
           [ngClass]="{'is-correct': option.isChecked}">
-          <li>{{ option?.optionText }}</li>
+          <li>{{ option?option.optionText.includes('data:image/')?'':option.optionText:'' }}</li>
         </mat-radio-button>
+        <img *ngIf="option.optionText.includes('data:image/')" [src]="option.optionText"
+          style="height: 200px;width: 210px;">
 
         <section class="messages" *ngIf="disableAnswer">
           <div *ngIf="isCorrect(option.optionValue) && option.isChecked">

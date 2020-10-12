@@ -15,7 +15,7 @@ import { timer } from 'rxjs';
 })
 export class QuestionComponent implements OnInit {
   @Input() answer: string;
-  questionAttempted:number;
+  questionAttempted: number;
   @Input() formGroup: FormGroup;
   @Input() question: QuizQuestion;
   totalQuestions: number;
@@ -40,9 +40,9 @@ export class QuestionComponent implements OnInit {
   questionList: any;
   quesArr = []
   allQuestions: any;
-  totalMarks:number;
-  markedScore:number;
-  subscribeTimer:any;
+  totalMarks: number;
+  markedScore: number;
+  subscribeTimer: any;
   math = Math;
 
   @ViewChild('resultModal', { static: false }) public resultModal: ModalDirective;
@@ -53,51 +53,56 @@ export class QuestionComponent implements OnInit {
 
   counter(i: number) {
     return new Array(i);
-}
+  }
   ngOnInit() {
     this.spinner.show();
-    this.service.getQuestions().subscribe((res: any) => {
-      if(!this.disableAnswer){
-        this.observableTimer();
-      }
-      
 
-      for (let i in res) {
-        this.quesArr.push({
-          questionId: Number(i),
-          questionText: res[i].questionName,
-          options: [
-            { optionValue: '1', optionText: res[i].option1 },
-            { optionValue: '2', optionText: res[i].option2 },
-            { optionValue: '3', optionText: res[i].option3 },
-            { optionValue: '4', optionText: res[i].option4 }
-          ],
-          answer: res[i].answer,
-          explanation: '',
-          selectedOption: ''
-        })
-      }
+    this.route.queryParams.subscribe(params => {
+      this.service.getQuestionBygroupId(params.id).subscribe((res: any) => {
+        // this.service.getQuestions().subscribe((res: any) => {
+          if (!this.disableAnswer) {
+            this.observableTimer();
+          }
 
-      this.allQuestions = this.quesArr;
-      this.setQuestionID(0);  // get the question ID and store it
-      this.question = this.getQuestion;
+          for (let i in res) {
+            this.quesArr.push({
+              questionId: Number(i),
+              questionText: res[i].questionName,
+              options: [
+                { optionValue: '1', optionText: res[i].option1 },
+                { optionValue: '2', optionText: res[i].option2 },
+                { optionValue: '3', optionText: res[i].option3 },
+                { optionValue: '4', optionText: res[i].option4 }
+              ],
+              answer: res[i].answer,
+              explanation: '',
+              selectedOption: ''
+            })
+          }
 
-      this.question = this.getQuestion;
-      this.totalQuestions = this.allQuestions.length;
-      // change the multiply value
-      this.totalMarks = this.allQuestions.length;
-      this.timeLeft = this.totalQuestions*10;
-      this.progressValue = 100 * (this.currentQuestion + 1) / this.totalQuestions;
-      this.spinner.hide();
+          this.allQuestions = this.quesArr;
+          this.setQuestionID(0);  // get the question ID and store it
+          this.question = this.getQuestion;
 
-    });
+          this.question = this.getQuestion;
+          this.totalQuestions = this.allQuestions.length;
+          // change the multiply value
+          this.totalMarks = this.allQuestions.length;
+          this.timeLeft = this.totalQuestions * 10;
+          this.progressValue = 100 * (this.currentQuestion + 1) / this.totalQuestions;
+          this.spinner.hide();
+
+        // });
+
+      })
+    })
   }
   observableTimer() {
     this.timeLeft = timer(1000, 2000);
     const abc = this.timeLeft.subscribe(val => {
       // console.log(val, '-');
       this.subscribeTimer = this.timeLeft - val;
-      if(this.subscribeTimer <= 0){
+      if (this.subscribeTimer <= 0) {
         this.navigateToResults();
         this.timeLeft.unsubscribe();
       }
@@ -123,20 +128,19 @@ export class QuestionComponent implements OnInit {
       document.getElementById('question').style.border = this.blueBorder;
     }
   }
-  setskipStatus(qId){
-    if (this.allQuestions[qId]['selectedOption'] ==''){
+  setskipStatus(qId) {
+    if (this.allQuestions[qId]['selectedOption'] == '') {
       this.allQuestions[qId]['isSkipped'] = true
     }
   }
 
-  navigateToNextQuestion(val,fromqnAttempted?:boolean): void {
-    if(!fromqnAttempted){
+  navigateToNextQuestion(val, fromqnAttempted?: boolean): void {
+    if (!fromqnAttempted) {
       this.setskipStatus(val);
       this.setQuestionID(val + 1);
-    }else{
+    } else {
       this.setQuestionID(val);
     }
-  
 
     this.question = this.getQuestion;
     this.displayNextQuestion();
@@ -151,14 +155,14 @@ export class QuestionComponent implements OnInit {
   }
 
   navigateToResults() {
-    this.questionAttempted = this.allQuestions.filter(x=>{
-      if(x.selectedOption != ''){
+    this.questionAttempted = this.allQuestions.filter(x => {
+      if (x.selectedOption != '') {
         return x
       }
     }).length;
 
-    this.markedScore  = this.allQuestions.filter(x=>{
-      if(x.selectedOption  == x.answer){
+    this.markedScore = this.allQuestions.filter(x => {
+      if (x.selectedOption == x.answer) {
         return x
       }
     }).length;
@@ -179,24 +183,24 @@ export class QuestionComponent implements OnInit {
     this.closeModal.show();
   }
 
-  endExam(){
-    this.questionAttempted = this.allQuestions.filter(x=>{
-      if(x.selectedOption != ''){
-        return x
-      }
-    }).length;
+  endExam() {
+    // this.questionAttempted = this.allQuestions.filter(x=>{
+    //   if(x.selectedOption != ''){
+    //     return x
+    //   }
+    // }).length;
 
-    this.markedScore  = this.allQuestions.filter(x=>{
-      if(x.selectedOption  == x.answer){
-        return x
-      }
-    }).length;
+    // this.markedScore  = this.allQuestions.filter(x=>{
+    //   if(x.selectedOption  == x.answer){
+    //     return x
+    //   }
+    // }).length;
     this.closeModal.hide();
-    this.resultModal.show();
-    this.previous = false;
+    // this.resultModal.show();
+    // this.previous = false;
+    this.router.navigate(['/dashboard'])
   }
-
-
+  
   navigateToDashboard() {
     this.router.navigate(['/dashboard'])
   }
