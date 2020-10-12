@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { QuestionRoutingModule } from './question-routing.module';
 import { QuestionformComponent } from './component/questionform/questionform.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     MatButtonModule,
     QuestionRoutingModule,
     ButtonsModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgxPaginationModule
   ],
   declarations: [QuestionComponent, QuestionformComponent]
 })

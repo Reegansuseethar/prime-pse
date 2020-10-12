@@ -229,7 +229,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of questionList; let i=index">
+                <tr *ngFor="let data of questionList| paginate: { itemsPerPage: 8, currentPage: p }; let i=index">
                     <td class="text-left">{{data.questionName}}</td>
                     <td class="text-left">{{data.groupName}}</td>
                     <td class="text-left">{{data.subgroupName}}</td>
@@ -239,8 +239,9 @@
                 </tr>
             </tbody>
         </table>
-        <!-- <span class="empty-data" *ngIf='noData'>No Data Available</span>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        <!-- <span class="empty-data" *ngIf='noData'>No Data Available</span>-->
     </div>
 </div>
 

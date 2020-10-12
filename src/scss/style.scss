@@ -244,6 +244,13 @@ html {
 .form-control.is-invalid {
     background-image: none !important;
 }
+
+pagination-controls {
+    float: right;
+    margin: 10px;
+  }
+
+
 //responsive screens
 
 @media screen and (min-width: 480px) and (max-width: 767px) {
