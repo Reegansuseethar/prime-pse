@@ -15,7 +15,7 @@ export class AddSubgroupComponent implements OnInit {
   submitted: boolean;
   showList: boolean = true;
   subGrouplist: any;
-
+  existsques: boolean;
   removeId: any;
 
   @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
@@ -84,6 +84,19 @@ export class AddSubgroupComponent implements OnInit {
     this.showList = true;
   }
 
+  checkSubgroup(value: any) {
+    if (value) {
+      this.grouplist.filter((result: any) => {
+        if (result.questionSubgroup == value) {
+          this.subgroupForm.controls.questionSubgroup.setErrors({ valid: false });
+          this.existsques = true;
+        }
+      });
+    } else {
+      this.existsques = false;
+    }
+  }
+
   onSubmit() {
     this.submitted = true;
     if (this.subgroupForm.invalid) {
@@ -104,6 +117,21 @@ export class AddSubgroupComponent implements OnInit {
           this.ngOnInit();
           this.showList = true;
         });
+      }
+    }
+  }
+
+  uploadDoc(event: any) {
+    if (event.target.files && event.target.files.length) {
+      let file = event.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        console.log(reader.result);
+        // this.subgroupForm.patchValue({
+        //   pdfMaterial: reader.result
+        // });
+        return reader.result
       }
     }
   }

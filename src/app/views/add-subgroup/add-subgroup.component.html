@@ -22,9 +22,11 @@
                     <i class="fa fa-question-circle-o input-icon" aria-hidden="true"></i>
                     <input type="text" class="form-control question-name" name="ques" formControlName="questionSubgroup"
                         placeholder="Click to start typing the Subgroup..."
-                        [ngClass]="{ 'is-invalid': submitted && f.questionSubgroup.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && f.questionSubgroup.errors }"
+                        (change)=checkSubgroup($event.target.value)>
                     <div *ngIf="submitted && f.questionSubgroup.errors" class="invalid-feedback">
                         <div *ngIf="f.questionSubgroup.errors.required">SubGroup is required</div>
+                        <div *ngIf="existsques && !f.questionSubgroup.errors.required">SubGroup already exists!</div>
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
@@ -39,7 +41,8 @@
                     <label>Study Notes(PDF)</label>
                 </div>
                 <div class="form-group col-sm-6">
-                    <input type="file" class="form-control form-field" accept=".pdf" formControlName="pdfMaterial">
+                    <input type="file"  class="form-control form-field" accept=".pdf" formControlName="pdfMaterial"
+                        name="pdfDoc" (change)=uploadDoc($event)>
                 </div>
             </div>
 

@@ -10,9 +10,11 @@
                     <i class="fa fa-question-circle-o input-icon" aria-hidden="true"></i>
                     <input type="text" class="form-control question-name" name="ques" formControlName="questionGroup"
                         placeholder="Click to start typing the Group..."
-                        [ngClass]="{ 'is-invalid': submitted && f.questionGroup.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && f.questionGroup.errors }"
+                        (change)=checkGroup($event.target.value)>
                     <div *ngIf="submitted && f.questionGroup.errors" class="invalid-feedback">
                         <div *ngIf="f.questionGroup.errors.required">Group is required</div>
+                        <div *ngIf="existsques && !f.questionGroup.errors.required">Group already exists!</div>
                     </div>
                 </div>
             </div>
@@ -36,11 +38,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let data of grouplist; let i=index">
-          <td class="text-left">{{data.questionGroup}}</td>
-          <td class="text-left white-space"><i class="fa fa-pencil-square-o fa-lg edit-icon"
-              (click)="editGroup(data._id)"></i>&nbsp;&nbsp;&nbsp;<i
-              class="fa fa-trash fa-lg remove-icon" (click)="openModel(data._id)" ></i></td>
-        </tr>
+                <td class="text-left">{{data.questionGroup}}</td>
+                <td class="text-left white-space"><i class="fa fa-pencil-square-o fa-lg edit-icon"
+                        (click)="editGroup(data._id)"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-trash fa-lg remove-icon"
+                        (click)="openModel(data._id)"></i></td>
+            </tr>
         </tbody>
     </table>
     <!-- <span class="empty-data" *ngIf='noData'>No Data Available</span>
@@ -48,16 +50,16 @@
 </div>
 
 <div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body dialog-modal">
-        Are you sure you want to remove?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-md btn-primary" (click)="deleteModal.hide()">Close</button>
-        <button type="button" class="btn btn-md btn-primary" (click)="removeGroup()">Confirm </button>
-      </div>
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body dialog-modal">
+                Are you sure you want to remove?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-md btn-primary" (click)="deleteModal.hide()">Close</button>
+                <button type="button" class="btn btn-md btn-primary" (click)="removeGroup()">Confirm </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

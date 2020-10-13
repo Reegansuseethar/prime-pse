@@ -22,6 +22,7 @@ export class AddQuestionComponent implements OnInit {
   optionImage3: boolean;
   optionImage4: boolean;
   submitted: boolean;
+  existsques: boolean;
 
   @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
 
@@ -56,6 +57,19 @@ export class AddQuestionComponent implements OnInit {
       option4: ['', Validators.required],
       answer: ['', [Validators.required, Validators.pattern("^[1-4]*$"), Validators.minLength(1), Validators.maxLength(1)]]
     });
+  }
+
+  checkQuestion(value: any) {
+    if (value) {
+      this.questionList.filter((result: any) => {
+        if (result.questionName == value) {
+          this.questionForm.controls.questionName.setErrors({ valid: false });
+          this.existsques = true;
+        }
+      });
+    } else {
+      this.existsques = false;
+    }
   }
 
   onSubmit() {

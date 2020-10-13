@@ -81,7 +81,7 @@ export class QuestionComponent implements OnInit {
             })
           // }
         }
-        console.log(this.allQuestions)
+        // console.log(this.allQuestions)
 
         this.allQuestions = this.quesArr;
         this.setQuestionID(0);  // get the question ID and store it
@@ -96,7 +96,6 @@ export class QuestionComponent implements OnInit {
         this.spinner.hide();
 
         // });
-
 
       })
     })

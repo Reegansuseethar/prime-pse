@@ -27,31 +27,30 @@
         <div class="sub-body">
           <div class="chart-wrapper mt-3 mx-3" style="height:auto;">
             <div class="btn-tab">
-              <div class="intro-btn">
-                <button type="button" class="btn btn-outline-info enter-btn">STUDY NOTES</button>
+              <div class="intro-btn" *ngIf=data.pdfMaterial>
+                <button type="button" class="btn btn-outline-info enter-btn"
+                  (click)=studyNotes(data.pdfMaterial,data.questionSubgroup)>STUDY NOTES</button>
               </div>
-              <div class="intro-btn">
-                <button type="button" class="btn btn-outline-info enter-btn">VIDEO CONCEPTS</button>
+              <div class="intro-btn" *ngIf=data.videoUrl>
+                <button type="button" class="btn btn-outline-info enter-btn" (click)="goToLink(data.videoUrl)">VIDEO
+                  CONCEPTS</button>
               </div>
             </div>
 
             <div class="btn-tab">
               <div class="intro-btn">
-                <button type="button" class="btn btn-outline-info enter-btn">FREE DEMO</button>
+                <button type="button" class="btn btn-outline-info enter-btn" (click)=mockTest()>FREE MOCK TEST</button>
               </div>
               <div class="intro-btn">
                 <button type="button" class="btn btn-outline-info enter-btn">BUY PREMIUM</button>
               </div>
             </div>
 
-            <div class="btn-tab">
+            <!-- <div class="btn-tab">
               <div class="intro-btn">
                 <button type="button" class="btn btn-outline-info enter-btn" (click)=mockTest()>FREE MOCK TESTS</button>
               </div>
-              <!-- <div class="intro-btn">
-                <button type="button" class="btn btn-outline-info enter-btn">BUY PREMIUM</button>
-              </div> -->
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

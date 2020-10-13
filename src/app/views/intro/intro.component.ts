@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../../services/data.service';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-intro',
@@ -42,6 +43,31 @@ export class IntroComponent implements OnInit {
 
   mockTest() {
     this.router.navigate(['question'], { queryParams: { 'id': this.grp_id } })
+  }
+
+  goToLink(url: any) {
+    if (url) {
+      window.open(url);
+    }
+  }
+
+  studyNotes(doc: any, group: any) {
+    if (doc) {
+      this.b64toBlob(doc, group);
+    }
+  }
+
+  b64toBlob(dataURI: any, group: any) {
+    let byteString = atob(dataURI.split(',')[1]);
+    let ab = new ArrayBuffer(byteString.length);
+    let ia = new Uint8Array(ab);
+
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    let blob = new Blob([ab], { type: 'application/pdf' });
+    FileSaver.saveAs(blob, group + '.pdf');
   }
 
 }

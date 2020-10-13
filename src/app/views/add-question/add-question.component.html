@@ -55,9 +55,11 @@
                     <i class="fa fa-question-circle-o input-icon" aria-hidden="true"></i>
                     <input type="text" class="form-control question-name" name="ques" formControlName="questionName"
                         placeholder="Click to start typing the question..."
-                        [ngClass]="{ 'is-invalid': submitted && f.questionName.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && f.questionName.errors }"
+                        (change)=checkQuestion($event.target.value)>
                     <div *ngIf="submitted && f.questionName.errors" class="invalid-feedback">
                         <div *ngIf="f.questionName.errors.required">Question is required</div>
+                        <div *ngIf="existsques && !f.questionName.errors.required">Question already exists!</div>
                     </div>
                 </div>
 

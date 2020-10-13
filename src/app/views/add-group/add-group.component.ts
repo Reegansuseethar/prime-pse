@@ -13,13 +13,13 @@ export class AddGroupComponent implements OnInit {
   groupForm: FormGroup;
   showList: boolean = true;
   grouplist: any;
-  submitted:boolean;
-
-  removeId:any;
+  submitted: boolean;
+  existsques: boolean;
+  removeId: any;
 
   @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
 
-  constructor(private formBuilder: FormBuilder,private service: DataService) { }
+  constructor(private formBuilder: FormBuilder, private service: DataService) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -61,16 +61,29 @@ export class AddGroupComponent implements OnInit {
     })
   }
 
-  cancel(){
+  cancel() {
     this.groupForm.reset();
     this.submitted = false;
     this.showList = true;
   }
 
+  checkGroup(value: any) {
+    if (value) {
+      this.grouplist.filter((result: any) => {
+        if (result.questionGroup == value) {
+          this.groupForm.controls.questionGroup.setErrors({ valid: false });
+          this.existsques = true;
+        }
+      });
+    } else {
+      this.existsques = false;
+    }
+  }
+
   onSubmit() {
     this.submitted = true;
     if (this.groupForm.invalid) {
-      this.submitted =true;
+      this.submitted = true;
       return;
     } else {
       if (!this.groupForm.value._id) {
