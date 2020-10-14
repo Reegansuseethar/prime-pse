@@ -58,7 +58,7 @@ export class QuestionComponent implements OnInit {
     this.spinner.show();
 
     this.route.queryParams.subscribe(params => {
-      this.service.getQuestionBygroupId(params.id).subscribe((res: any) => {
+      this.service.getFreeQuestion(params.id).subscribe((res: any) => {
 
         if (!this.disableAnswer) {
           this.observableTimer();

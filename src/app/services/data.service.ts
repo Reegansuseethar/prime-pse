@@ -56,6 +56,11 @@ export class DataService {
     return this.http.get(api_Url + '/' + id);
   }
 
+  getFreeQuestion(id: any) {
+    let api_Url: string = `${this.url}/getFreeQuestions`
+    return this.http.get(api_Url + '/' + id);
+  }
+
   //for Group
   addGroup(data: any) {
     let api_Url: string = `${this.url}/addGroup`
