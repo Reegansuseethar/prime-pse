@@ -34,6 +34,8 @@ export class AddQuestionComponent implements OnInit {
     this.service.getQuestions().subscribe((res: any) => {
       this.questionList = res;
       this.spinner.hide();
+    },()=>{
+      this.spinner.hide();
     });
 
     this.service.getGroups().subscribe((res: any) => {
