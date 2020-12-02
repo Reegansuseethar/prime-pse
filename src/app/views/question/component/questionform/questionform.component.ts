@@ -14,6 +14,7 @@ export class QuestionformComponent implements OnInit {
   @Input() question: QuizQuestion;
   @Input() disableAnswer :boolean;
   option = '';
+  chooseOptions = ['A','B','C','D']
   grayBorder = '2px solid #979797';
 
   constructor() {}

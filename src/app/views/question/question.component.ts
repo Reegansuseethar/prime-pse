@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, HostListener } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, Data } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -14,7 +14,15 @@ import { timer } from 'rxjs';
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
+
+  @HostListener('window:beforeunload', ['$event'])
+  doSomething(event) {
+   event.preventDefault();
+   event.returnValue = false;
+  }
+
   @Input() answer: string;
+  subscription:any;
   questionAttempted: number;
   @Input() formGroup: FormGroup;
   @Input() question: QuizQuestion;
@@ -49,7 +57,9 @@ export class QuestionComponent implements OnInit {
   @ViewChild('closeModal', { static: false }) public closeModal: ModalDirective;
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private service: DataService, private spinner: NgxSpinnerService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private service: DataService, private spinner: NgxSpinnerService) {
+
+   }
 
   counter(i: number) {
     return new Array(i);
@@ -102,12 +112,12 @@ export class QuestionComponent implements OnInit {
   }
   observableTimer() {
     this.timeLeft = timer(1000, 2000);
-    const abc = this.timeLeft.subscribe(val => {
+    this.subscription = this.timeLeft.subscribe(val => {
       // console.log(val, '-');
       this.subscribeTimer = this.timeLeft - val;
       if (this.subscribeTimer <= 0) {
         this.navigateToResults();
-        this.timeLeft.unsubscribe();
+        this.subscription.unsubscribe();
       }
     });
   }
@@ -323,6 +333,15 @@ export class QuestionComponent implements OnInit {
 
   private resetTimer() {
     this.timeLeft = this.timePerQuestion;
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.subscription){
+      this.subscription.unsubscribe();
+      console.log('deleted')
+    }
   }
 
   quizDelay(milliseconds) {
