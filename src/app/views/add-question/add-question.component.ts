@@ -34,7 +34,8 @@ export class AddQuestionComponent implements OnInit {
     this.service.getQuestions().subscribe((res: any) => {
       this.questionList = res;
       this.spinner.hide();
-    },()=>{
+    }, () => {
+      this.service.showToaster("Something went wrong!!!");
       this.spinner.hide();
     });
 
@@ -76,21 +77,31 @@ export class AddQuestionComponent implements OnInit {
 
   onSubmit() {
     // console.log(this.questionForm.value)
+    this.spinner.show();
     this.submitted = true;
     if (this.questionForm.invalid) {
+      this.spinner.hide();
       return;
     } else {
       if (!this.questionForm.value._id) {
         this.service.addQuestion(this.questionForm.value).subscribe((res: any) => {
+          this.spinner.hide();
           this.service.showToaster(res.message);
           this.ngOnInit();
           this.showList = true;
+        }, () => {
+          this.service.showToaster("Something went wrong!!!");
+          this.spinner.hide();
         });
       } else {
         this.service.updateQuesById(this.questionForm.value).subscribe((res: any) => {
+          this.spinner.hide();
           this.service.showToaster(res.message);
           this.ngOnInit();
           this.showList = true;
+        },() => {
+          this.service.showToaster("Something went wrong!!!");
+          this.spinner.hide();
         });
       }
     }
@@ -171,11 +182,16 @@ export class AddQuestionComponent implements OnInit {
   }
 
   removeQues() {
+    this.spinner.show();
     this.service.removeQuestion(this.removeId).subscribe((res: any) => {
+      this.spinner.hide();
       this.service.showToaster(res.message);
       this.deleteModal.hide();
       this.ngOnInit();
-    })
+    },() => {
+      this.service.showToaster("Something went wrong!!!");
+      this.spinner.hide();
+    });
   }
 
   getGroupQues(id: any) {

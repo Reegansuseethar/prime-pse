@@ -41,7 +41,8 @@ export class IntroComponent implements OnInit {
     })
   }
 
-  mockTest() {
+  mockTest(id) {
+    // console.log(id);
     this.router.navigate(['question'], { queryParams: { 'id': this.grp_id } })
   }
 

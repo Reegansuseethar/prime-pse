@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DataService } from '../../services/data.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
@@ -19,13 +20,18 @@ export class AddGroupComponent implements OnInit {
 
   @ViewChild('deleteModal', { static: false }) public deleteModal: ModalDirective;
 
-  constructor(private formBuilder: FormBuilder, private service: DataService) { }
+  constructor(private formBuilder: FormBuilder, private service: DataService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.initializeForm();
     this.service.getGroups().subscribe((res: any) => {
+      this.spinner.hide();
       this.grouplist = res;
-    })
+    }, () => {
+      this.service.showToaster("Something went wrong!!!");
+      this.spinner.hide();
+    });
   }
 
   get f() { return this.groupForm.controls; }
@@ -54,11 +60,16 @@ export class AddGroupComponent implements OnInit {
   }
 
   removeGroup() {
+    this.spinner.show();
     this.service.removeGroup(this.removeId).subscribe((res: any) => {
+      this.spinner.hide();
       this.service.showToaster(res.message);
       this.deleteModal.hide();
       this.ngOnInit();
-    })
+    }, () => {
+      this.service.showToaster("Something went wrong!!!");
+      this.spinner.hide();
+    });
   }
 
   cancel() {
@@ -81,24 +92,34 @@ export class AddGroupComponent implements OnInit {
   }
 
   onSubmit() {
+    this.spinner.show();
     this.submitted = true;
     if (this.groupForm.invalid) {
       this.submitted = true;
+      this.spinner.hide();
       return;
     } else {
       if (!this.groupForm.value._id) {
         this.service.addGroup(this.groupForm.value).subscribe((res: any) => {
+          this.spinner.hide();
           this.submitted = false;
           this.service.showToaster(res.message);
           this.ngOnInit();
           this.showList = true;
+        }, () => {
+          this.service.showToaster("Something went wrong!!!");
+          this.spinner.hide();
         });
       } else {
         this.service.updateGroupById(this.groupForm.value).subscribe((res: any) => {
+          this.spinner.hide();
           this.service.showToaster(res.message);
           this.submitted = false;
           this.ngOnInit();
           this.showList = true;
+        }, () => {
+          this.service.showToaster("Something went wrong!!!");
+          this.spinner.hide();
         });
       }
     }
