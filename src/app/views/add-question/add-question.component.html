@@ -236,7 +236,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let data of questionList| paginate: { itemsPerPage: 8, currentPage: p }; let i=index">
-                    <td class="text-left">{{data.questionName}}</td>
+                    <td class="text-left">
+                        <div class=scrollable>
+                            {{data.questionName}}
+                        </div>
+                    </td>
                     <td class="text-left">{{data.groupName}}</td>
                     <td class="text-left">{{data.subgroupName}}</td>
                     <td class="text-left white-space"><i class="fa fa-pencil-square-o fa-lg edit-icon"

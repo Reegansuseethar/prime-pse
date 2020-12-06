@@ -39,7 +39,7 @@ export class AddGroupComponent implements OnInit {
   initializeForm() {
     this.submitted = false;
     this.groupForm = this.formBuilder.group({
-      questionGroup: ['', Validators.required],
+      questionGroup: ['', [Validators.required, Validators.maxLength(50)]],
     });
   }
 
@@ -48,7 +48,7 @@ export class AddGroupComponent implements OnInit {
       this.showList = false;
       this.groupForm = this.formBuilder.group({
         _id: [res._id],
-        questionGroup: [res.questionGroup, Validators.required],
+        questionGroup: [res.questionGroup, [Validators.required, Validators.maxLength(50)]],
       });
     })
   }

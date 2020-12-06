@@ -43,7 +43,8 @@ export class AddSubgroupComponent implements OnInit {
     this.submitted = false;
     this.subgroupForm = this.formBuilder.group({
       questionGroupid: ['', Validators.required],
-      questionSubgroup: ['', Validators.required],
+      questionSubgroup: ['', [Validators.required, Validators.maxLength(50)]],
+      questionCount: ['',Validators.pattern("^[0-9]*$")],
       amount: [''],
       videoUrl: [''],
       pdfMaterial: ['']
@@ -60,8 +61,9 @@ export class AddSubgroupComponent implements OnInit {
       this.subgroupForm = this.formBuilder.group({
         _id: [res._id],
         questionGroupid: [res.questionGroupid, Validators.required],
-        questionSubgroup: [res.questionSubgroup, Validators.required],
+        questionSubgroup: [res.questionSubgroup, [Validators.required, Validators.maxLength(50)]],
         amount: [res.amount],
+        questionCount: [res.questionCount],
         videoUrl: [res.videoUrl],
         pdfMaterial: [res.pdfMaterial]
       });

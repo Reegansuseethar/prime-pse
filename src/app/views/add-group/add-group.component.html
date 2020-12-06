@@ -14,6 +14,7 @@
                         (change)=checkGroup($event.target.value)>
                     <div *ngIf="submitted && f.questionGroup.errors" class="invalid-feedback">
                         <div *ngIf="f.questionGroup.errors.required">Group is required</div>
+                        <div *ngIf="f.questionGroup.errors.maxlength">Maximum 50 characters</div>
                         <div *ngIf="existsques && !f.questionGroup.errors.required">Group already exists!</div>
                     </div>
                 </div>

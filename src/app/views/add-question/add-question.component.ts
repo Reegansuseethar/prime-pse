@@ -83,26 +83,31 @@ export class AddQuestionComponent implements OnInit {
       this.spinner.hide();
       return;
     } else {
-      if (!this.questionForm.value._id) {
-        this.service.addQuestion(this.questionForm.value).subscribe((res: any) => {
-          this.spinner.hide();
-          this.service.showToaster(res.message);
-          this.ngOnInit();
-          this.showList = true;
-        }, () => {
-          this.service.showToaster("Something went wrong!!!");
-          this.spinner.hide();
-        });
+      if (!this.questionForm.value.freeQuestion && !this.questionForm.value.premiumQuestion) {
+        this.service.showToaster('Please select option...');
+        this.spinner.hide();
       } else {
-        this.service.updateQuesById(this.questionForm.value).subscribe((res: any) => {
-          this.spinner.hide();
-          this.service.showToaster(res.message);
-          this.ngOnInit();
-          this.showList = true;
-        },() => {
-          this.service.showToaster("Something went wrong!!!");
-          this.spinner.hide();
-        });
+        if (!this.questionForm.value._id) {
+          this.service.addQuestion(this.questionForm.value).subscribe((res: any) => {
+            this.spinner.hide();
+            this.service.showToaster(res.message);
+            this.ngOnInit();
+            this.showList = true;
+          }, () => {
+            this.service.showToaster("Something went wrong!!!");
+            this.spinner.hide();
+          });
+        } else {
+          this.service.updateQuesById(this.questionForm.value).subscribe((res: any) => {
+            this.spinner.hide();
+            this.service.showToaster(res.message);
+            this.ngOnInit();
+            this.showList = true;
+          }, () => {
+            this.service.showToaster("Something went wrong!!!");
+            this.spinner.hide();
+          });
+        }
       }
     }
   }
@@ -188,7 +193,7 @@ export class AddQuestionComponent implements OnInit {
       this.service.showToaster(res.message);
       this.deleteModal.hide();
       this.ngOnInit();
-    },() => {
+    }, () => {
       this.service.showToaster("Something went wrong!!!");
       this.spinner.hide();
     });
