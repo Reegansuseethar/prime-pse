@@ -15,11 +15,11 @@ export class AuthDataService {
   }
 
   persistLoggedUserData(formValue): any {
-    localStorage.setItem("userData", JSON.stringify(formValue));
+    sessionStorage.setItem("userData", JSON.stringify(formValue));
   }
 
   getLoggedInUserData(): any {
-    let userData = JSON.parse(localStorage.getItem("userData"));
+    let userData = JSON.parse(sessionStorage.getItem("userData"));
     return userData;
   }
 
@@ -31,7 +31,7 @@ export class AuthDataService {
   }
 
   doLogout(): any {
-    localStorage.clear();
+    sessionStorage.clear();
     this.route.navigate(['login']);
   }
 }

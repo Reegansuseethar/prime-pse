@@ -66,6 +66,10 @@ export class LoginComponent implements OnInit {
         // this.user = user;
         // this.loggedIn = (user != null);
         // console.log(user);
+        sessionStorage.setItem('name', user.name);
+        sessionStorage.setItem('id', user.id)
+        sessionStorage.setItem('email', user.email)
+
         this.userData = user;
         if (this.userData) {
 
@@ -75,7 +79,7 @@ export class LoginComponent implements OnInit {
             email: user.email,
             provider: user.provider
           }
-          this.dataservice.userSave(data).subscribe((res:any)=>{
+          this.dataservice.userSave(data).subscribe((res: any) => {
             this.router.navigate(["dashboard"]);
           })
 
