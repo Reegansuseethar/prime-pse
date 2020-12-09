@@ -128,6 +128,11 @@ export class DataService {
     return this.http.get(api_Url + '/' + id);
   }
 
+  saveExamResult(data: any) {
+    let api_Url: string = `${this.url}/saveResult`
+    return this.http.post(api_Url, data);
+  }
+
   //user
 
   userSave(data: any) {

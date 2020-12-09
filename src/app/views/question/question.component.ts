@@ -17,12 +17,12 @@ export class QuestionComponent implements OnInit {
 
   @HostListener('window:beforeunload', ['$event'])
   doSomething(event) {
-   event.preventDefault();
-   event.returnValue = false;
+    event.preventDefault();
+    event.returnValue = false;
   }
 
   @Input() answer: string;
-  subscription:any;
+  subscription: any;
   questionAttempted: number;
   @Input() formGroup: FormGroup;
   @Input() question: QuizQuestion;
@@ -59,7 +59,7 @@ export class QuestionComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private service: DataService, private spinner: NgxSpinnerService) {
 
-   }
+  }
 
   counter(i: number) {
     return new Array(i);
@@ -76,19 +76,19 @@ export class QuestionComponent implements OnInit {
 
         for (let i in res) {
           // if (!res[i].premiumQuestion) {
-            this.quesArr.push({
-              questionId: Number(i),
-              questionText: res[i].questionName,
-              options: [
-                { optionValue: '1', optionText: res[i].option1 },
-                { optionValue: '2', optionText: res[i].option2 },
-                { optionValue: '3', optionText: res[i].option3 },
-                { optionValue: '4', optionText: res[i].option4 }
-              ],
-              answer: res[i].answer,
-              explanation: '',
-              selectedOption: ''
-            })
+          this.quesArr.push({
+            questionId: Number(i),
+            questionText: res[i].questionName,
+            options: [
+              { optionValue: '1', optionText: res[i].option1 },
+              { optionValue: '2', optionText: res[i].option2 },
+              { optionValue: '3', optionText: res[i].option3 },
+              { optionValue: '4', optionText: res[i].option4 }
+            ],
+            answer: res[i].answer,
+            explanation: '',
+            selectedOption: ''
+          })
           // }
         }
         // console.log(this.allQuestions)
@@ -193,24 +193,55 @@ export class QuestionComponent implements OnInit {
   }
 
   closeExam() {
+    this.markedScore = this.allQuestions.filter(x => {
+      if (x.selectedOption == x.answer) {
+        return x
+      }
+    }).length;
+
+    let data = {
+      name: '',
+      id: '',
+      email: '',
+      mark: this.markedScore,
+      status: (this.markedScore >= (this.totalQuestions / 2)) ? 'PASS' : 'FAIL'
+    }
+    console.log(data);
+    this.service.saveExamResult(data).subscribe((res: any) => {
+
+    })
     this.closeModal.show();
   }
 
   endExam() {
-    // this.questionAttempted = this.allQuestions.filter(x=>{
-    //   if(x.selectedOption != ''){
-    //     return x
-    //   }
-    // }).length;
+    this.questionAttempted = this.allQuestions.filter(x => {
+      if (x.selectedOption != '') {
+        return x
+      }
+    }).length;
 
-    // this.markedScore  = this.allQuestions.filter(x=>{
-    //   if(x.selectedOption  == x.answer){
-    //     return x
-    //   }
-    // }).length;
+    this.markedScore = this.allQuestions.filter(x => {
+      if (x.selectedOption == x.answer) {
+        return x
+      }
+    }).length;
     this.closeModal.hide();
-    // this.resultModal.show();
-    // this.previous = false;
+    this.resultModal.show();
+    this.previous = false;
+    
+    let data = {
+      name: '',
+      id: '',
+      email: '',
+      mark: this.markedScore,
+      status: (this.markedScore >= (this.totalQuestions / 2)) ? 'PASS' : 'FAIL'
+    }
+    console.log(data);
+    this.service.saveExamResult(data).subscribe((res: any) => {
+    })
+  }
+
+  exitPage(){
     this.router.navigate(['/dashboard'])
   }
 
@@ -338,7 +369,7 @@ export class QuestionComponent implements OnInit {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    if(this.subscription){
+    if (this.subscription) {
       this.subscription.unsubscribe();
       console.log('deleted')
     }
