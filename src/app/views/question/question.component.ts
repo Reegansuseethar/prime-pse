@@ -52,7 +52,11 @@ export class QuestionComponent implements OnInit {
   markedScore: number;
   subscribeTimer: any;
   math = Math;
+  config = {
+    backdrop: true,
+    ignoreBackdropClick: true
 
+  };
   @ViewChild('resultModal', { static: false }) public resultModal: ModalDirective;
   @ViewChild('closeModal', { static: false }) public closeModal: ModalDirective;
 
