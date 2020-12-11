@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import * as FileSaver from 'file-saver';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-intro',
@@ -29,14 +30,16 @@ export class IntroComponent implements OnInit {
     }
   }
 
-  constructor(private service: DataService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private service: DataService, private router: Router, private route: ActivatedRoute, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.route.queryParams.subscribe(params => {
       this.grp_id = params.id;
       this.service.getSubGroupByGroupId(params.id).subscribe((res: any) => {
         // console.log(res)
         this.subGrouplist = res;
+        this.spinner.hide();
       })
     })
   }

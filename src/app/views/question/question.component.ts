@@ -183,9 +183,21 @@ export class QuestionComponent implements OnInit {
         return x
       }
     }).length;
-    this.subscribeTimer = 0
+    this.subscribeTimer = 0;
+
+    let data = {
+      name: '',
+      id: '',
+      email: '',
+      mark: this.markedScore,
+      status: (this.markedScore >= (this.totalQuestions / 2)) ? 'PASS' : 'FAIL'
+    }
+    this.service.saveExamResult(data).subscribe((res: any) => {
+    });
+    
     this.resultModal.show();
     this.previous = false;
+    
   }
 
   viewAnswers() {
@@ -210,10 +222,8 @@ export class QuestionComponent implements OnInit {
       mark: this.markedScore,
       status: (this.markedScore >= (this.totalQuestions / 2)) ? 'PASS' : 'FAIL'
     }
-    console.log(data);
     this.service.saveExamResult(data).subscribe((res: any) => {
-
-    })
+    });
     this.closeModal.show();
   }
 

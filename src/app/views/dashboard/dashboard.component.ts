@@ -3,6 +3,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DataService } from '../../services/data.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   templateUrl: 'dashboard.component.html',
@@ -28,16 +29,17 @@ export class DashboardComponent implements OnInit {
 
   grouplist: any;
 
-  constructor(private ref: ChangeDetectorRef, private router: Router, private service: DataService) {
+  constructor(private ref: ChangeDetectorRef, private router: Router, private service: DataService, private spinner: NgxSpinnerService) {
 
   }
   ngOnInit() {
     this.service.getGroups().subscribe((res: any) => {
       // this.grouplist = res;
     });
-
+    this.spinner.show();
     this.service.getDashboardData().subscribe((res: any) => {
       this.grouplist = res;
+      this.spinner.hide();
     })
   }
 
