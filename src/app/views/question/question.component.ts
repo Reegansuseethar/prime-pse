@@ -51,6 +51,7 @@ export class QuestionComponent implements OnInit {
   totalMarks: number;
   markedScore: number;
   subscribeTimer: any;
+  viewAnswersBoolean:boolean;
   math = Math;
   config = {
     backdrop: true,
@@ -205,7 +206,8 @@ export class QuestionComponent implements OnInit {
     this.disableAnswer = true;
     this.setQuestionID(0);
     this.question = this.getQuestion;
-    this.ngOnInit();
+    this.viewAnswersBoolean = true;
+    // this.ngOnInit();
   }
 
   closeExam() {

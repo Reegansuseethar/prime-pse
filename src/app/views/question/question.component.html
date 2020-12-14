@@ -68,7 +68,7 @@
                     Submit Exam</button>
                 </div>
 
-                <div class="close-exam" *ngIf="question && question.questionId">
+                <div class="close-exam" *ngIf="question && question.questionId && !viewAnswersBoolean">
                   <button type="submit" class="btn btn-md btn-primary" (click)="closeExam()">
                     End Exam</button>
                 </div>
